@@ -1,0 +1,87 @@
+.hero {
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    z-index: -2;
+    flex-wrap: wrap;
+}
+
+.hero .content {
+    background: var(--bright-blue);
+    width: 100%;
+    padding: 100px 2em;
+    color: var(--white);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.hero .content h2 {
+    text-transform: uppercase;
+    font-size: 3em;
+    position: relative;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+}
+
+.hero .content h2::after {
+    content: '';
+    position: absolute;
+    height: 5px;
+    left: 0;
+    bottom: 0px;
+    border-radius: 8px;
+    width: 100%;
+    background: var(--white);
+}
+
+.hero .content .text {
+    letter-spacing: 2px;
+    font-size: 1.1em;
+}
+
+/* Hero wave */
+
+.hero-wave {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    margin: -1px;
+}
+
+.hero-wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 147px;
+}
+
+.hero-wave .shape-fill {
+    fill: var(--bright-blue);
+}
+
+/* End Hero wave */
+
+.cards {
+    padding: 5em 2em 1em 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cards .card {
+    background: var(--bright-blue);
+    border-radius: 1em;
+    padding: 1em;
+    width: 30%;
+}
+
+.cards .card img {
+    width: 100%;
+}
+
+.cards .card p {
+    color: var(--white);
+    text-align: center;
+    margin-top: 10px;
+}

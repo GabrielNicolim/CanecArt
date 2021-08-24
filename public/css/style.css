@@ -3,11 +3,12 @@
 /* Definição das cores */
 
 :root {
-    --pale-blue: hsl(225, 100%, 94%);
-    --bright-blue: hsl(245, 75%, 52%);
-    --very-pale-blue: hsl(225, 100%, 98%);
-    --desaturated-blue: hsl(224, 23%, 55%);
-    --dark-blue: hsl(223, 47%, 23%);
+    --pale-blue: #E0E8FF;
+    --bright-blue: #144ff0;
+    --light-blue: #4775f1;
+    --very-pale-blue: #F5F7FF;
+    --desaturated-blue: #7280A7;
+    --dark-blue: #1F2F56;
     --white: #FFF;  
 }   
 
@@ -34,25 +35,31 @@ body {
     max-width: 1500px;
     min-height: 1000px;
     margin: 0 auto;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-header {
+header,
+footer {
     width: 100%;
+}
+
+header .content,
+footer .content {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 1em 2em;
     background: var(--very-pale-blue);
-}
-
-.content {
-    width: 100%;
+    align-items: center;
+    max-width: 1500px;
+    padding: 1em;
+    margin: 0 auto;
 }
 
 footer {
+    /* Remover */
+    height: 100px; 
+} 
+
+.container .content {
     width: 100%;
-    background: var(--very-pale-blue);
 }
 
 .logo {

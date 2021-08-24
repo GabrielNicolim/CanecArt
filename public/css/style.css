@@ -1,67 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
 /* Definição das cores */
+
+:root {
+    --pale-blue: hsl(225, 100%, 94%);
+    --bright-blue: hsl(245, 75%, 52%);
+    --very-pale-blue: hsl(225, 100%, 98%);
+    --desaturated-blue: hsl(224, 23%, 55%);
+    --dark-blue: hsl(223, 47%, 23%);
+    --white: #FFF;  
+}   
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
 }
 
 body {
     width: 100vw;
     min-height: 100vh;
-    background: green;
+    background: var(--pale-blue);
 }
 
 .container {
     min-width: 1000px;
     max-width: 1500px;
     min-height: 1000px;
-    background: red;
     margin: 0 auto;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 header {
     width: 100%;
-
-    /* Remover Depois */
-    height: 200px;
-    background: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
+    background: var(--very-pale-blue);
 }
 
 .content {
     width: 100%;
-
-    /* Remover Depois */
-    background: yellow;
-    height: 8000px;
 }
 
 footer {
     width: 100%;
+    background: var(--very-pale-blue);
+}
 
-    /* Remover Depois */
-    height: 100px;
-    background: white;
+.logo {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--dark-blue);
+}
+
+.logo span {
+    color: var(--bright-blue);
 }
 
 nav {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 nav .btn {
-    text-decoration: none;
-    font-weight: 500;
-    padding: 10px 15px;
-    border-radius: 8em;
+    font-weight: 700;
+    color: var(--dark-blue);
+    font-size: 18px;
+}
 
-    /* Remover Depois */
-    color: white;
+nav .btn:not(:last-child) {
+    margin-right: 30px;
+}
+
+nav .btn:not(:last-child):hover,
+nav .btn.active {
+    color: var(--desaturated-blue);
+    transition: 200ms;
 }
 
 nav .btn.primary {
-    font-weight: 700;
-    border: 4px solid white;
+    padding: 15px 20px;
+    border-radius: 8em;
+    background: var(--bright-blue);
+    color: var(--very-pale-blue);
 }
+
+nav .btn.primary:hover {
+    background: var(--dark-blue);
+    transition: 200ms;
+}
+
+/* Overflow */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px var(--white);
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--desaturated-blue);
+    border-radius: 4px;
+  }

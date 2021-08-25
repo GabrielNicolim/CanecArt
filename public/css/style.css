@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
-/* Definição das cores */
-
 :root {
     --pale-blue: #E0E8FF;
     --bright-blue: #144ff0;
@@ -35,15 +33,15 @@ body {
     max-width: 1500px;
     min-height: 1000px;
     margin: 0 auto;
+    
 }
 
-header,
-footer {
+/* Header */
+header {
     width: 100%;
 }
 
-header .content,
-footer .content {
+header .content {
     display: flex;
     justify-content: space-between;
     background: var(--very-pale-blue);
@@ -52,16 +50,9 @@ footer .content {
     padding: 1em;
     margin: 0 auto;
 }
+/* End Header*/
 
-footer {
-    /* Remover */
-    height: 100px; 
-} 
-
-.container .content {
-    width: 100%;
-}
-
+/* Logo */
 .logo {
     font-size: 32px;
     font-weight: 900;
@@ -71,7 +62,9 @@ footer {
 .logo span {
     color: var(--bright-blue);
 }
+/* End Logo */
 
+/* Nav */
 nav {
     display: flex;
     justify-content: space-evenly;
@@ -105,22 +98,89 @@ nav .btn.primary:hover {
     background: var(--dark-blue);
     transition: 200ms;
 }
+/* End Nav */
+
+/* Footer */
+footer {
+    width: 100%;
+    overflow: hidden;
+}
+
+footer .content {
+    background: var(--bright-blue);
+    padding: 3em 5em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .content .left .btn {
+    display: block;
+    color: var(--white);
+    margin: 20px 0;
+    font-weight: 700;
+}
+
+footer .content .left .btn:hover,
+footer .content .left .btn.active {
+    color: var(--dark-blue);
+    transition: 200ms;
+}
+
+footer .content .left .btn.primary {
+    background: var(--light-blue);
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+footer .content .left .btn.primary:hover {
+    background: var(--dark-blue);
+    color: var(--white);
+    transition: 200ms;
+}
+
+footer .content .right span {
+    display: block;
+    color: var(--white);
+    margin: 20px 0;
+    text-align: right;
+    font-weight: 500;
+}
+
+/* Wave Footer */
+.footer-wave {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.footer-wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 140px;
+}
+
+.footer-wave .shape-fill {
+    fill: var(--bright-blue);
+}
+/* End Footer Wave */
+/* End Footer*/
 
 /* Overflow */
-
-/* width */
 ::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px var(--white);
     border-radius: 10px;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
     background: var(--desaturated-blue);
     border-radius: 4px;
-  }
+}
+/* End Overflow */

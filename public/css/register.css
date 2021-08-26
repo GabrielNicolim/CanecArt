@@ -1,0 +1,96 @@
+/* .container {
+    background: red;
+} */
+
+body {
+    background-image: url('../images/blob-scene-haikei.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.error {
+    width: 40%;
+    margin: 2em auto;
+    text-align: center;
+    padding: 15px;
+    background: crimson;
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.content {
+    padding: 5em;
+    margin: 5em 2em;
+    border-radius: 1em;
+}
+
+.content form {
+    width: 40%;
+    padding: 2em;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 1em;
+}
+
+.content .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--dark-blue);
+    margin-bottom: 1em;
+}
+
+.content .top a i {
+    font-size: 1.8em;
+    color: var(--dark-blue);
+}
+
+.content .top a i:hover {
+    color: var(--bright-blue);
+    transition: 200ms;
+}
+
+.content form input,
+.content form label {
+    display: block;
+    width: 100%;
+}
+
+.content form label {
+    font-weight: 500;
+    color: var(--dark-blue);
+    margin: 15px auto 5px auto;
+    font-size: 1.1em
+} 
+
+.content form input {
+    padding: 15px;
+    border: 2px solid #1f2f5662;
+    border-radius: 8px;
+    outline: none;
+    font-size: 1.1em;
+}
+
+.content form input[type="submit"] {
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 2em;
+    font-size: 1.2em;
+    color: var(--white);
+    background: var(--bright-blue);
+} 
+
+.content form input[type="submit"]:hover {
+    background: var(--dark-blue);
+    transition: 200ms;
+}
+
+.content form + a {
+    width: 40%;
+    margin: 1em auto;
+    display: block;
+    text-align: center;
+    color: var(--dark-blue);
+    font-weight: 700;
+}

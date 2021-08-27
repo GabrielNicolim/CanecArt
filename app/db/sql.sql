@@ -1,6 +1,7 @@
 CREATE TABLE users (
-    id_user SERIAL PRIMARY KEY,
-    cpf_user CHAR(12) NOT NULL,
+    id_user SERIAL PRIMARY KEY NOT NULL,
+    name_user VARCHAR(256) NOT NULL,
+    cpf_user CHAR(11) NOT NULL,
     email_user VARCHAR(255) NOT NULL UNIQUE,
     password_user CHAR(72) NOT NULL,
     created_at DATE DEFAULT CURRENT_DATE,
@@ -9,7 +10,7 @@ CREATE TABLE users (
     is_admin BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE adress (
+CREATE TABLE adresses (
     id_adress SERIAL PRIMARY KEY,
     street_adress TEXT NOT NULL,
     district_adress TEXT NOT NULL,
@@ -38,10 +39,10 @@ CREATE TABLE orders (
     FOREIGN KEY (fk_user) REFERENCES users (id_user),
 
     fk_adress BIGINT NOT NULL,
-    FOREIGN KEY (fk_adress) REFERENCES adress (id_adress)
+    FOREIGN KEY (fk_adress) REFERENCES adresses (id_adress)
 );
 
-CREATE TABLE order_poducts (
+CREATE TABLE order_products (
     id_order_product SERIAL PRIMARY KEY,
 
     fk_order BIGINT NOT NULL,
@@ -50,3 +51,22 @@ CREATE TABLE order_poducts (
     fk_product BIGINT NOT NULL,
     FOREIGN KEY (fk_product) REFERENCES products (id_product)
 );
+
+CREATE TABLE pwdreset (
+  id_pwdReset SERIAL PRIMARY KEY NOT NULL,
+  ipRequest VARCHAR(46) NOT NULL,
+  dateRequest TIMESTAMP NOT NULL DEFAULT now(),
+  cityRequest VARCHAR(128),
+  regionRequest VARCHAR(128),
+  countryRequest VARCHAR(128),
+  pwdResetEmail VARCHAR(256) NOT NULL,
+  pwdResetSelector TEXT NOT NULL,
+  pwdResetToken TEXT NOT NULL,
+  pwdResetExpires VARCHAR(32) NOT NULL
+);
+
+/*
+
+DROP TABLE pwdreset, order_products, orders, products, adresses, users;
+
+*/

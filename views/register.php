@@ -14,9 +14,11 @@
 <body>
     <div class="container">
         <div class="content">
-            <!-- <div class="error">ERRO</div> -->
-            
-            <form action="" method="POST">
+            <?php if (isset($_GET)) {
+                echo '<div class="error">'.var_dump($_GET).'</div> -->';
+            }
+            ?>
+            <form action="../app/registerLogic.php" method="POST">
                 <div class="top">
                     <h2>Cadastro</h2>
 

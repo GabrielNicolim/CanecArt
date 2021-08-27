@@ -41,4 +41,4 @@ Esses links devem ser utilizados para realizar a instalação dos aplicativos ut
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [GitHub Desktop](https://desktop.github.com/)
 - [Xampp](https://www.apachefriends.org/download.html)
-- [Pg Admin](https://www.pgadmin.org/download/)
+- [PgAdmin4](https://www.pgadmin.org/download/)

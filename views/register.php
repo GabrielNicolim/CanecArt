@@ -8,14 +8,16 @@
 
     <script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>
 
+    <link rel="shortcut icon" href="../public/images/logos/favicon.png" type="image/x-icon">
+
     <link rel="stylesheet" href="../public/css/style.css">
     <link rel="stylesheet" href="../public/css/register.css">
 </head>
 <body>
     <div class="container">
         <div class="content">
-            <?php if (isset($_GET)) {
-                echo '<div class="error">'.var_dump($_GET).'</div> -->';
+            <?php if (isset($_GET['error'])) {
+                echo '<div class="error">'.print_r($_GET['error']).'</div>';
             }
             ?>
             <form action="../app/registerLogic.php" method="POST">

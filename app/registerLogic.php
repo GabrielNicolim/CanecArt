@@ -25,7 +25,7 @@ try {
     }
     
     if (!validateCPF($cpf)) {
-        throw new Exception('CPF is invalid!');
+        //throw new Exception('CPF is invalid!');
     }
     
     if (empty($name_user) || empty($cpf) || empty($password) || empty($confirmPassword)) {
@@ -45,6 +45,7 @@ try {
 
 } catch (Exception $e) {
     echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+    exit;
 }
 
 $confirmPassword = password_hash($confirmPassword, PASSWORD_DEFAULT);

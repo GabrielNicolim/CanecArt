@@ -23,6 +23,7 @@ try {
 
 } catch (Exception $e) {
     echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+    exit;
 }
 
 $password_user = password_hash($password_user, PASSWORD_DEFAULT);

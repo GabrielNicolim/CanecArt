@@ -3,7 +3,7 @@ CREATE TABLE users (
     name_user VARCHAR(256) NOT NULL,
     cpf_user CHAR(11) NOT NULL,
     email_user VARCHAR(255) NOT NULL UNIQUE,
-    password_user CHAR(72) NOT NULL,
+    password_user VARCHAR(255) NOT NULL,
     created_at DATE DEFAULT CURRENT_DATE,
     deleted BOOLEAN DEFAULT FALSE,
     deteted_at DATE DEFAULT NULL,

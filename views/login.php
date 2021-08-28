@@ -16,7 +16,7 @@
         <div class="content">
             <!-- <div class="error">ERRO</div> -->
             
-            <form action="" method="POST">
+            <form action="../app/loginLogic.php" method="POST">
                 <div class="top">
                     <h2>Login</h2>
 

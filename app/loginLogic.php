@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     exit('Form not submited.');
 }
@@ -26,7 +28,6 @@ try {
     exit;
 }
 
-$password_user = password_hash($password_user, PASSWORD_DEFAULT);
 $dbpassword = generateFakePassword();
 
 $query = 'SELECT id_user, email_user, password_user FROM users WHERE email_user = :email';
@@ -36,10 +37,8 @@ $stmt -> execute();
 
 $return = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-if ($return['count'] > 0) {
-    
+if ($stmt -> rowCount() > 0) {
     $dbpassword = $return['password_user'];
-
 }
 
 if ( password_verify($password_user, $dbpassword) ) {
@@ -61,7 +60,7 @@ if ( password_verify($password_user, $dbpassword) ) {
     //header("Location: ../index.php");
     //exit();
 
-} else {
-    header("Location: ../index.php?error=invalid");
+} else {exit;
+    header("Location: ../index.html?error=invalid");
     exit();
 }

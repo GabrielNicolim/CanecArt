@@ -160,6 +160,10 @@ footer .content .left .btn.primary:hover {
     transition: 200ms;
 }
 
+footer .back-to-top a {
+    color: var(--white);
+}
+
 footer .content .right span {
     display: block;
     color: var(--white);

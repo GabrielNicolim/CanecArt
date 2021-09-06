@@ -28,6 +28,62 @@ body {
     background: var(--pale-blue);
 }
 
+/* Search */
+
+section.search {
+    padding: 2em 1em;
+}
+
+section.search form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section.search form input,
+section.search form select {
+    outline: none;
+    border: none;
+    padding: 10px;
+    font-size: 1.1em;
+    margin: 0 5px;
+}
+
+section.search form .value {
+    display: flex;
+    align-items: center;
+}
+
+section.search form span {
+    font-size: 1.2em;
+    margin-left: 1em;
+    margin-right: 5px;
+    font-weight: 500;
+}
+
+section.search form input[type="submit"] {
+    font-weight: 700;
+    border-radius: 8px;
+    background: var(--bright-blue);
+    color: var(--white);
+    cursor: pointer;
+}
+
+section.search form input[type="submit"]:hover {
+    background: var(--dark-blue);
+    transition: 200ms;
+}
+
+section.search form input[type="number"] {
+    width: 100px;
+}
+
+section.search form input[type="number"]::placeholder {
+    text-align: center;
+}
+
+/* End Search */
+
 /* Shop Car*/
 .shop-car {
     padding: 15px;

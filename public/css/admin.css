@@ -1,0 +1,38 @@
+.search {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.list {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 1em;
+    border-radius: 0 0 1em 1em;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 0 15px 0 0;
+}
+
+.list-item-image {
+    height: 70px;
+    border-radius: 90%;
+    margin-right: 15px;
+}
+
+.list-item-name {
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.list-item-buttons {
+    margin-left: auto;
+}
+
+.list-item-buttons img {
+    width: 30px;
+    margin-right: 10px;
+}

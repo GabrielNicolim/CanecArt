@@ -49,3 +49,36 @@ section.search form input[type="number"] {
 section.search form input[type="number"]::placeholder {
     text-align: center;
 }
+
+#products {
+    padding: 2em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
+}
+
+#products .product {
+    width: 400px;
+    padding: 10px;
+    background: var(--white);
+    border-radius: 8px;
+}
+
+#products .product img {
+    width: 100%;
+}
+
+#products .product a.btn {
+    text-align: center;
+    font-weight: 700;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    display: block;
+    color: black;
+}
+
+#products .product a.btn:hover {
+    color: var(--dark-blue);
+    transition: 200ms;
+}

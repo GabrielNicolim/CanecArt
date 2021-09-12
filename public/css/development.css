@@ -1,0 +1,42 @@
+/* Nomes Section */
+.nomes {
+    display: flex;
+    margin: 1em 2em 5em 2em;
+    padding: 2em;
+    width: 62%;
+    background: var(--bright-blue);
+    border-radius: 1em;
+}
+
+.nomes .left {
+    color: var(--white);
+    text-align: left;
+    height: 150px;
+    
+}
+
+.nomes .left h3 {
+    font-size: 1.7em;
+}
+
+.nomes .left p {
+    font-size: 1.3em;
+    margin-top: 10px;
+    
+}
+
+.nomes .right {
+    
+    text-align: center;  
+
+    
+}
+
+.nomes .right img {
+    width: 145px;
+    height: 145px;
+    margin-right: 1em;
+}
+/* End Nomes Section */
+
+

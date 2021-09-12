@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos - Admin</title>
+<?php
 
-    <link rel="stylesheet" href="../../public/css/style.css">
-    <link rel="stylesheet" href="../../public/css/admin.css">
-</head>
-<body>
+    session_start();
+
+    $page_title = 'Produtos - Admin';
+    $style_sheets = ['../../css/style.css', 
+                     '../../css/admin.css'];
+    $icon_folder = '../../images/logos/favicon.png';
+
+    require("../../includes/head.php");
+
+?>
     <div class="container">
         <header id="top">
             <div class="content">
@@ -49,55 +49,55 @@
         
         <section class="list">
             <div class="list-item">
-                <img src="../../public/images/card1-image.png" alt="" class="list-item-image">
+                <img src="../../images/card1-image.png" alt="" class="list-item-image">
 
                 <span class="list-item-name">Caneca Caneca Caneca Caneca Caneca Caneca</span>
 
                 <div class="list-item-buttons">
                     <a href="#" class="btn">
-                        <img src="../../public/icons/eye-fill.svg" alt="">
+                        <img src="../../icons/eye-fill.svg" alt="">
                     </a>
                     <a href="#" class="btn">
-                        <img src="../../public/icons/pencil-square.svg" alt="">
+                        <img src="../../icons/pencil-square.svg" alt="">
                     </a>
                     <a href="#" class="btn">
-                        <img src="../../public/icons/trash-fill.svg" alt="">
+                        <img src="../../icons/trash-fill.svg" alt="">
                     </a>
                 </div>
             </div>
 
             <div class="list-item">
-                <img src="../../public/images/card1-image.png" alt="" class="list-item-image">
+                <img src="../../images/card1-image.png" alt="" class="list-item-image">
 
                 <span class="list-item-name">Caneca Caneca Caneca Caneca Caneca Caneca</span>
 
                 <div class="list-item-buttons">
                     <a href="#" class="btn">
-                        <img src="../../public/icons/eye-fill.svg" alt="">
+                        <img src="../../icons/eye-fill.svg" alt="">
                     </a>
                     <a href="#" class="btn">
-                        <img src="../../public/icons/pencil-square.svg" alt="">
+                        <img src="../../icons/pencil-square.svg" alt="">
                     </a>
                     <a href="#" class="btn">
-                        <img src="../../public/icons/trash-fill.svg" alt="">
+                        <img src="../../icons/trash-fill.svg" alt="">
                     </a>
                 </div>
             </div>
 
             <div class="list-item">
-                <img src="../../public/images/card1-image.png" alt="" class="list-item-image">
+                <img src="../../images/card1-image.png" alt="" class="list-item-image">
 
                 <span class="list-item-name">Caneca Caneca Caneca Caneca Caneca Caneca</span>
 
                 <div class="list-item-buttons">
                     <a href="#" class="btn">
-                        <img src="../../public/icons/eye-fill.svg" alt="">
+                        <img src="../../icons/eye-fill.svg" alt="">
                     </a>
                     <a href="#" class="btn">
-                        <img src="../../public/icons/pencil-square.svg" alt="">
+                        <img src="../../icons/pencil-square.svg" alt="">
                     </a>
                     <a href="#" class="btn">
-                        <img src="../../public/icons/trash-fill.svg" alt="">
+                        <img src="../../icons/trash-fill.svg" alt="">
                     </a>
                 </div>
             </div>

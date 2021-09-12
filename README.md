@@ -2,18 +2,6 @@
 
 ## Observações
 
-### Funções
-
-```PHP
-
-function cleanString($string) {
-    return filter_var(htmlspecialchars(trim($string), FILTER_SANITIZE_STRING));
-}
-
-```
-
-Utilize está função para realizar a sanitização de `inputs` realizados pelo usuário, destá forma evitaremos ataques de SQL injection e quebra de segurança. 
-
 ### Pastas 
 
 As pastas devem ser bem divididas, segundo o nível de segurança e importância, facilitando a organização da aplicação. 

@@ -1,26 +1,30 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Produtos</title>
+<?php
+    session_start();
 
-    <script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>
+    $page_title = 'Inserir produtos';
+    $style_sheets = ['../css/style.css', 
+                     '../css/register.css'];
 
-    <link rel="stylesheet" href="../public/css/style.css">
-    <link rel="stylesheet" href="../public/css/register.css">
-</head>
-<body>
+    $javascript = ['https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous'];
+    $icon_folder = '../images/logos/favicon.png';
+
+    require("../includes/head.php");
+
+?>
+
     <div class="container">
         <div class="content">
-            <!-- <div class="error">ERRO</div> -->
+            <?php
+                if (isset($_GET['error'])) {
+                    echo '<div class="error">Dados inválidos!</div>';
+                }
+            ?>
             
-            <form action="../app/loginLogic.php" method="POST"> <!-- trocar nome do arquvio de acordo com o que será feito -->
+            <form action="../app/insertProducts.php" method="POST"> <!-- trocar nome do arquvio de acordo com o que será feito -->
                 <div class="top">
                     <h2>Cadastro de Produtos</h2>
 
-                    <a href="../index.html">
+                    <a href="../index.php">
                         <i class="fas fa-arrow-alt-circle-left"></i>
                     </a>
                 </div>

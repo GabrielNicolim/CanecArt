@@ -57,10 +57,10 @@ if ( password_verify($password_user, $dbpassword) ) {
     echo 'Logged in! ID ='.$_SESSION['idUser'].'<br>';
     echo 'Logout: <a href="logout.php">Log out</a>';
 
-    //header("Location: ../index.php");
-    //exit();
+    header("Location: ../public/views/products.php");
+    exit();
 
-} else {exit;
-    header("Location: ../index.html?error=invalid");
+} else {
+    header("Location: ../public/views/login.php?error=invalid");
     exit();
 }

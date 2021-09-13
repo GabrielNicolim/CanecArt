@@ -13,13 +13,13 @@
     <div class="container">
         <header id="top">
             <div class="content">
-                <a href="home-admin.html" class="logo">
+                <a href="home-admin.php" class="logo">
                     Administrador
                 </a>
         
                 <nav>
-                    <a href="home-admin.html" class="btn">Home</a>
-                    <a href="products-admin.html" class="btn active">Produtos</a>
+                    <a href="home-admin.php" class="btn">Home</a>
+                    <a href="products-admin.php" class="btn active">Produtos</a>
                     <a href="#person-admin" class="btn">Pessoas</a>
                     <a href="#Estatics-admin" class="btn">Estatísticas</a>
                 </nav> 
@@ -45,6 +45,8 @@
 
                 <input type="submit" value="Buscar">
             </form>
+
+            <a href="insert-products-admin.php" class="btn insert">Inserir Produto</a>
         </section>
         
         <section class="list">

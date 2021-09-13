@@ -9,7 +9,7 @@
 
     $page_title = 'Login';
     $style_sheets = ['../css/style.css', 
-                     '../css/register.css'];
+                     '../css/form.css'];
 
     $javascript = ['https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous'];
     $icon_folder = '../images/logos/favicon.png';

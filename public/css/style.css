@@ -156,8 +156,8 @@ nav .btn:not(:last-child) {
     margin-right: 30px;
 }
 
-nav .btn:not(:last-child):hover,
-nav .btn.active {
+nav .btn:not(:last-child):hover
+{
     color: var(--desaturated-blue);
     transition: 200ms;
 }
@@ -197,8 +197,7 @@ footer .content .left .btn {
     font-weight: 700;
 }
 
-footer .content .left .btn:hover,
-footer .content .left .btn.active {
+footer .content .left .btn:hover {
     color: var(--dark-blue);
     transition: 200ms;
 }

@@ -2,13 +2,13 @@
     session_start();
 
     $page_title = 'Inserir produtos';
-    $style_sheets = ['../css/style.css', 
-                     '../css/register.css'];
+    $style_sheets = ['../../css/style.css', 
+                     '../../css/form.css'];
 
     $javascript = ['https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous'];
-    $icon_folder = '../images/logos/favicon.png';
+    $icon_folder = '../../images/logos/favicon.png';
 
-    require("../includes/head.php");
+    require("../../includes/head.php");
 
 ?>
 
@@ -22,10 +22,10 @@
             
             <form action="../app/insertProducts.php" method="POST"> <!-- trocar nome do arquvio de acordo com o que será feito -->
                 <div class="top">
-                    <h2>Cadastro de Produtos</h2>
+                    <h2>Cadastrar Produto</h2>
 
-                    <a href="../index.php">
-                        <i class="fas fa-arrow-alt-circle-left"></i>
+                    <a href="products-admin.php">
+                        <i class="fas fa-times-circle"></i>
                     </a>
                 </div>
 
@@ -33,7 +33,7 @@
                 <input type="text" name="name_product" id="name_product" required="required">
 
                 <label for="description_produtc">Descrição</label>
-                <input type="text" name="description_produtc" id="description_produtc" required="required">  <!-- produTC ao invés de produCT na tabela -->
+                <textarea name="description_product" id="description_product" cols="30" rows="5"></textarea>
                 
                 <label for="price_product">Preço</label>
                 <input type="text" name="price_product" id="price_product">
@@ -44,12 +44,8 @@
                 <label for="quantity_product">Quantidade</label>
                 <input type="number" min="1" max="500" name="quantity_product" id="quantity_product">
             
-                <input type="submit" value="Enviar">
+                <input type="submit" value="Cadastrar">
             </form>
-
-            <a href="register.php">
-                Ainda não possui cadastro? Cadastre-se!
-            </a>
         </div>
     </div>
 </body>

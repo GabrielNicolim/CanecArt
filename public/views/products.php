@@ -15,21 +15,12 @@
     </div>
 
     <div class="container">
-        <header id="top">
-            <div class="content">
-                <a href="#home" class="logo">
-                    Canec<span>Art</span>
-                </a>
-        
-                <nav>
-                    <a href="../index.php" class="btn">Home</a>
-                    <a href="views/products.php" class="btn active">Produtos</a>
-                    <a href="#Estatics" class="btn">Estatísticas</a>
-                    <a href="devs.php" class="btn">Desenvolvimento</a>
-                    <a href="register.php" class="btn primary">Cadastre-se</a>
-                </nav> 
-            </div> 
-        </header>
+
+        <?php
+
+            include("../includes/header.php");
+
+        ?>
     
         <section class="search">
             <form action="" method="GET">
@@ -66,8 +57,11 @@
             </div>
         </section>
 
-<?php
+        <?php
 
-    include("../includes/footer.php");
+            include("../includes/footer.php");
 
-?>
+        ?>
+    </div>
+</body>
+</html>

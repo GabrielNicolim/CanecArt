@@ -1,42 +1,50 @@
-/* Nomes Section */
-.nomes {
+/* Checked Buttons */
+nav .btn[data-checked='development'] {
+    color: var(--desaturated-blue) !important;
+}
+
+footer .btn[data-checked='development'] {
+    color: var(--dark-blue) !important;
+}
+/* End Checked Buttons */
+
+/* Developers Section */
+.dev {
     display: flex;
-    margin: 1em 2em 5em 2em;
+    margin: 2em auto;
     padding: 2em;
     width: 62%;
     background: var(--bright-blue);
     border-radius: 1em;
 }
 
-.nomes .left {
+.dev .left {
     color: var(--white);
     text-align: left;
     height: 150px;
     
 }
 
-.nomes .left h3 {
+.dev .left h3 {
     font-size: 1.7em;
 }
 
-.nomes .left p {
+.dev .left p {
     font-size: 1.3em;
     margin-top: 10px;
     
 }
 
-.nomes .right {
+.dev .right {
     
     text-align: center;  
 
     
 }
 
-.nomes .right img {
+.dev .right img {
     width: 145px;
     height: 145px;
     margin-right: 1em;
 }
-/* End Nomes Section */
-
-
+/* End Developers Section */

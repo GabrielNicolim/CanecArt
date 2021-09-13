@@ -1,3 +1,13 @@
+/* Checked Buttons */
+nav .btn[data-checked='products'] {
+    color: var(--desaturated-blue) !important;
+}
+
+footer .btn[data-checked='products'] {
+    color: var(--dark-blue) !important;
+}
+/* End Checked Buttons */
+
 #products {
     padding: 2em;
     display: grid;

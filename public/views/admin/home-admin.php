@@ -2,6 +2,11 @@
 
     session_start();
 
+    if (!isset($_SESSION['isAuth']) && $_SESSION['idUser'] != -1) {
+        header("Location: ../login.php");
+        exit();
+    }
+
     $page_title = 'Home - Admin';
     $style_sheets = ['../../css/style.css', 
                      '../../css/admin.css'];
@@ -20,7 +25,7 @@
                 <nav>
                     <a href="home-admin.php" class="btn active">Home</a>
                     <a href="products-admin.php" class="btn">Produtos</a>
-                    <a href="#person-admin" class="btn">Pessoas</a>
+                    <a href="peoples-admin.php" class="btn">Pessoas</a>
                     <a href="#Estatics-admin" class="btn">Estatísticas</a>
                 </nav> 
             </div> 

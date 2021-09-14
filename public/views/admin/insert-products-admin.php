@@ -1,6 +1,11 @@
 <?php
     session_start();
 
+    if (!isset($_SESSION['isAuth']) && $_SESSION['idUser'] != -1) {
+        header("Location: ../login.php");
+        exit();
+    }
+
     $page_title = 'Inserir produtos';
     $style_sheets = ['../../css/style.css', 
                      '../../css/form.css'];

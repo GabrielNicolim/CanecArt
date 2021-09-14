@@ -16,6 +16,11 @@ footer .btn.active {
     align-items: center;
 }
 
+.search input[type="numeric"] {
+    width: 80px;
+    text-align: center;
+}
+
 .search .btn.insert {
     font-weight: 700;
     border-radius: 8px;
@@ -28,38 +33,63 @@ footer .btn.active {
 /* End Search*/
 
 /* List */
-.list {
-    background: rgba(255, 255, 255, 0.5);
-    padding: 1em;
-    border-radius: 0 0 1em 1em;
+.list-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: var(--desaturated-blue);
+    padding: 1em 1em 1em 80px;
+    color: var(--white);
+    border-radius: 1em 1em 0 0;
+    font-weight: 700;
 }
 
 .list-item {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin: 5px 0;
+    padding: 1em;
     background: var(--white);
-    border-radius: 8px;
-    padding: 0 15px 0 0;
-}
-
-.list-item-image {
-    height: 70px;
-    border-radius: 90%;
-    margin-right: 15px;
-}
-
-.list-item-name {
     font-weight: 500;
-    font-size: 1.2em;
 }
 
-.list-item-buttons {
-    margin-left: auto;
+.list-item img {
+    width: 80px;
 }
 
-.list-item-buttons img {
-    width: 30px;
-    margin-right: 10px;
+.list-item:not(:first-child) {
+    margin-top: 5px;
+}
+
+.list-name {
+    width: 100%;
+    text-align: center;
+}
+
+.list-state {
+    width: 200px;
+    text-align: center;
+}
+
+.list-item > .list-state {
+    padding-left: 90px;
+}
+
+.list-type,
+.list-price,
+.list-interaction {
+    width: 300px;
+    text-align: center;
+}
+
+.list-email {
+    text-align: center;
+    width: 500px;
+}
+
+.list-interaction img {
+    width: 25px;
+    margin: 0 5px;
 }
 /* End List*/

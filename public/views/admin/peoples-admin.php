@@ -7,7 +7,7 @@
         exit();
     }
 
-    $page_title = 'Produtos - Admin';
+    $page_title = 'Pessoas - Admin';
     $style_sheets = ['../../css/style.css', 
                      '../../css/admin.css'];
     $icon_folder = '../../images/logos/favicon.png';
@@ -25,8 +25,8 @@
         
                 <nav>
                     <a href="home-admin.php" class="btn">Home</a>
-                    <a href="products-admin.php" class="btn active">Produtos</a>
-                    <a href="peoples-admin.php" class="btn">Pessoas</a>
+                    <a href="products-admin.php" class="btn">Produtos</a>
+                    <a href="peoples-admin.php" class="btn active">Pessoas</a>
                     <a href="#Estatics-admin" class="btn">Estatísticas</a>
                 </nav> 
             </div> 
@@ -45,7 +45,7 @@
                 </select>
 
                 <div class="value">
-                    <span>Preço:</span>
+                    <span>Compras:</span>
                     <input type="range" id="rangeInput" name="rangeInput" value="35" min="0" max="100" oninput="document.getElementById('textInput').value=this.value;">
                     <input type="numeric" step="0.01" id="textInput" value="35" min="0" max="100" oninput="document.getElementById('rangeInput').value=this.value;" onkeydown="return event.key != 'Enter';">
                 </div>
@@ -58,17 +58,18 @@
         
         <section class="list">
             <div class="list-info">
+                <div class="list-state">Estado</div>
                 <div class="list-name">Nome</div>
-                <div class="list-type">Tipo</div>
-                <div class="list-price">Preço</div>
+                <div class="list-email">Email</div>
+                <div class="list-price">Quantidade compra</div>
                 <div class="list-interaction">Interação</div>
             </div>
 
             <div class="list-item">
-                <img src="../../images/card1-image.png" alt="">
-                <div class="list-name">nome nome nome</div>
-                <div class="list-type">Tipo tipo tipo</div>
-                <div class="list-price">Preco preco</div>
+                <div class="list-state">False</div>
+                <div class="list-name">Jorge da Nike</div>
+                <div class="list-email">jorginhodanike58@gmail.com</div>
+                <div class="list-price">12 compras</div>
                 <div class="list-interaction">
                     <a href="">
                         <img src="../../icons/eye-fill.svg" alt="">
@@ -83,10 +84,10 @@
             </div>
 
             <div class="list-item">
-                <img src="../../images/card1-image.png" alt="">
-                <div class="list-name">nome nome nome</div>
-                <div class="list-type">Tipo tipo tipo</div>
-                <div class="list-price">Preco preco</div>
+                <div class="list-state">False</div>
+                <div class="list-name">Jorge da Nike</div>
+                <div class="list-email">jorginhodanike58@gmail.com</div>
+                <div class="list-price">12 compras</div>
                 <div class="list-interaction">
                     <a href="">
                         <img src="../../icons/eye-fill.svg" alt="">
@@ -101,10 +102,10 @@
             </div>
 
             <div class="list-item">
-                <img src="../../images/card1-image.png" alt="">
-                <div class="list-name">nome nome nome</div>
-                <div class="list-type">Tipo tipo tipo</div>
-                <div class="list-price">Preco preco</div>
+                <div class="list-state">False</div>
+                <div class="list-name">Jorge da Nike</div>
+                <div class="list-email">jorginhodanike58@gmail.com</div>
+                <div class="list-price">12 compras</div>
                 <div class="list-interaction">
                     <a href="">
                         <img src="../../icons/eye-fill.svg" alt="">
@@ -119,10 +120,10 @@
             </div>
 
             <div class="list-item">
-                <img src="../../images/card1-image.png" alt="">
-                <div class="list-name">nome nome nome</div>
-                <div class="list-type">Tipo tipo tipo</div>
-                <div class="list-price">Preco preco</div>
+                <div class="list-state">False</div>
+                <div class="list-name">Jorge da Nike</div>
+                <div class="list-email">jorginhodanike58@gmail.com</div>
+                <div class="list-price">12 compras</div>
                 <div class="list-interaction">
                     <a href="">
                         <img src="../../icons/eye-fill.svg" alt="">

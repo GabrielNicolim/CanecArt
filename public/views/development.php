@@ -26,7 +26,7 @@
         <section class="developers">
             <div class="dev">
                 <div class="right">
-                        <img src="../images/dev-samuel.jpg">
+                        <img src="../images/dev-bianca.jpg">
                 </div>
 
                 <div class="left">                                
@@ -39,7 +39,7 @@
         
             <div class="dev">
                 <div class="right">
-                        <img src="../images/dev-samuel.jpg">
+                        <img src="../images/dev-carla.jpg">
                     </div>   
                         
                     <div class="left">
@@ -52,7 +52,7 @@
                     
             <div class="dev">                       
                     <div class="right">
-                        <img src="../images/dev-samuel.jpg">
+                        <img src="../images/dev-felipe.jpg">
                     </div>         
                     <div class="left">
                         <p>Número de chamada: 06</p>                
@@ -64,7 +64,7 @@
                 
             <div class="dev">       
                 <div class="right">
-                    <img src="../images/dev-samuel.jpg">
+                    <img src="../images/dev-gabriel.jpg">
                 </div>
     
                 <div class="left">

@@ -2,11 +2,11 @@
     session_start();
 
     $page_title = 'Cadastro';
-    $style_sheets = ['../css/style.css', 
-                     '../css/form.css'];
-
-    $javascript = ['https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous'];
     $icon_folder = '../images/logos/favicon.png';
+
+    $style_scripts = ['<script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>',
+                    '<link rel="stylesheet" href="../css/style.css">',
+                    '<link rel="stylesheet" href="../css/form.css">'];
 
     require("../includes/head.php");
 

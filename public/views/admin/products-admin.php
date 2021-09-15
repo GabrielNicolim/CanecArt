@@ -8,9 +8,10 @@
     }
 
     $page_title = 'Produtos - Admin';
-    $style_sheets = ['../../css/style.css', 
-                     '../../css/admin.css'];
     $icon_folder = '../../images/logos/favicon.png';
+
+    $style_scripts = ['<link rel="stylesheet" href="../../css/style.css">',
+                    '<link rel="stylesheet" href="../../css/admin.css">'];
 
     require("../../includes/head.php");
 

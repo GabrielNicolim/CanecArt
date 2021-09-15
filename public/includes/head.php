@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,14 +10,8 @@
     <link rel="shortcut icon" href="<?=$icon_folder?>" type="image/x-icon">
 
     <?php
-        foreach ($style_sheets as $files) {
-            echo '<link rel="stylesheet" href="'.$files.'">';
-        }
-
-        if (isset($javascript)) {
-            foreach ($javascript as $files) {
-                echo '<script src="'.$files.'"></script>';
-            }
+        foreach ($style_scripts as $files) {
+            echo $files;
         }
     ?>
 

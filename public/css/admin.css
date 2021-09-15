@@ -8,6 +8,16 @@ footer .btn.active {
 }
 /* End Buttons */
 
+/* Home */
+.panel {
+    background-color: var(--white);
+    font-size: 50px;
+    margin: 0.7em 0 0 0;
+    border-radius: 10px;
+    height: 500px;
+}
+/* End Home */
+
 /* Search */
 .search {
     background: rgba(255, 255, 255, 0.5);

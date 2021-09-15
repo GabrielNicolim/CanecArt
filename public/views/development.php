@@ -3,9 +3,10 @@
     session_start();
 
     $page_title = 'Devs';
-    $style_sheets = ['../css/style.css', 
-                     '../css/development.css'];
     $icon_folder = '../images/logos/favicon.png';
+
+    $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
+                    '<link rel="stylesheet" href="../css/development.css">'];
 
     require("../includes/head.php");
 

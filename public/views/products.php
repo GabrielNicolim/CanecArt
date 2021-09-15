@@ -2,9 +2,10 @@
     session_start();
 
     $page_title = 'Produtos';
-    $style_sheets = ['../css/style.css', 
-                     '../css/products.css'];
     $icon_folder = '../images/logos/favicon.png';
+
+    $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
+                    '<link rel="stylesheet" href="../css/products.css">'];
 
     require("../includes/head.php");
 

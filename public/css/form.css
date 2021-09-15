@@ -100,3 +100,7 @@ body {
     color: var(--dark-blue);
     font-weight: 700;
 }
+
+#recover {
+    margin-top: 5px;
+}

@@ -8,9 +8,10 @@
     }
 
     $page_title = 'Home - Admin';
-    $style_sheets = ['../../css/style.css', 
-                     '../../css/admin.css'];
     $icon_folder = '../../images/logos/favicon.png';
+
+    $style_scripts = ['<link rel="stylesheet" href="../../css/style.css">',
+                    '<link rel="stylesheet" href="../../css/admin.css">'];
 
     require("../../includes/head.php");
 
@@ -30,6 +31,16 @@
                 </nav> 
             </div> 
         </header>
+
+        <section class="panel">
+            <h1>Painel de adm</h1>
+            <?php
+                if (isset($_GET['notice'])) {
+                    echo 'Cadastro de produto feito com sucesso';
+                }
+            ?>
+        </section>
+
     </div>
 </body>
 </html>

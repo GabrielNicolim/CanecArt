@@ -1,13 +1,24 @@
+/*
+    Bianca Oliveira De Camargo - 03
+    Carla Julia Franco de Toledo - 04
+    Felipe Lima Estevanatto - 06
+    Gabriel Gomes Nicolim - 08 
+    Samuel Sensolo Goldflus - 32
+*/
+
+/* =-=-=-=-= Data Última Atualização 15/09/2021 =-=-=-=-= */
+
+DROP TABLE IF EXISTS pwdreset, order_products, orders, products, adresses, users;
+
 CREATE TABLE users (
-    id_user SERIAL PRIMARY KEY NOT NULL,
+    id_user SERIAL PRIMARY KEY,
     name_user VARCHAR(256) NOT NULL,
-    cpf_user CHAR(11) NOT NULL,
+    cpf_user CHAR(11) NOT NULL UNIQUE,
     email_user VARCHAR(255) NOT NULL UNIQUE,
     password_user VARCHAR(255) NOT NULL,
     created_at DATE DEFAULT CURRENT_DATE,
     deleted BOOLEAN DEFAULT FALSE,
-    deteted_at DATE DEFAULT NULL,
-    is_admin BOOLEAN DEFAULT FALSE
+    deteted_at DATE DEFAULT NULL
 );
 
 CREATE TABLE adresses (
@@ -53,20 +64,16 @@ CREATE TABLE order_products (
 );
 
 CREATE TABLE pwdreset (
-  id_pwdReset SERIAL PRIMARY KEY NOT NULL,
-  ipRequest VARCHAR(46) NOT NULL,
-  dateRequest TIMESTAMP NOT NULL DEFAULT now(),
-  cityRequest VARCHAR(128),
-  regionRequest VARCHAR(128),
-  countryRequest VARCHAR(128),
-  pwdResetEmail VARCHAR(256) NOT NULL,
-  pwdResetSelector TEXT NOT NULL,
-  pwdResetToken TEXT NOT NULL,
-  pwdResetExpires VARCHAR(32) NOT NULL
+  id_pwdrequest SERIAL PRIMARY KEY NOT NULL,
+  ip_pwdrequest VARCHAR(46) NOT NULL,
+  date_pwdrequest TIMESTAMP NOT NULL DEFAULT now(),
+  city_pwdrequest VARCHAR(128),
+  region_pwdrequest VARCHAR(128),
+  country_pwdrequest VARCHAR(128),
+  selector_pwdrequest TEXT NOT NULL,
+  token_pwdrequest TEXT NOT NULL,
+  expires_pwdrequest VARCHAR(32) NOT NULL,
+
+  fk_email VARCHAR(256) NOT NULL,
+  FOREIGN KEY (fk_email) REFERENCES users (email_user)
 );
-
-/*
-
-DROP TABLE pwdreset, order_products, orders, products, adresses, users;
-
-*/

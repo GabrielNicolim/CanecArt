@@ -37,7 +37,7 @@ footer .btn[data-checked='products'] {
     font-size: .9em;
 }
 
-#products .product > a .price_product {
+#products .product > a .price-product {
     font-weight: 700;
     font-size: 2em;
     margin: 10px 0;

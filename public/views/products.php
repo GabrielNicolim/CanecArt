@@ -47,14 +47,14 @@
 
         <!-- Base Product --> 
             <div href="#product" class="product">
-                <a href="#teste">
+                <a href="product-page.php">
                     <img src="../images/card1-image.png" alt="">
                     
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, atque cumque? Animi necessitatibus quos officiis saepe placeat non veniam laudantium, vero culpa laborum omnis magni quae. Quae iste quidem expedita!
                     </p>
                     
-                    <div class="price_product">
+                    <div class="price-product">
                         R$ 90.99
                     </div>
                 </a>

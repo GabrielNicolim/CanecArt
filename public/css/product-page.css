@@ -1,0 +1,67 @@
+.product-overview .top {
+    display: flex;
+    padding: 4em 1em;
+}
+
+.product-overview .top .right .name-product {
+    font-size: 2em;
+    font-weight: 700;
+}
+ 
+.product-overview .top .right .price-procut {
+    margin: 1em 0;
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+.product-overview .top .right .btn {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1em;
+    padding: 15px;
+    background: var(--bright-blue);
+    color: var(--white);
+    border-radius: 8px;
+}
+
+.product-overview .top .left,
+.product-overview .top .right {
+    width: 50%;
+}
+
+.product-overview .top .left img {
+    width: 90%;
+    display: block;
+    border-radius: 8px;
+}
+
+.product-overview .description {
+    font-weight: 500;
+    padding-top: 2em;
+    font-size: 1.2em;
+}
+
+.product-overview .description h2 {
+    padding-bottom: .5em;
+}
+
+.product-overview .description .tag {
+    padding: 2px 5px;
+    background: var(--bright-blue);
+    color: var(--white);
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    border-radius: 1em;
+}
+
+.sold-products {
+    margin-top: 5px;
+    font-weight: 500;
+    opacity: .6;
+}

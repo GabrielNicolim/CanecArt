@@ -1,5 +1,11 @@
 <?php
 
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    echo "<a href='../public/views/login.php'>Voltar</a>";
+    exit('Form not submited.');
+}
+
+require '../vendor/autoload.php';
 require('db/connect.php');
 require('functions.php');
 
@@ -12,8 +18,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-
-$query = 'SELECT id_user, email_user FROM users WHERE email_user = :email';
+$query = 'SELECT id_user, name_user FROM users WHERE email_user = :email';
 $stmt = $conn -> prepare($query);
 $stmt -> bindValue(':email', $email, PDO::PARAM_STR);
 $stmt -> execute();
@@ -29,9 +34,8 @@ if ($stmt -> rowCount() > 0) {
     } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'] ?? null;
     }
-
     $ipDetails = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
-    
+
     if ( $ip == '::1') {
         $ipDetails->ip = 'Localhost';
         $ipDetails->city = '';
@@ -39,6 +43,7 @@ if ($stmt -> rowCount() > 0) {
         $ipDetails->country = '';
     }
 
+    $name_user = $return['name_user'];
     $selector = bin2hex(random_bytes(8));
     $token = random_bytes(32);
     $hashedToken = password_hash($token, PASSWORD_DEFAULT);
@@ -63,7 +68,45 @@ if ($stmt -> rowCount() > 0) {
     $stmt -> execute();
 
     if ($stmt) {
-        header("Location: ../public/views/recover.php?notice=success".$url);
+
+        require ('../public/includes/recover-mail.php');
+        header('Content-Type: text/html; charset=UTF-8');
+
+        $mail = new PHPMailer\PHPMailer\PHPMailer();
+
+        try {
+            //Server settings
+            $mail->isSMTP();                                        //Send using SMTP
+            $mail->Host       = PHPMAILER_INFO['smtp_host'];        //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                               //Enable SMTP authentication
+            $mail->Username   = PHPMAILER_INFO['mail_user'];        //SMTP username
+            $mail->Password   = PHPMAILER_INFO['password_user'];    //SMTP password
+            $mail->SMTPSecure = $mail::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Port       = PHPMAILER_INFO['mail_port'];        //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            //Recipients
+            $mail->setFrom(PHPMAILER_INFO['mail_user'], 'CanecArt');
+            $mail->addAddress($email, 'Caro usuário');             //Add a recipient
+            $mail->addReplyTo('no-reply@gmail.com', 'No Reply');
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->CharSet = 'UTF-8';
+            $mail->Subject = "CanecArt - Recuperação de senha";
+            $mail->Body    = $mail_body;
+            
+            $mail->AltBody = $mail_AltBody;
+
+            if (!$mail->send()) {  //echo 'Message has been sent';
+                throw new Exception("Could not send message to email");
+            } 
+
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            exit();
+        }
+
+        header("Location: ../public/views/recover.php?notice=success");
         exit;
     }
 

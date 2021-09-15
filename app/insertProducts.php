@@ -2,6 +2,11 @@
 
 session_start();
 
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    echo "<a href='../public/views/login.php'>Voltar</a>";
+    exit('Form not submited.');
+}
+
 if (!isset($_SESSION['isAuth']) || $_SESSION['idUser'] > 0 || $_SERVER['REQUEST_METHOD'] != 'POST') {
     header("Location: ../public/view/products.php");
     exit;

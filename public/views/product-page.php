@@ -36,11 +36,13 @@
                     </div>
 
                     <div class="price-procut">R$ 90.99</div>
-
+                    <div class="sold-products">
+                        245 unidades restantes
+                    </div>
                     <a href="#" class="btn">
                         Comprar
                     </a>
-
+                    
                     <div class="description">
                         <h2>Descrição</h2>
                         <span class="text">

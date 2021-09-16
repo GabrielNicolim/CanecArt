@@ -68,6 +68,11 @@ footer .btn.active {
     width: 80px;
 }
 
+.list-item .image{
+    width: 80px;
+    border: 1px solid black;
+}
+
 .list-item:not(:first-child) {
     margin-top: 5px;
 }
@@ -95,7 +100,7 @@ footer .btn.active {
 
 .list-email {
     text-align: center;
-    width: 500px;
+    width: 600px;
 }
 
 .list-interaction img {

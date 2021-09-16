@@ -7,11 +7,11 @@
     }
 
     $page_title = 'Inserir produtos';
-    $style_sheets = ['../../css/style.css', 
-                     '../../css/form.css'];
-
-    $javascript = ['https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous'];
     $icon_folder = '../../images/logos/favicon.png';
+
+    $style_scripts = ['<script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>',
+                    '<link rel="stylesheet" href="../../css/style.css">',
+                    '<link rel="stylesheet" href="../../css/form.css">'];
 
     require("../../includes/head.php");
 
@@ -25,7 +25,7 @@
                 }
             ?>
             
-            <form action="../app/insertProducts.php" method="POST"> <!-- trocar nome do arquvio de acordo com o que será feito -->
+            <form action="../../../app/insertProducts.php" method="POST" enctype="multipart/form-data">
                 <div class="top">
                     <h2>Cadastrar Produto</h2>
 
@@ -36,6 +36,9 @@
 
                 <label for="name_product">Nome</label>
                 <input type="text" name="name_product" id="name_product" required="required">
+
+                <label for="">Fotos</label>
+                <input type="file" name="photo_product" accept="image/png, image/jpeg">
 
                 <label for="description_produtc">Descrição</label>
                 <textarea name="description_product" id="description_product" cols="30" rows="5"></textarea>

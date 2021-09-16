@@ -3,6 +3,7 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    echo "<a href='../public/views/login.php'>Voltar</a>";
     exit('Form not submited.');
 }
 
@@ -16,14 +17,19 @@ $password = sanitizeString($_POST['password']);
 $confirmPassword = sanitizeString($_POST['confirm-password']);
 
 try {
+
+    if ($email == 'admin@gmail.com') {
+        throw new Exception('emailregistered');
+    }
+
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         //https://www.abstractapi.com/email-verification-validation-api
         //https://www.youtube.com/watch?v=JvGFlAK2fg4
-        throw new Exception('Email is invalid!');
+        throw new Exception('invalidemail');
     }
     
     if ($password !== $confirmPassword) {
-        throw new Exception('Passwords must be the same!');
+        throw new Exception('differentpasswords');
     }
     
     if (!validateCPF($cpf)) {
@@ -31,22 +37,23 @@ try {
     }
     
     if (empty($name_user) || empty($cpf) || empty($password) || empty($confirmPassword)) {
-        throw new Exception('Data missing!');
+        throw new Exception('datamissing');
     }
 
-    $query = 'SELECT COUNT(email_user) FROM users WHERE email_user = :email';
+    $query = 'SELECT COUNT(email_user) AS emailcheck FROM users WHERE email_user = :email';
     $stmt = $conn -> prepare($query);
     $stmt -> bindValue(':email', $email);
     $stmt -> execute();
 
     $return = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-    if ($return['count'] > 0) {
-        throw new Exception('Email aready registered!');
+    if ($return['emailcheck'] > 0) {
+        throw new Exception('emailregistered');
     }
 
 } catch (Exception $e) {
-    echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+    //echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+    header("Location: ../public/views/register.php?error=" . $e->getMessage() );
     exit;
 }
 
@@ -64,6 +71,8 @@ $stmt -> execute( array(':name_user' => $name_user,
 
 if ($stmt) {
 
+    session_regenerate_id();
+
     $return = $stmt -> fetch(PDO::FETCH_ASSOC);
 
     $_SESSION['isAuth'] = true;
@@ -71,6 +80,9 @@ if ($stmt) {
 
     echo 'Logged in! ID ='.$_SESSION['idUser'].'<br>';
     echo 'Logout: <a href="logout.php">Log out</a>';
+
+    header("Location: ../public/views/user.php");
+    exit;
 
 }
 

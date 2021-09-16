@@ -8,9 +8,10 @@
     }
 
     $page_title = 'Produtos - Admin';
-    $style_sheets = ['../../css/style.css', 
-                     '../../css/admin.css'];
     $icon_folder = '../../images/logos/favicon.png';
+
+    $style_scripts = ['<link rel="stylesheet" href="../../css/style.css">',
+                    '<link rel="stylesheet" href="../../css/admin.css">'];
 
     require("../../includes/head.php");
 
@@ -32,7 +33,7 @@
             </div> 
         </header>
 
-        <!--Pessoas-->
+        <!--Produtos-->
         <section class="search">
             <form action="" method="GET">
                 <span>Busca:</span>
@@ -65,25 +66,47 @@
                 <div class="list-interaction">Interação</div>
             </div>
 
-            <div class="list-item">
-                <img src="../../images/card1-image.png" alt="">
-                <div class="list-name">nome nome nome</div>
-                <div class="list-avalible">12</div>
-                <div class="list-type">Tipo tipo tipo</div>
-                <div class="list-price">Preco preco</div>
-                <div class="list-interaction">
-                    <a href="">
-                        <img src="../../icons/eye-fill.svg" alt="">
-                    </a>
-                    <a href="">
-                        <img src="../../icons/pencil-square.svg" alt="">
-                    </a>
-                    <a href="">
-                        <img src="../../icons/trash-fill.svg" alt="">
-                    </a>
-                </div>
-            </div>
+            <!--Content of table-->
+            <?php
 
+                require("../../../app/db/connect.php");
+
+                $query = "SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product FROM products";
+                $stmt = $conn->prepare($query);
+                $stmt -> execute();
+
+                $return = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+                if ($stmt -> rowCount() == 0) {
+                    echo '<div class="list-item"><div class="list-name">Nenhum produto cadastrado!</div></div>';
+                } else {
+                    foreach ($return as $product) {
+                        echo '
+                        <div class="list-item" id="'.$product['id_product'].'">
+                            <img class="image" src="../../images/';
+                            if (is_null($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
+                            echo '" alt="">
+                            <div class="list-name">'.$product['name_product'].'</div>
+                            <div class="list-avalible>'.$product['quantity_product'].'</div>
+                            <div class="list-type">'.$product['type_product'].'</div>
+                            <div class="list-price">'.$product['price_product'].'</div>
+                            <div class="list-interaction">
+                                <a href="">
+                                    <img src="../../icons/eye-fill.svg" alt="">
+                                </a>
+                                <a href="">
+                                    <img src="../../icons/pencil-square.svg" alt="">
+                                </a>
+                                <a href="">
+                                    <img src="../../icons/trash-fill.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        ';
+                    }
+                }
+                
+            ?>
         </section>
     </div>
 </body>

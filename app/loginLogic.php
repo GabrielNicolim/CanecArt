@@ -3,6 +3,7 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    echo "<a href='../public/views/login.php'>Voltar</a>";
     exit('Form not submited.');
 }
 
@@ -16,19 +17,20 @@ try {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         //https://www.abstractapi.com/email-verification-validation-api
         //https://www.youtube.com/watch?v=JvGFlAK2fg4
-        throw new Exception('Email is invalid!');
+        throw new Exception('invaliddata!');
     }
 
     if (empty($email) || empty($password_user)) {
-        throw new Exception('Data missing!');
+        throw new Exception('missingdata');
     }
 
 } catch (Exception $e) {
-    echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+    //echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+    header("Location: ../public/views/login.php?error=" . $e->getMessage() );
     exit;
 }
 
-if ($email = 'admin@gmail.com' && $password_user = 'admin') {
+if ($email == 'admin@gmail.com' && $password_user == 'admin') {
     $_SESSION['isAuth'] = true;   
     $_SESSION['idUser'] = -1;
 
@@ -41,7 +43,7 @@ $dbpassword = generateFakePassword();
 
 $query = 'SELECT id_user, email_user, password_user FROM users WHERE email_user = :email';
 $stmt = $conn -> prepare($query);
-$stmt -> bindValue(':email', $email);
+$stmt -> bindValue(':email', $email, PDO::PARAM_STR);
 $stmt -> execute();
 
 $return = $stmt -> fetch(PDO::FETCH_ASSOC);
@@ -63,13 +65,10 @@ if ( password_verify($password_user, $dbpassword) ) {
         exit();
     }
 
-    echo 'Logged in! ID ='.$_SESSION['idUser'].'<br>';
-    echo 'Logout: <a href="logout.php">Log out</a>';
-
     header("Location: ../public/views/products.php");
     exit();
 
 } else {
-    header("Location: ../public/views/login.php?error=invalid");
+    header("Location: ../public/views/login.php?error=invaliddata");
     exit();
 }

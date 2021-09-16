@@ -36,7 +36,8 @@ CREATE TABLE adresses (
 CREATE TABLE products (
     id_product SERIAL PRIMARY KEY,
     name_product VARCHAR(128) NOT NULL,
-    description_produtc TEXT NOT NULL,
+    photo_product TEXT DEFAULT NULL,
+    description_product TEXT NOT NULL,
     price_product DECIMAL(10, 2) NOT NULL,
     type_product VARCHAR(128) NOT NULL, 
     quantity_product INT NOT NULL

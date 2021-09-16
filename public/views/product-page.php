@@ -2,9 +2,10 @@
     session_start();
 
     $page_title = 'Produtos';
-    $style_sheets = ['../css/style.css', 
-                     '../css/product-page.css'];
     $icon_folder = '../images/logos/favicon.png';
+
+    $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
+                    '<link rel="stylesheet" href="../css/product-page.css">'];
 
     require("../includes/head.php");
 
@@ -35,7 +36,9 @@
                     </div>
 
                     <div class="price-procut">R$ 90.99</div>
-
+                    <div class="sold-products">
+                        245 unidades restantes
+                    </div>
                     <a href="#" class="btn">
                         Comprar
                     </a>

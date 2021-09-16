@@ -40,6 +40,10 @@
                         Comprar
                     </a>
 
+                    <div class="product-avalible">
+                        Disponível: 12
+                    </div>
+
                     <div class="description">
                         <h2>Descrição</h2>
                         <span class="text">
@@ -47,9 +51,9 @@
                             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas harum eveniet maiores. Libero laborum commodi optio distinctio, nobis quaerat ipsam, officia eveniet asperiores cum velit. Animi dolores natus perferendis. Perferendis.
                         </span>
 
-                        <span class="tag">
+                        <a href="#" class="tag">
                             Categoria
-                        </span>
+                        </a>
                     </div>
                 </div>
             </div>

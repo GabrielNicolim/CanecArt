@@ -59,6 +59,7 @@
         <section class="list">
             <div class="list-info">
                 <div class="list-name">Nome</div>
+                <div class="list-avalible">Estoque</div>
                 <div class="list-type">Tipo</div>
                 <div class="list-price">Preço</div>
                 <div class="list-interaction">Interação</div>
@@ -67,6 +68,7 @@
             <div class="list-item">
                 <img src="../../images/card1-image.png" alt="">
                 <div class="list-name">nome nome nome</div>
+                <div class="list-avalible">12</div>
                 <div class="list-type">Tipo tipo tipo</div>
                 <div class="list-price">Preco preco</div>
                 <div class="list-interaction">
@@ -82,59 +84,6 @@
                 </div>
             </div>
 
-            <div class="list-item">
-                <img src="../../images/card1-image.png" alt="">
-                <div class="list-name">nome nome nome</div>
-                <div class="list-type">Tipo tipo tipo</div>
-                <div class="list-price">Preco preco</div>
-                <div class="list-interaction">
-                    <a href="">
-                        <img src="../../icons/eye-fill.svg" alt="">
-                    </a>
-                    <a href="">
-                        <img src="../../icons/pencil-square.svg" alt="">
-                    </a>
-                    <a href="">
-                        <img src="../../icons/trash-fill.svg" alt="">
-                    </a>
-                </div>
-            </div>
-
-            <div class="list-item">
-                <img src="../../images/card1-image.png" alt="">
-                <div class="list-name">nome nome nome</div>
-                <div class="list-type">Tipo tipo tipo</div>
-                <div class="list-price">Preco preco</div>
-                <div class="list-interaction">
-                    <a href="">
-                        <img src="../../icons/eye-fill.svg" alt="">
-                    </a>
-                    <a href="">
-                        <img src="../../icons/pencil-square.svg" alt="">
-                    </a>
-                    <a href="">
-                        <img src="../../icons/trash-fill.svg" alt="">
-                    </a>
-                </div>
-            </div>
-
-            <div class="list-item">
-                <img src="../../images/card1-image.png" alt="">
-                <div class="list-name">nome nome nome</div>
-                <div class="list-type">Tipo tipo tipo</div>
-                <div class="list-price">Preco preco</div>
-                <div class="list-interaction">
-                    <a href="">
-                        <img src="../../icons/eye-fill.svg" alt="">
-                    </a>
-                    <a href="">
-                        <img src="../../icons/pencil-square.svg" alt="">
-                    </a>
-                    <a href="">
-                        <img src="../../icons/trash-fill.svg" alt="">
-                    </a>
-                </div>
-            </div>
         </section>
     </div>
 </body>

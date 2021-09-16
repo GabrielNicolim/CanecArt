@@ -3,6 +3,13 @@
     padding: 4em 1em;
 }
 
+.product-avalible,
+.sold-products {
+    margin-top: 5px;
+    font-weight: 500;
+    opacity: .6;
+}
+
 .product-overview .top .right .name-product {
     font-size: 2em;
     font-weight: 700;
@@ -25,6 +32,12 @@
     background: var(--bright-blue);
     color: var(--white);
     border-radius: 8px;
+    cursor: pointer;
+}
+
+.product-overview .top .right .btn:hover {
+    background: var(--dark-blue);
+    transition: 200ms;
 }
 
 .product-overview .top .left,
@@ -58,10 +71,4 @@
     justify-content: center;
     width: 100px;
     border-radius: 1em;
-}
-
-.sold-products {
-    margin-top: 5px;
-    font-weight: 500;
-    opacity: .6;
 }

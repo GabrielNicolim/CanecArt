@@ -39,6 +39,7 @@
                     echo 'Cadastro de produto feito com sucesso';
                 }
             ?>
+            <a href="../../../app/logout.php"><h4>Logout</h4></a>
         </section>
 
     </div>

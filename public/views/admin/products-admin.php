@@ -87,7 +87,7 @@
                             if (is_null($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
                             echo '" alt="">
                             <div class="list-name">'.$product['name_product'].'</div>
-                            <div class="list-avalible>'.$product['quantity_product'].'</div>
+                            <div class="list-avalible">'.$product['quantity_product'].'</div>
                             <div class="list-type">'.$product['type_product'].'</div>
                             <div class="list-price">'.$product['price_product'].'</div>
                             <div class="list-interaction">

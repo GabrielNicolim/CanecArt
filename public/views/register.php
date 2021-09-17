@@ -15,7 +15,7 @@
     <div class="container">
         <div class="content">
             <?php if (isset($_GET['error'])) {
-                echo '<div class="error">'.print_r($_GET['error']).'</div>';
+                echo '<div class="error">''</div>';
             }
             ?>
             <form action="../../app/registerLogic.php" method="POST">

@@ -1,0 +1,32 @@
+header .btn.primary {
+    background: var(--desaturated-blue);
+}
+
+.app {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-menu {
+    margin: 2em auto;
+    overflow: hidden;
+    display: flex;
+}
+
+.top-menu .btn {
+    padding: 15px;
+    width: 150px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--dark-blue);
+    background: var(--white);
+}
+
+.top-menu .btn:hover {
+    color: var(--desaturated-blue);
+    transition: 200ms;
+}
+
+.top-menu .btn.activated {
+    color: var(--desaturated-blue);
+}

@@ -1,5 +1,7 @@
 <?php
 
+define('URLROOT', 'http://localhost/canecart');
+
 if (!defined('DATABASE_INFO') || !defined('DATABASE_INFO')) {
     DEFINE('DATABASE_INFO', [
         'dsn' => 'pgsql:host=localhost;port=5432;dbname=',

@@ -9,6 +9,7 @@
                     '<link rel="stylesheet" href="../css/development.css">'];
 
     require("../includes/head.php");
+    require("../../app/db/env.php");
 
 ?>
 

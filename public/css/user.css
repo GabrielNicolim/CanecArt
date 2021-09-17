@@ -2,9 +2,15 @@ header .btn.primary {
     background: var(--desaturated-blue);
 }
 
+footer .btn.primary {
+    background: var(--desaturated-blue) !important;
+}
+
+/* App */
+
 .app {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
 .top-menu {
@@ -30,3 +36,29 @@ header .btn.primary {
 .top-menu .btn.activated {
     color: var(--desaturated-blue);
 }
+
+.app .content {
+    width: 80%;
+    margin: 2em auto 8em auto;
+    color: var(--dark-blue);
+}
+
+.app .content h2 {
+    font-size: 1.8em;
+}
+
+.app .content form label { 
+    font-weight: 700;
+    font-size: 1.4em;
+    margin-top: 1em;
+    display: block;
+}
+
+.app .content form input { 
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+/* End App */

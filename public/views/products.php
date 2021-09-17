@@ -8,6 +8,7 @@
                     '<link rel="stylesheet" href="../css/products.css">'];
 
     require("../includes/head.php");
+    require("../../app/db/env.php");
 
 ?>
 

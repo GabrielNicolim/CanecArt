@@ -14,7 +14,7 @@
                     '<link rel="stylesheet" href="public/css/home.css">'];
 
     require("public/includes/head.php");
-
+    require("app/db/env.php")
 ?>
 
     <div class="shop-car">

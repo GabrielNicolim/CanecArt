@@ -11,7 +11,13 @@
             <a href="products.php" data-checked="products" class="btn">Produtos</a>
             <a href="#Estatics" data-checked="estatics" class="btn">Estatísticas</a>
             <a href="development.php" data-checked="development" class="btn">Desenvolvimento</a>
-            <a href="register.php" data-checked="register" class="btn primary">Cadastre-se</a>
+            <?php
+                if (isset($_SESSION['isAuth'])) {
+                    echo '<a href="'.URLROOT.'/public/views/user.php" data-checked="register" class="btn primary">Perfil</a>';
+                } else {
+                    echo '<a href="'.URLROOT.'/public/views/register.php" data-checked="register" class="btn primary">Cadastre-se</a>';
+                }
+            ?>
         </div>
 
         <div class="back-to-top">

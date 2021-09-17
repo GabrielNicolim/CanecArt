@@ -9,6 +9,7 @@
                     '<link rel="stylesheet" href="../css/cart.css">'];
 
     require("../includes/head.php");
+    require("../../app/db/env.php");
 
 ?>
 

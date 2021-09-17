@@ -11,7 +11,8 @@
     $icon_folder = '../../images/logos/favicon.png';
 
     $style_scripts = ['<link rel="stylesheet" href="../../css/style.css">',
-                    '<link rel="stylesheet" href="../../css/admin.css">'];
+                    '<link rel="stylesheet" href="../../css/admin.css">',
+                    '<link rel="stylesheet" href="../../css/list.css">'];
 
     require("../../includes/head.php");
 

@@ -33,13 +33,14 @@
         </header>
 
         <section class="panel">
-            <h1>Painel de adm</h1>
+
             <?php
                 if (isset($_GET['notice'])) {
                     echo 'Cadastro de produto feito com sucesso';
                 }
             ?>
-            <a href="../../../app/logout.php"><h4>Logout</h4></a>
+
+            <a class="btn logout" href="../../../app/logout.php">Logout</a>
         </section>
 
     </div>

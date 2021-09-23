@@ -20,6 +20,4 @@
 
         <input type="submit" value="Alterar Dados">
     </form>
-
-    <a href="../../app/logout.php"><h1>Log out</h1></a>
 </div>

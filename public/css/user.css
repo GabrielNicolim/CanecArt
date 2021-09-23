@@ -41,6 +41,7 @@ footer .btn.primary {
     width: 80%;
     margin: 2em auto 8em auto;
     color: var(--dark-blue);
+    
 }
 
 .app .content h2 {
@@ -66,3 +67,60 @@ footer .btn.primary {
 }
 
 /* End App */
+
+.btn.logout {
+    margin-top: 2em;
+    display: inline-block;
+}
+
+/* Form */
+
+form.visible {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+form {
+    display: none;
+}
+
+form div { 
+    width: 48% !important;
+}
+
+form div.w-100 {
+    width: 100% !important;
+}
+
+form input {
+    outline: none;
+}
+
+form input[type="submit"] {
+    background: var(--bright-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* End Form */
+
+/* add-adress */
+
+#add-adress {
+    color: var(--white);
+    background: var(--dark-blue);
+    outline: none;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+/* End add-adress */
+

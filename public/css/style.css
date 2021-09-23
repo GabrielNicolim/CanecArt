@@ -8,6 +8,7 @@
     --desaturated-blue: #7280A7;
     --dark-blue: #1F2F56;
     --white: #FFF;  
+    --danger: #DC2626;
 }   
 
 * {
@@ -268,3 +269,11 @@ footer .right {
     border-radius: 4px;
 }
 /* End Overflow */
+
+.btn.logout {
+    background: var(--danger);
+    padding: 10px;
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 20px;
+}

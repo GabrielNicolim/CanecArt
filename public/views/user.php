@@ -5,7 +5,8 @@
     $page_title = 'Meu perfil';
     $icon_folder = '../images/logos/favicon.png';
 
-    $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
+    $style_scripts = ['<script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>',
+                    '<link rel="stylesheet" href="../css/style.css">',
                     '<link rel="stylesheet" href="../css/user.css">',
                     '<link rel="stylesheet" href="../css/list.css">'];
 

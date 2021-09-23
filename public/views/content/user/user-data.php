@@ -18,6 +18,6 @@
         <label for="cpf-user">CPF</label>
         <input type="text" name="cpf-user" id="cpf-user" value="<?php echo $return['cpf_user'] ?>" disabled>
     </form>
-
-    <a href="../../app/logout.php"><h1>Log out</h1></a>
+    
+    <a href="../../app/logout.php" class="btn logout">Logout</a>
 </div>

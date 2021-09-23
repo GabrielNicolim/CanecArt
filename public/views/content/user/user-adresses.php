@@ -8,6 +8,23 @@
 <div class="content">
     <h2>Endereços</h2>
 
+    <div class="adresses">
+        <div class="adress_box">
+            <div class="adress_top">
+            <i class="fas fa-address-book"></i>
+            Samuel S. Goldflus
+            </div>
+            <div class="adress_body">
+                CEP: 782232, Penápolis, RJ<br>
+                Bairro Mario Sergio, Rua João Augusto Fischer
+                Numero 2-45, gordura <br>
+            </div>
+            <div class="footer">
+                <a href="#"><i class="fas fa-trash-alt"></i>Excluir</a>
+            </div>
+        </div>
+    </div>
+
     <button id="add-adress">
         <i class="fas fa-plus"></i>
         <span>Adicionar Endereço</span>

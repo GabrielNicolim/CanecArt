@@ -42,12 +42,7 @@ function searchcep(valor) {
 };
 
 
-
-
-
-
-
-// Button 
+// Button to show form 
 
 const btn = window.document.querySelector('#add-adress');
 const form = window.document.getElementById('form-adress');
@@ -55,7 +50,9 @@ const form = window.document.getElementById('form-adress');
 btn.addEventListener('click', () => {
     if(form.classList.contains('visible')) {
         form.classList.remove('visible');
+        btn.innerHTML = '<i class="fas fa-plus"></i> Adicionar Endereço';
     } else {
         form.classList.add('visible');
+        btn.innerHTML = '<i class="fas fa-plus"></i> Esconder formulário';
     }
 });

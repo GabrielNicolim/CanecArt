@@ -7,8 +7,10 @@
 
     $style_scripts = ['<script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>',
                     '<link rel="stylesheet" href="../css/style.css">',
+                    '<link rel="stylesheet" href="../css/adresses.css">',
                     '<link rel="stylesheet" href="../css/user.css">',
                     '<link rel="stylesheet" href="../css/list.css">'];
+                    
 
     require("../includes/head.php");
     require("../../app/db/connect.php");

@@ -13,11 +13,20 @@
 
 ?>
 
-<section>
+    <div class="container">
+    
+        <?php
 
-<h1>Estatísticas</h1>
+            include("../includes/header.php");
 
-</section>
+        ?>
+
+        <section>
+
+            <h1>Estatísticas</h1>
+
+        </section>
+    </div>
 
     <?php
 

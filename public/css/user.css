@@ -61,4 +61,8 @@ footer .btn.primary {
     font-weight: 500;
 }
 
+.app .content form input[type="submit"] { 
+   margin-top: 1em;
+}
+
 /* End App */

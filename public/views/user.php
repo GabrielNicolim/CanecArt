@@ -19,10 +19,11 @@
 
     $return = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-    $email_user = $return['email_user'];
-    $name_user = $return['name_user']
-
 ?>
+
+    <div class="shop-car">
+        <img src="../icons/shop-car.svg" alt="">
+    </div>
 
     <div class="container">
         <?php
@@ -43,6 +44,12 @@
                             break;
                         case 'config':
                             include('content/user/user-config.php');
+                            break;
+                        case 'adresses':
+                            include('content/user/user-adresses.php');
+                            break;
+                        default:
+                            include('content/user/user-data.php');
                             break;
                     }
                 } else {

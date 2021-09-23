@@ -1,6 +1,7 @@
 <div class="top-menu">
     <a href="?page=data" class="btn">Perfil</a>
     <a href="?page=orders" class="btn activated">Pedidos</a>
+    <a href="?page=adresses" class="btn">Endereços</a>
     <a href="?page=config" class="btn">Configurações</a>
 </div>
 
@@ -13,8 +14,10 @@
 
             require("../../app/db/connect.php");
 
-            $query = "SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product FROM products";
+            $query = "SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product 
+                      FROM products INNER JOIN orders ON orders.fk_user = :id_session";
             $stmt = $conn->prepare($query);
+            $stmt -> bindValue(':id_session', $_SESSION['idUser'], PDO::PARAM_INT);
             $stmt -> execute();
 
             $return = $stmt -> fetchAll(PDO::FETCH_ASSOC);
@@ -35,7 +38,7 @@
                 foreach ($return as $product) {
                     echo '
                     <div class="list-item" id="'.$product['id_product'].'">
-                        <img class="image" src="../../images/';
+                        <img class="image" src="../images/';
                         if (is_null($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
                         echo '" alt="">
                         <div class="list-name">'.$product['name_product'].'</div>
@@ -44,13 +47,13 @@
                         <div class="list-price">'.$product['price_product'].'</div>
                         <div class="list-interaction">
                             <a href="">
-                                <img src="../../icons/eye-fill.svg" alt="">
+                                <img src="../icons/eye-fill.svg" alt="">
                             </a>
                             <a href="">
-                                <img src="../../icons/pencil-square.svg" alt="">
+                                <img src="../icons/pencil-square.svg" alt="">
                             </a>
                             <a href="">
-                                <img src="../../icons/trash-fill.svg" alt="">
+                                <img src="../icons/trash-fill.svg" alt="">
                             </a>
                         </div>
                     </div>

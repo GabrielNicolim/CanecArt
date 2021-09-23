@@ -19,7 +19,7 @@ $confirmPassword = sanitizeString($_POST['confirm-password']);
 try {
 
     if ($email == 'admin@gmail.com') {
-        throw new Exception('emailregistered');
+        throw new Exception('alreadyregistered');
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -33,26 +33,37 @@ try {
     }
     
     if (!validateCPF($cpf)) {
-        //throw new Exception('CPF is invalid!');
+        //throw new Exception('invalidCPF');
     }
     
     if (empty($name_user) || empty($cpf) || empty($password) || empty($confirmPassword)) {
         throw new Exception('datamissing');
     }
-
-    $query = 'SELECT COUNT(email_user) AS emailcheck FROM users WHERE email_user = :email';
+    
+    $query = 'SELECT email_user, cpf_user FROM users WHERE email_user = :email OR cpf_user = :cpf';
     $stmt = $conn -> prepare($query);
-    $stmt -> bindValue(':email', $email);
+    $stmt -> bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt -> bindValue(':cpf', $cpf, PDO::PARAM_STR);
     $stmt -> execute();
 
     $return = $stmt -> fetch(PDO::FETCH_ASSOC);
-
-    if ($return['emailcheck'] > 0) {
-        throw new Exception('emailregistered');
+    
+    if ($stmt -> rowCount() > 0) {
+        throw new Exception('alreadyregistered');
     }
 
 } catch (Exception $e) {
-    //echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+    if ($e->getMessage() == 'alreadyregistered') {
+        if ($return['email_user'] == $email) {
+            header("Location: ../public/views/register.php?error=emailregistered" );
+            exit;
+        }
+        if ($return['cpf_user'] == $cpf) {
+            header("Location: ../public/views/register.php?error=CPFregistered" );
+            exit;
+        }
+    }
+
     header("Location: ../public/views/register.php?error=" . $e->getMessage() );
     exit;
 }
@@ -60,7 +71,7 @@ try {
 $confirmPassword = password_hash($confirmPassword, PASSWORD_DEFAULT);
 
 $query = 'INSERT INTO users(name_user, cpf_user, email_user, password_user) 
-          VALUES(:name_user, :cpf_user, :email_user, :password_user) RETURNING id_user;';
+          VALUES(:name_user, :cpf_user, :email_user, :password_user) ON CONFLICT DO NOTHING RETURNING id_user;';
 
 $stmt = $conn -> prepare($query);
 

@@ -24,9 +24,9 @@
 
 ?>
 
-    <div class="shop-car">
+    <a href="car.php" class="shop-car">
         <img src="../icons/shop-car.svg" alt="">
-    </div>
+    </a>
 
     <div class="container">
         <?php

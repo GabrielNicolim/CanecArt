@@ -17,9 +17,9 @@
     require("app/db/env.php")
 ?>
 
-    <div class="shop-car">
+    <a href="public/views/car.php" class="shop-car">
         <img src="public/icons/shop-car.svg" alt="">
-    </div>
+    </a>
     
     <div class="container">
         <?php

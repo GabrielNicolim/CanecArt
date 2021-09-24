@@ -13,6 +13,10 @@
 
 ?>
 
+    <a href="car.php" class="shop-car">
+        <img src="../icons/shop-car.svg" alt="">
+    </a>
+
     <div class="container">
     
         <?php

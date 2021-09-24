@@ -1,0 +1,60 @@
+.container > h2 {
+    margin: 1em 0;
+    font-size: 2em;
+}
+
+#car {
+    display: flex;
+}
+
+#car .left {
+    width: 100%;
+    padding: 0 1em 0 0;
+}
+
+#car .left > h2 {
+    margin-bottom: 1em;
+}
+
+#car .right {
+    width: 35%;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1em;
+}
+
+#car .right > span {
+    font-weight: 700;
+    font-size: 2em;
+    display: block;
+    margin-bottom: 1em;
+}
+
+#car .right .price {
+    margin: 1em 0;
+    font-weight: 500;
+    font-size: 1.4em;
+}
+
+#car .right .price span {
+    display: block;
+}
+
+#car .right .buttons .btn {
+    text-align: center;
+    font-weight: 700;
+    padding: 15px;
+    background: var(--light-blue);
+    color: var(--white);
+    border-radius: 8px;
+    margin: .5em 0;
+    cursor: pointer;
+}
+
+#car .right .buttons .btn.primary {
+    background: var(--bright-blue);
+}
+
+.shop-car {
+    border: 2px solid var(--bright-blue);
+}

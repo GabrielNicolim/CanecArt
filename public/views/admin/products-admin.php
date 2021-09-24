@@ -49,8 +49,8 @@
 
                 <div class="value">
                     <span>Preço:</span>
-                    <input type="range" id="rangeInput" name="rangeInput" value="35" min="0" max="100" oninput="document.getElementById('textInput').value=this.value;">
-                    <input type="numeric" step="0.01" id="textInput" value="35" min="0" max="100" oninput="document.getElementById('rangeInput').value=this.value;" onkeydown="return event.key != 'Enter';">
+                    <input type="number" name="min_value_product" id="min_value_product" placeholder="min" min="0" max="999">
+                    <input type="number" name="max_value_product" id="max_value_product" placeholder="max" min="0" max="999">
                 </div>
 
                 <input type="submit" value="Buscar">

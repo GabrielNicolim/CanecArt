@@ -16,53 +16,51 @@ if ($_POST['operation'] == 'Atualizar dados') {
 
     $product = filter_var($_POST['name_product'], FILTER_SANITIZE_STRING);
     $description = filter_var($_POST['description_product'], FILTER_SANITIZE_STRING);
-    $price = $_POST['price_product'];
+    $price = sanitizeString($_POST['price_product']);
     $type = filter_var($_POST['type_product'], FILTER_SANITIZE_STRING);
     $quantity = filter_var($_POST['quantity_product'], FILTER_SANITIZE_NUMBER_INT);
     $photo_name = filter_var($_POST['photo_name'], FILTER_SANITIZE_STRING) ?? null;
-
+    
     if (empty($product) || empty($description) || empty($price) || empty($type) || empty($quantity) ||
         !is_numeric($price) || $price < 0) {
         header("Location: ../public/views/admin/edit-product.php?product=".$product_id."&notice=invaliddata");
         exit;
     }
 
-    if (isset($_FILES["name"])) {
+    if (!empty($_FILES['photo_product']['name'])) {
         
         $allowed_formats = ['png', 'jpeg', 'jpg'];
-        $extension = strtolower(explode('/',$_FILES['photo_product']['type'])[1]);
+        $extension = strtolower(pathinfo($_FILES['photo_product']['name'], PATHINFO_EXTENSION));
         
         if ( !in_array( $extension , $allowed_formats ) ) {
-            header("Location: ../public/views/admin/edit-product.php?product=".$product_id."&notice=invalidimageformat");
+            header("Location: ../public/views/admin/edit-product.php?notice=invalidimageformat");
             exit;
         }
     
         if ( $_FILES['photo_product']['size'] >= 33554432 ) { //32Mb max size
-            header("Location: ../public/views/admin/edit-product.php?product=".$product_id."&notice=bigfile");
+            header("Location: ../public/views/admin/edit-product.php?notice=bigfile");
             exit();
         }
     
-        $photo = 'ProductUpload'.date('Ymdhis').$product.".".$extension;
+        $rename = 'ProductUpload'.date('Ymdhis').$product.".".$extension;
         $folder = str_replace("\\", '/',substr(__DIR__,0,-3))."public/images/";
-   
-        if (!move_uploaded_file($_FILES['photo_product']['tmp_name'], $folder.$photo)) {
+        echo $photo_name.$rename;
+        if (file_exists('../public/images/'.$photo_name)) {
+            if(!unlink('../public/images/'.$photo_name)){
+                echo "Something went wrong deleting the media";
+            }
+        }
 
+        $photo_name = $rename;
+        
+        if (!move_uploaded_file($_FILES['photo_product']['tmp_name'], $folder.$rename)) {
+            
             header("Location: ../../../public/views/admin/edit-product.php?notice=badupload");
             exit();
 
-        } else {
-            if (file_exists('../public/images/'.$photo_name)) {  
-
-                if(!unlink('../public/images/'.$photo_name)){
-                    echo "Something went wrong deleting the media";
-                } else {
-                    
-                    $photo_name = $photo;
-                }
-            }
         }
     }
-    
+
     $query = "UPDATE products 
             SET name_product = :name_product, photo_product = :photo_product, 
             description_product = :description_product, price_product = :price_product, 

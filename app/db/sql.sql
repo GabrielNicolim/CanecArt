@@ -6,7 +6,7 @@
     Samuel Sensolo Goldflus - 32
 */
 
-/* =-=-=-=-= Data Última Atualização 15/09/2021 =-=-=-=-= */
+/* =-=-=-=-= Data Última Atualização 24/09/2021 =-=-=-=-= */
 
 DROP TABLE IF EXISTS pwdreset, order_products, orders, products, adresses, users;
 

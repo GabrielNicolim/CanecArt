@@ -8,7 +8,9 @@
                     '<link rel="stylesheet" href="../css/products.css">'];
 
     require("../includes/head.php");
-    require("../../app/db/env.php");
+    require("../../app/db/connect.php");
+
+    $query = "SELECT "
 
 ?>
 
@@ -27,7 +29,7 @@
         <section class="search">
             <form action="" method="GET">
                 <span>Busca:</span>
-                <input type="text" name="name_product" id="name_product" placeholder="Nome">
+                <input type="text" name="name_product" id="name_product" placeholder="Nome" maxlength="255">
                 
                 <select name="type_product" id="type_product">
                     <option value="valor1" selected>Tipo</option>
@@ -37,8 +39,8 @@
 
                 <div class="value">
                     <span>Preço:</span>
-                    <input type="number" name="min_value_product" id="min_value_product" placeholder="min">
-                    <input type="number" name="max_value_product" id="max_value_product" placeholder="max">
+                    <input type="number" name="min_value_product" id="min_value_product" placeholder="min" min="0" max="999">
+                    <input type="number" name="max_value_product" id="max_value_product" placeholder="max" min="0" max="999">
                 </div>
 
                 <input type="submit" value="Buscar">
@@ -70,6 +72,13 @@
                 </a>
             </div>
         <!-- End Base Product --> 
+        <?php
+
+            var_dump($_GET);
+
+            $query = "SELECT * FROM products WHERE "
+
+        ?>
 
         </section>
 

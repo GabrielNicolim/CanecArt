@@ -38,7 +38,7 @@
                 <input type="text" name="name_product" id="name_product" required="required">
 
                 <label for="photo_product">Foto</label>
-                <input type="file" name="photo_product" id="photo_upload" accept="image/png, image/jpeg" 
+                <input type="file" name="photo_product" id="photo_upload" accept="image/png, image/jpeg, image/jpg"  
                 onchange="loadFile(event)">
                 <img id="preview_output" width="100%"/>
 

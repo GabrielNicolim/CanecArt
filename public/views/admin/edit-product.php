@@ -57,7 +57,9 @@
                 <label for="photo_product">Foto</label>
                 <input type="file" name="photo_product" id="photo_upload" accept="image/png, image/jpeg"
                 onchange="loadFile(event)">
-                <img id="preview_output" width="100%" src="../../images/<?=$return['photo_product']?>"/>
+                <?php if (!empty($return['photo_product'])) 
+                    echo ' <img id="preview_output" width="100%" src="../../images/'.$return['photo_product'].'"/>';
+                ?>
 
                 <label for="description_produtc">Descrição</label>
                 <textarea name="description_product" id="description_product" cols="30" rows="5" required><?=$return['description_product']?></textarea>

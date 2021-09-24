@@ -12,8 +12,8 @@ require('functions.php');
 
 $product = filter_var($_POST['name_product'], FILTER_SANITIZE_STRING);
 $description = filter_var($_POST['description_product'], FILTER_SANITIZE_STRING);
-$price = filter_var($_POST['price_product'], FILTER_SANITIZE_NUMBER_FLOAT);
-$type = filter_var($_POST['type_product'], FILTER_SANITIZE_STRING);
+$price = sanitizeString($_POST['price_product']);
+$type = strtolower(filter_var($_POST['type_product'], FILTER_SANITIZE_STRING));
 $quantity = filter_var($_POST['quantity_product'], FILTER_SANITIZE_NUMBER_INT);
 $photo = null;
 
@@ -26,7 +26,7 @@ if (empty($product) || empty($description) || empty($price) || empty($type) || e
 if (!empty($_FILES['photo_product']['name'])) {
 
     $allowed_formats = ['png', 'jpeg', 'jpg'];
-    $extension = strtolower(explode('/',$_FILES['photo_product']['type'])[1]);
+    $extension = strtolower(pathinfo($_FILES['photo_product']['name'], PATHINFO_EXTENSION));
     
     if ( !in_array( $extension , $allowed_formats ) ) {
         header("Location: ../public/view/admin/insert-products-admin.php?notice=invalidimageformat");
@@ -64,7 +64,7 @@ $stmt -> execute();
 
 if ($stmt) {
 
-    header("Location: ../public/views/admin/home-admin.php?notice=success");
+    header("Location: ../public/views/admin/products-admin.php?notice=success");
     exit;
 
 }

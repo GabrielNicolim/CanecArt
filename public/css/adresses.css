@@ -1,17 +1,29 @@
-.adresses{
+.notice {
+    margin-top: 1em;
     padding: 1em;
-    display: flex;
+    text-align: center;
+    font-weight: 700;
+    background-color: var(--danger);
+    color: var(--white);
+    border: 2px solid var(--dark-blue);
+    border-radius: 10px;
+}
+
+.adresses{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 15px;
+    margin: 1em 0;
 }
 .adress_box{
-    width: 35%;
     height: 250px;
     padding: 1em;
-    margin: 1em;
     border-radius: 10px;
     border: 1px solid var(--dark-blue);
     background-color: var(--very-pale-blue);
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .adress_box .adress_top {
@@ -19,9 +31,11 @@
     position: relative;
     display: block;
     justify-content: flex-start;
+    border-bottom: 1px solid var(--dark-blue);
 }
 
 .adress_box .adress_body {
+    font-weight: 500;
     -webkit-box-flex: 1;
     padding: 10px 0 10px 0;
     margin-top: 1em;
@@ -30,6 +44,8 @@
 
 .adress_box .footer{
     padding: 0.15em;
+    position: absolute;
+    bottom: 1em;
 }
 
 .adress_box .footer a{

@@ -68,20 +68,15 @@ footer .btn.primary {
 
 /* End App */
 
-.btn.logout {
-    margin-top: 2em;
-    display: inline-block;
-}
-
 /* Form */
 
-form.visible {
+#form-adress.visible{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-form {
+#form-adress {
     display: none;
 }
 
@@ -124,3 +119,7 @@ form input[type="submit"] {
 
 /* End add-adress */
 
+.btn.logout {
+    margin-top: 1em;
+    display: inline-block;
+}

@@ -18,11 +18,14 @@ CREATE TABLE users (
     password_user VARCHAR(255) NOT NULL,
     created_at DATE DEFAULT CURRENT_DATE,
     deleted BOOLEAN DEFAULT FALSE,
-    deteted_at DATE DEFAULT NULL
+    deleted_at DATE DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE adresses (
     id_adress SERIAL PRIMARY KEY,
+    contact_adress VARCHAR(255) NOT NULL,
+    state_adress VARCHAR(255) NOT NULL,
+    city_adress VARCHAR(255) NOT NULL,
     street_adress TEXT NOT NULL,
     district_adress TEXT NOT NULL,
     cep_adress CHAR(10) NOT NULL,
@@ -40,7 +43,9 @@ CREATE TABLE products (
     description_product TEXT NOT NULL,
     price_product DECIMAL(10, 2) NOT NULL,
     type_product VARCHAR(128) NOT NULL, 
-    quantity_product INT NOT NULL
+    quantity_product INT NOT NULL,
+    deleted BOOLEAN DEFAULT FALSE,
+    deleted_at DATE DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE orders (

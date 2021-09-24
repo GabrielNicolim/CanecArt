@@ -34,6 +34,10 @@
 
         <section class="panel">
 
+            <h3>Bem vindo de volta administrador</h3>
+
+            <a href="../products.php">Página de produtos</a><br>
+
             <?php
                 if (isset($_GET['notice'])) {
                     echo 'Cadastro de produto feito com sucesso';

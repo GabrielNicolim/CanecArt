@@ -21,6 +21,10 @@
     font-weight: 500;
 }
 
+.item-deleted {
+    background-color: rgb(224, 224, 224);
+}
+
 .list-item img {
     width: 80px;
 }

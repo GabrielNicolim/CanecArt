@@ -10,7 +10,8 @@
     $page_title = 'Produtos - Admin';
     $icon_folder = '../../images/logos/favicon.png';
 
-    $style_scripts = ['<link rel="stylesheet" href="../../css/style.css">',
+    $style_scripts = ['<script src="../../../js/admin.js"></script>',
+                    '<link rel="stylesheet" href="../../css/style.css">',
                     '<link rel="stylesheet" href="../../css/admin.css">',
                     '<link rel="stylesheet" href="../../css/list.css">'];
 
@@ -72,7 +73,7 @@
 
                 require("../../../app/db/connect.php");
 
-                $query = "SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product FROM products";
+                $query = "SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product, deleted FROM products";
                 $stmt = $conn->prepare($query);
                 $stmt -> execute();
 
@@ -83,7 +84,7 @@
                 } else {
                     foreach ($return as $product) {
                         echo '
-                        <div class="list-item" id="'.$product['id_product'].'">
+                        <div class="list-item '; if($product['deleted']) echo 'item-deleted'; echo '" id="'.$product['id_product'].'">
                             <img class="image" src="../../images/';
                             if (is_null($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
                             echo '" alt="">
@@ -92,15 +93,22 @@
                             <div class="list-type">'.$product['type_product'].'</div>
                             <div class="list-price">'.$product['price_product'].'</div>
                             <div class="list-interaction">
-                                <a href="">
+                                <a href="../product-page.php?product='.$product['id_product'].'">
                                     <img src="../../icons/eye-fill.svg" alt="">
                                 </a>
-                                <a href="">
+                                <a href="edit-product.php?product='.$product['id_product'].'">
                                     <img src="../../icons/pencil-square.svg" alt="">
-                                </a>
-                                <a href="">
-                                    <img src="../../icons/trash-fill.svg" alt="">
-                                </a>
+                                </a>';
+                                if ($product['deleted']) {
+                                    echo '<a href="../../../app/deleteProducts.php?delete='.$product['id_product'].'&status=0">
+                                        <img src="../../icons/trash-restore-solid.svg" alt="">
+                                    </a>';
+                                } else {
+                                    echo '<a href="../../../app/deleteProducts.php?delete='.$product['id_product'].'&status=1" >
+                                        <img src="../../icons/trash-fill.svg" alt="">
+                                    </a>';
+                                }                            
+                                echo'
                             </div>
                         </div>
                         ';

@@ -6,23 +6,56 @@
 </div>
 
 <div class="content">
-    <h2>Endereços</h2>
+    <h2>Endereços cadastrados</h2>
+
+    <?php
+        if (isset($_GET['error'])) {
+            if (!$_GET['error']) {
+                echo '<div class="notice">
+                    Endereço inserido com sucesso!
+                </div>';
+            } else {
+                echo '<div class="notice">
+                    Algo de errado aconteu!
+                </div>';
+            }
+        }
+    ?>
 
     <div class="adresses">
-        <div class="adress_box">
-            <div class="adress_top">
-            <i class="fas fa-address-book"></i>
-            Samuel S. Goldflus
-            </div>
-            <div class="adress_body">
-                CEP: 782232, Penápolis, RJ<br>
-                Bairro Mario Sergio, Rua João Augusto Fischer
-                Numero 2-45, gordura <br>
-            </div>
-            <div class="footer">
-                <a href="#"><i class="fas fa-trash-alt"></i>Excluir</a>
-            </div>
-        </div>
+        <?php
+
+            $query = "SELECT * FROM adresses WHERE fk_user = :session_id";
+
+            $stmt = $conn -> prepare($query);
+            $stmt -> bindValue(':session_id', $_SESSION['idUser'], PDO::PARAM_INT);
+            
+            $stmt -> execute();
+
+            $result = $stmt -> fetchALL(PDO::FETCH_ASSOC);
+
+            if ($stmt -> rowCount() == 0)
+                echo '<div class="adress_box"><h1>Nenhum endereço cadastrado no momento</h1></div>';
+            foreach($result as $adress) {
+                echo '<div class="adress_box">
+                <div class="adress_top">
+                <i class="fas fa-address-book"></i>
+                    '.$adress['contact_adress'].'
+                </div>
+                <div class="adress_body">
+                    CEP: '.$adress['cep_adress'].', '.$adress['city_adress'].', '.$adress['state_adress'].'<br>
+                    Bairro '.$adress['district_adress'].',<br>
+                    '.$adress['street_adress'].',
+                    Numero '.$adress['number_adress'].',<br>
+                    Complemento: '.$adress['complement_adress'].'
+                </div>
+                <div class="footer">
+                    <a href="../../app/deleteAdresses.php?delete='.$adress['id_adress'].'"><i class="fas fa-trash-alt"></i> Excluir</a>
+                </div>
+                </div>';
+            }
+
+        ?>
     </div>
 
     <button id="add-adress">
@@ -30,7 +63,7 @@
         <span>Adicionar Endereço</span>
     </button>
 
-    <form id="form-adress" action="../../../app/changeUserData.php" method="post">
+    <form id="form-adress" action="../../app/addAdress.php" method="post" >
         <div class="w-100">
             <label for="name">Nome do contato</label>
             <input type="text" name="name" id="name">

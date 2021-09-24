@@ -2,11 +2,6 @@
 
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    echo "<a href='../public/views/login.php'>Voltar</a>";
-    exit('Form not submited.');
-}
-
 if (!isset($_SESSION['isAuth']) || $_SESSION['idUser'] > 0 || $_SERVER['REQUEST_METHOD'] != 'POST') {
     header("Location: ../public/view/products.php");
     exit;
@@ -43,7 +38,7 @@ if (!empty($_FILES['photo_product']['name'])) {
         exit();
     }
 
-    $photo = 'ProductUpload'.date('Ymdhis').$product.".".$extension;
+    $photo = 'ProductUpload'.date('Ymdhis').trim($product).".".$extension;
     $folder = str_replace("\\", '/',substr(__DIR__,0,-3))."public/images/";
 
     if (!move_uploaded_file($_FILES['photo_product']['tmp_name'], $folder.$photo)) {
@@ -53,8 +48,8 @@ if (!empty($_FILES['photo_product']['name'])) {
 
 }
 
-$query = 'INSERT INTO products(name_product, photo_product, description_product, price_product, type_product, quantity_product) 
-          VALUES(:name_product, :photo_product, :description_product, :price_product, :type_product, :quantity_product) RETURNING id_product;';
+$query = 'INSERT INTO products(name_product, photo_product, description_product, price_product, type_product, quantity_product, deleted_at) 
+          VALUES(:name_product, :photo_product, :description_product, :price_product, :type_product, :quantity_product, null) RETURNING id_product;';
 
 $stmt = $conn -> prepare($query);
 
@@ -68,8 +63,6 @@ $stmt -> bindValue(':quantity_product', $quantity, PDO::PARAM_INT);
 $stmt -> execute();
 
 if ($stmt) {
-
-    //$return = $stmt -> fetch(PDO::FETCH_ASSOC);
 
     header("Location: ../public/views/admin/home-admin.php?notice=success");
     exit;

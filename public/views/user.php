@@ -2,6 +2,11 @@
 
     session_start();
 
+    if (!isset($_SESSION['isAuth']) && is_int($_SESSION['idUser']) ) {
+        header("Location: login.php");
+        exit();
+    }
+
     $page_title = 'Meu perfil';
     $icon_folder = '../images/logos/favicon.png';
 

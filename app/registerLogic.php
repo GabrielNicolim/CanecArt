@@ -70,8 +70,8 @@ try {
 
 $confirmPassword = password_hash($confirmPassword, PASSWORD_DEFAULT);
 
-$query = 'INSERT INTO users(name_user, cpf_user, email_user, password_user) 
-          VALUES(:name_user, :cpf_user, :email_user, :password_user) ON CONFLICT DO NOTHING RETURNING id_user;';
+$query = 'INSERT INTO users(name_user, cpf_user, email_user, password_user, deleted_at) 
+          VALUES(:name_user, :cpf_user, :email_user, :password_user, null) ON CONFLICT DO NOTHING RETURNING id_user;';
 
 $stmt = $conn -> prepare($query);
 

@@ -1,5 +1,6 @@
 function my_callback(conteudo) {
     if (!("erro" in conteudo)) {
+        console.log(conteudo);
         // Update the fields with the values given.
         document.getElementById('street').value=(conteudo.logradouro);
         document.getElementById('district').value=(conteudo.bairro);
@@ -20,7 +21,6 @@ function searchcep(valor) {
 
         // Validate CEP format.
         if(validacep.test(cep)) {
-            console.log(cep);
             // Fill the fields with "..." while waiting for webservice.
             document.getElementById('street').value="...";
             document.getElementById('district').value="...";
@@ -53,6 +53,6 @@ btn.addEventListener('click', () => {
         btn.innerHTML = '<i class="fas fa-plus"></i> Adicionar Endereço';
     } else {
         form.classList.add('visible');
-        btn.innerHTML = '<i class="fas fa-plus"></i> Esconder formulário';
+        btn.innerHTML = '<i class="fas fa-minus"></i> Esconder formulário';
     }
 });

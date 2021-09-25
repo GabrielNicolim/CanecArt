@@ -23,7 +23,8 @@ footer .btn[data-checked='products'] {
 }
 
 #products .product img {
-    width: 80%;
+    width: 260px;
+    height: 260px;
     display: block;
     margin: 0 auto;
 }

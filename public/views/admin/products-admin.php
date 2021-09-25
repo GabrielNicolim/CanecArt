@@ -16,7 +16,18 @@
                     '<link rel="stylesheet" href="../../css/list.css">'];
 
     require("../../includes/head.php");
+    require("../../../app/db/connect.php");
+    require("../../../app/functions.php");
 
+    $query = 'SELECT DISTINCT type_product FROM products';
+
+    $stmt = $conn -> prepare($query);
+    $stmt -> execute();
+    $product_types = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+    $type = (!empty($_GET['type_product'])) ? $_GET['type_product'] : '';
+    $search = (!empty($_GET['name_product'])) ? $_GET['name_product'] : '';
+    
 ?>
     <div class="container">
         <!--Header-->
@@ -39,18 +50,23 @@
         <section class="search">
             <form action="" method="GET">
                 <span>Busca:</span>
-                <input type="text" name="name_product" id="name_product" placeholder="Nome">
+                <input type="text" name="name_product" id="name_product" placeholder="Nome" value="<?= $search ?>">
                 
                 <select name="type_product" id="type_product">
-                    <option value="valor1" selected>Tipo</option>
-                    <option value="valor2">Valor 1</option>
-                    <option value="valor3">Valor 2</option>
+                    <option value="" disabled selected>Selecione algo</option>
+                    <?php
+                        foreach ($product_types as $types) {
+                            echo '<option value="'.$types["type_product"].'">'.ucfirst($types["type_product"]).'</option>';
+                        }
+                    ?>
                 </select>
 
                 <div class="value">
                     <span>Preço:</span>
-                    <input type="number" name="min_value_product" id="min_value_product" placeholder="min" min="0" max="999">
-                    <input type="number" name="max_value_product" id="max_value_product" placeholder="max" min="0" max="999">
+                    <input type="number" name="min_value_product" id="min_value_product" placeholder="min" 
+                    min="0" step="0.01" max="999">
+                    <input type="number" name="max_value_product" id="max_value_product" placeholder="max" 
+                    min="0" step="0.01" max="999">
                 </div>
 
                 <input type="submit" value="Buscar">
@@ -71,10 +87,53 @@
             <!--Content of table-->
             <?php
 
-                require("../../../app/db/connect.php");
+                $query = 'SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product, deleted
+                          FROM products
+                          WHERE (LOWER(name_product) LIKE :nameproduct OR LOWER(description_product) LIKE :nameproduct) ';
 
-                $query = "SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product, deleted FROM products";
+                $nameSearch = '%%';
+                if (isset($_GET['name_product'])) { 
+                    $nameSearch = '%'.strtolower(sanitizeString($_GET['name_product'])).'%';
+                }
+
+                if (isset($_GET['type_product'])) {
+                    $typeSearch = sanitizeString($_GET['type_product']);
+                    if (!empty($typeSearch)) {
+                        $query .= 'AND type_product = :typeproduct ';   
+                    }
+                }
+
+                $minValue = '';
+                if (isset($_GET['min_value_product'])) {
+                    $minValue = sanitizeString($_GET['min_value_product']);
+                    if (is_numeric($minValue)) {
+                        $query .= 'AND price_product >= :min_value ';
+                    }
+                }
+
+                $maxValue = '';
+                if (isset($_GET['max_value_product'])) {
+                    $maxValue = sanitizeString($_GET['max_value_product']);
+                    if (is_numeric($maxValue)) {
+                        $query .= 'AND price_product <= :max_value ';
+                    }
+                }
+
                 $stmt = $conn->prepare($query);
+                $stmt -> bindValue(':nameproduct',$nameSearch);
+
+                if (!empty($typeSearch)) {
+                    $stmt -> bindValue(':typeproduct',$typeSearch);
+                }
+
+                if (is_numeric($minValue)) {
+                    $stmt -> bindValue(':min_value',$minValue);
+                }
+
+                if (is_numeric($maxValue)) {
+                    $stmt -> bindValue(':max_value',$maxValue);
+                }
+ 
                 $stmt -> execute();
 
                 $return = $stmt -> fetchAll(PDO::FETCH_ASSOC);
@@ -86,14 +145,14 @@
                         echo '
                         <div class="list-item '; if($product['deleted']) echo 'item-deleted'; echo '" id="'.$product['id_product'].'">
                             <img class="image" src="../../images/';
-                            if (is_null($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
+                            if (empty($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
                             echo '" alt="">
                             <div class="list-name">'.$product['name_product'].'</div>
                             <div class="list-avalible">'.$product['quantity_product'].'</div>
                             <div class="list-type">'.$product['type_product'].'</div>
                             <div class="list-price">'.$product['price_product'].'</div>
                             <div class="list-interaction">
-                                <a href="../product-page.php?product='.$product['id_product'].'">
+                                <a href="../product-page.php?id='.$product['id_product'].'">
                                     <img src="../../icons/eye-fill.svg" alt="">
                                 </a>
                                 <a href="edit-product.php?product='.$product['id_product'].'">

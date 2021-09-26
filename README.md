@@ -24,6 +24,8 @@ Utilizem o Git e GitHub para a organização. É importante que reuniões sejam 
 
 ## Aplicativos
 
+Link de acesso no [Servidor](http://200.145.153.175/felipeestevanatto/ecommerce/)
+
 Esses links devem ser utilizados para realizar a instalação dos aplicativos utilizados para o desenvolvimento do projeto em conjunto.
 
 - [Visual Studio Code](https://code.visualstudio.com/download)

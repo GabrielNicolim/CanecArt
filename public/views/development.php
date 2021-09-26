@@ -13,7 +13,7 @@
 
 ?>
 
-    <a href="car.php" class="shop-car">
+    <a href="cart.php" class="shop-car">
         <img src="../icons/shop-car.svg" alt="">
     </a>
     

@@ -11,9 +11,15 @@
     require("../../app/functions.php");
     require("../../app/db/connect.php");
 
+    if (!isset($_GET['id'])) {
+        include('product-missing.php');
+        exit;
+    }
+
     $product_id = sanitizeString($_GET['id']);
 
     if (empty($product_id) || !is_numeric($product_id)) {
+        include('product-missing.php');
         exit;
     }
 
@@ -24,7 +30,8 @@
     $stmt -> execute();
 
     if ($stmt -> rowCount() == 0) {
-        //exit;
+        include('product-missing.php');
+        exit;
     }
 
     $data = $stmt -> fetch(PDO::FETCH_ASSOC);
@@ -37,7 +44,7 @@
 
 ?>
 
-    <a href="car.php" class="shop-car">
+    <a href="cart.php" class="shop-car">
         <img src="../icons/shop-car.svg" alt="">
     </a>
 
@@ -47,7 +54,7 @@
             include("../includes/header.php");
 
         ?>
-    
+
         <section class="product-overview">
             <div class="top">
                 <div class="left">
@@ -67,7 +74,7 @@
 
                     <div class="price-procut">R$ <?= str_replace('.',',',$data['price_product']) ?></div>
                     
-                    <a href="#" class="btn">
+                    <a href="cart.php?add_product=<?=$data['id_product']?>" class="btn">
                         Comprar
                     </a>
 
@@ -78,7 +85,6 @@
                     <div class="description">
                         <h2>Descrição</h2>
                         <span class="text"><?=$data['description_product']?><br>
-                        
                         </span>
 
                         <?php

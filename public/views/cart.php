@@ -2,7 +2,7 @@
 
     session_start();
 
-    $page_title = 'Devs';
+    $page_title = 'Carrinho';
     $icon_folder = '../images/logos/favicon.png';
 
     $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
@@ -10,11 +10,16 @@
                     '<link rel="stylesheet" href="../css/list.css">'];
 
     require("../includes/head.php");
-    require("../../app/db/env.php");
+    require("../../app/db/connect.php");
+    require("../../app/functions.php");
+
+    if (isset($_GET['add_product'])) {
+        $_SESSION[] = sanitizeString($_GET['add_product']);
+    }
 
 ?>
     
-    <a href="car.php" class="shop-car">
+    <a href="cart.php" class="shop-car">
         <img src="../icons/shop-car.svg" alt="">
     </a>
 
@@ -44,8 +49,6 @@
                     <!--Content of table-->
                     <?php
 
-                        require("../../app/db/connect.php");
-
                         $query = "SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product FROM products";
                         $stmt = $conn->prepare($query);
                         $stmt -> execute();
@@ -58,8 +61,8 @@
                             foreach ($return as $product) {
                                 echo '
                                 <div class="list-item" id="'.$product['id_product'].'">
-                                    <img class="image" src="../../images/';
-                                    if (is_null($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
+                                    <img class="image" src="../images/';
+                                    if (empty($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
                                     echo '" alt="">
                                     <div class="list-name">'.$product['name_product'].'</div>
                                     <div class="list-avalible">'.$product['quantity_product'].'</div>
@@ -67,13 +70,13 @@
                                     <div class="list-price">'.$product['price_product'].'</div>
                                     <div class="list-interaction">
                                         <a href="">
-                                            <img src="../../icons/eye-fill.svg" alt="">
+                                            <img src="../icons/eye-fill.svg" alt="">
                                         </a>
                                         <a href="">
-                                            <img src="../../icons/pencil-square.svg" alt="">
+                                            <img src="../icons/pencil-square.svg" alt="">
                                         </a>
                                         <a href="">
-                                            <img src="../../icons/trash-fill.svg" alt="">
+                                            <img src="../icons/trash-fill.svg" alt="">
                                         </a>
                                     </div>
                                 </div>

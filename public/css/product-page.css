@@ -61,14 +61,24 @@
     padding-bottom: .5em;
 }
 
-.product-overview .description .tag {
-    padding: 2px 5px;
+.product-overview .description .tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-overview .description .tags .tag {
+    padding: 5px 10px;
     background: var(--bright-blue);
     color: var(--white);
     margin-top: 1em;
+    margin-right: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
     border-radius: 1em;
+}
+
+.product-overview .description .tags .tag:hover {
+    background: var(--dark-blue);
+    transition: 200ms;
 }

@@ -1,0 +1,9 @@
+/* Checked Buttons */
+nav .btn[data-checked='statistics'] {
+    color: var(--desaturated-blue) !important;
+}
+
+footer .btn[data-checked='statistics'] {
+    color: var(--dark-blue) !important;
+}
+/* End Checked Buttons */

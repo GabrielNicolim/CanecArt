@@ -8,11 +8,43 @@
                     '<link rel="stylesheet" href="../css/product-page.css">'];
 
     require("../includes/head.php");
-    require("../../app/db/env.php");
+    require("../../app/functions.php");
+    require("../../app/db/connect.php");
+
+    if (!isset($_GET['id'])) {
+        include('product-missing.php');
+        exit;
+    }
+
+    $product_id = sanitizeString($_GET['id']);
+
+    if (empty($product_id) || !is_numeric($product_id)) {
+        include('product-missing.php');
+        exit;
+    }
+
+    $query = 'SELECT * FROM products WHERE id_product = :product_id';
+
+    $stmt = $conn -> prepare($query);
+    $stmt -> bindValue(':product_id', $product_id, PDO::PARAM_INT);
+    $stmt -> execute();
+
+    if ($stmt -> rowCount() == 0) {
+        include('product-missing.php');
+        exit;
+    }
+
+    $data = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+    $query = 'SELECT COUNT(*) FROM order_products WHERE fk_product = :product_id';
+    $stmt = $conn -> prepare($query);
+    $stmt -> bindValue(':product_id', $product_id, PDO::PARAM_INT);
+    $stmt -> execute();
+    $orders = $stmt -> fetch(PDO::FETCH_ASSOC);
 
 ?>
 
-    <a href="car.php" class="shop-car">
+    <a href="cart.php" class="shop-car">
         <img src="../icons/shop-car.svg" alt="">
     </a>
 
@@ -22,40 +54,47 @@
             include("../includes/header.php");
 
         ?>
-    
+
         <section class="product-overview">
             <div class="top">
                 <div class="left">
-                    <img src="../images/card1-image.png" alt="">
+                    <?php
+                        if (empty($data['photo_product']) || !file_exists('../images/'.$data['photo_product']))
+                        echo'<img src="../images/missing-image.png" alt="">';
+                        else echo '<img src="../images/'.$data['photo_product'].'" alt="">';
+                    ?>
                 </div>
 
                 <div class="right">
-                    <div class="name-product">Product Product</div>
+                    <div class="name-product"><?=$data['name_product']?></div>
                     
                     <div class="sold-products">
-                        Pedidos: 123
+                        Pedidos: <?=$orders['count'] ?>
                     </div>
 
-                    <div class="price-procut">R$ 90.99</div>
+                    <div class="price-procut">R$ <?= str_replace('.',',',$data['price_product']) ?></div>
                     
-                    <a href="#" class="btn">
+                    <a href="cart.php?add_product=<?=$data['id_product']?>" class="btn">
                         Comprar
                     </a>
 
                     <div class="product-avalible">
-                        Disponível: 12
+                        Disponível: <?=$data['quantity_product']?>
                     </div>
 
                     <div class="description">
                         <h2>Descrição</h2>
-                        <span class="text">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas harum eveniet maiores. Libero laborum commodi optio distinctio, nobis quaerat ipsam, officia eveniet asperiores cum velit. Animi dolores natus perferendis. Perferendis.
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas harum eveniet maiores. Libero laborum commodi optio distinctio, nobis quaerat ipsam, officia eveniet asperiores cum velit. Animi dolores natus perferendis. Perferendis.
-                        </span>
+                        <span class="text"><?=$data['description_product']?><br></span>
 
-                        <a href="#" class="tag">
-                            Categoria
-                        </a>
+                        <div class="tags">
+                            <?php
+                                foreach(explode(' ',$data['type_product']) as $tag) {
+                                    echo'<a href="products.php?type_product='.$tag.'" class="tag">
+                                        '.ucfirst($tag).'
+                                    </a>';
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>

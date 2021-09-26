@@ -33,7 +33,8 @@ CREATE TABLE adresses (
     complement_adress TEXT,
 
     fk_user BIGINT NOT NULL,
-    FOREIGN KEY (fk_user) REFERENCES users (id_user)
+    FOREIGN KEY (fk_user) REFERENCES users (id_user),
+	UNIQUE (id_adress, fk_user)
 );
 
 CREATE TABLE products (
@@ -83,3 +84,46 @@ CREATE TABLE pwdreset (
   fk_email VARCHAR(256) NOT NULL,
   FOREIGN KEY (fk_email) REFERENCES users (email_user)
 );
+
+/* Dummy data for first time insert */
+
+/* jorge@gmail.com - jorge */
+INSERT INTO users(name_user, cpf_user, email_user, password_user, deleted_at) 
+VALUES('Jorge', '21935947087', 'jorge@gmail.com', '$2y$10$lm52RriLOKv.j159jSfegu9NidmJarl54gQivT0azOeVsaSK/1L9O', null) ON CONFLICT DO NOTHING;
+
+/* pedro@gmail.com - pedro */
+INSERT INTO users(name_user, cpf_user, email_user, password_user, deleted_at) 
+VALUES('Pedro', '76106379041', 'pedro@gmail.com', '$2y$10$GF0IuWQmzOSzH8eYtVesx.LBsoAgC0kMRveGatE6W3Qs9dfPAmmHy', null) ON CONFLICT DO NOTHING;
+
+/* joao@gmail.com - joao */
+INSERT INTO users(name_user, cpf_user, email_user, password_user, deleted_at) 
+VALUES('João', '57865450087', 'joao@gmail.com', '$2y$10$Lpy.6dI1H.FPEYH2TIgkFeOZnQbDGORKIgrColL1xeiQofZaQg3M.', null) ON CONFLICT DO NOTHING;
+
+
+/* Endereço Jorge */
+INSERT INTO adresses(contact_adress, state_adress, city_adress, street_adress, district_adress, cep_adress, number_adress, complement_adress, fk_user) 
+VALUES('Jorge da Silva', 'SP', 'Bauru', 'Rua pedrinho zói de gato', 'Bela vista', '17040560', '28', 'Quadra 5', '1');
+
+/* Endereço Pedro */
+INSERT INTO adresses(contact_adress, state_adress, city_adress, street_adress, district_adress, cep_adress, number_adress, complement_adress, fk_user) 
+VALUES('Pedro Malboro', 'PA', 'Santarém', 'Avenida Maicá', 'Santana', '68010390', '11', 'Quadra 9', '2');
+
+/* Endereço João */
+INSERT INTO adresses(contact_adress, state_adress, city_adress, street_adress, district_adress, cep_adress, number_adress, complement_adress, fk_user) 
+VALUES('João Paulo', 'AL', 'Maceió', 'Rua Ricardo Cesar de Melo', 'Pinheiro', '57055670', '76', 'Quadra 2', '3');
+
+
+/* Caneca Attack on titan */
+INSERT INTO products(name_product, photo_product, description_product, price_product, type_product, quantity_product, deleted_at) 
+VALUES('Caneca Attack on Titan', 'card1-image.png', 'Caneca da Tropa de Exploração - Asas da Liberdade de Shingeki no Kyojin
+	   Branca, 335ml', 45.00, 'Attack_on_Titan 325ml Branca Exploração', '50', null);
+	   
+/* Caneca Bulbassaurica */
+INSERT INTO products(name_product, photo_product, description_product, price_product, type_product, quantity_product, deleted_at) 
+VALUES('Caneca Bulbassauro Pokemon', 'card2-image.jpg', 'Caneca do Bulbassauro - Pokemon. Com cabo verde
+	   Branca, 335ml', 45.00, 'Bulbassauro Pokemon 325ml Branca', '30', null);
+	   
+/* Caneca Goku */
+INSERT INTO products(name_product, photo_product, description_product, price_product, type_product, quantity_product, deleted_at) 
+VALUES('Caneca Dragon Ball Goku', 'card3-image.jpg', 'Caneca do Goku - Dragon Ball Z
+	   Branca, 335ml', 45.00, 'Goku Dragon_Ball_Z 325ml Branca', '20', null);

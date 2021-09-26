@@ -39,23 +39,23 @@
             <form action="" method="GET">
                 <span>Busca:</span>
                 <input type="text" name="name_product" id="name_product" placeholder="Nome">
-                
-                <select name="type_product" id="type_product">
-                    <option value="valor1" selected>Tipo</option>
-                    <option value="valor2">Deletados</option>
-                    <option value="valor3">Ativos</option>
+                Incluir Email:<input type="checkbox" name="include_email" id="">
+
+                <select name="type_user" id="type_product">
+                    <option value="" disabled selected>Tipo</option>
+                    <option value="True">Deletados</option>
+                    <option value="False">Ativos</option>
                 </select>
 
                 <div class="value">
                     <span>Compras:</span>
-                    <input type="range" id="rangeInput" name="rangeInput" value="10" min="0" max="512" oninput="document.getElementById('textInput').value=this.value;">
-                    <input type="numeric" step="0.01" id="textInput" value="10" min="0" max="512" oninput="document.getElementById('rangeInput').value=this.value;" onkeydown="return event.key != 'Enter';">
+                    <input type="range" id="rangeInput" name="rangeInput" value="0" min="0" max="512" oninput="document.getElementById('textInput').value=this.value;">
+                    <input type="numeric" step="1" id="textInput" value="0" min="0" max="512" oninput="document.getElementById('rangeInput').value=this.value;" onkeydown="return event.key != 'Enter';">
                 </div>
 
                 <input type="submit" value="Buscar">
             </form>
 
-            <a href="insert-products-admin.php" class="btn insert">Inserir Produto</a>
         </section>
         
         <section class="list">
@@ -72,9 +72,47 @@
             <?php
 
                 require("../../../app/db/connect.php");
+                require("../../../app/functions.php");
 
-                $query = "SELECT id_user, name_user, email_user, deleted, (SELECT COUNT(*) FROM orders WHERE fk_user = id_user) AS compras FROM users";
+                $query = "SELECT id_user, name_user, email_user, deleted, (SELECT COUNT(*) FROM orders WHERE fk_user = id_user) AS compras 
+                        FROM users
+                        WHERE (LOWER(name_user) LIKE :search OR LOWER(email_user) LIKE :search_mail) 
+                        AND (SELECT COUNT(*) FROM orders WHERE fk_user = id_user) >= :orders ";
+
+                $search = '%%';
+                $searchMail = '%%';
+                if (isset($_GET['name_product'])) { 
+                    $search = '%'.strtolower(sanitizeString($_GET['name_product'])).'%';
+                    if (isset($_GET['include_email']) && $_GET['include_email'] == 'on') {
+                        $searchMail = $search;
+                    } else {
+                        $searchMail = '';
+                    }
+                }
+
+                if (isset($_GET['type_user'])) {
+                    $typeSearch = sanitizeString($_GET['type_user']);
+                    var_dump($typeSearch);
+                    if (!empty($typeSearch)) {
+                        if ($typeSearch == 'True') {
+                            $query .= ' AND deleted = TRUE';
+                        } else {
+                            $query .= ' AND deleted = FALSE';
+                        }
+                    }
+                }
+
+                $orders = 0;
+                if (isset($_GET['rangeInput'])) {
+                    $orders = sanitizeString($_GET['rangeInput']);
+                }
+
                 $stmt = $conn->prepare($query);
+
+                $stmt -> bindValue(':search', $search, PDO::PARAM_STR);
+                $stmt -> bindValue(':search_mail', $searchMail, PDO::PARAM_STR);
+                $stmt -> bindValue(':orders', $orders, PDO::PARAM_INT);
+
                 $stmt -> execute();
 
                 $return = $stmt -> fetchAll(PDO::FETCH_ASSOC);
@@ -84,7 +122,7 @@
                 } else {
                     foreach ($return as $user) {
                         echo '
-                        <div class="list-item" id="'.$user['id_user'].'">
+                        <div class="list-item '; if($user['deleted']) echo 'item-deleted'; echo '" id="'.$user['id_user'].'">
                             <div class="list-state">'; 
                             if($user['deleted']) echo 'Sim'; else echo 'Não';
                             echo '</div>
@@ -92,40 +130,28 @@
                             <div class="list-email">'.$user['email_user'].'</div>
                             <div class="list-price">'.$user['compras'].' compras</div>
                             <div class="list-interaction">
-                                <a href="">
+                                <a href="" >
                                     <img src="../../icons/eye-fill.svg" alt="">
                                 </a>
                                 <a href="">
                                     <img src="../../icons/pencil-square.svg" alt="">
-                                </a>
-                                <a href="">
-                                    <img src="../../icons/trash-fill.svg" alt="">
-                                </a>
+                                </a>';
+                                if ($user['deleted']) {
+                                    echo '<a href="../../../app/deleteUsers.php?delete='.$user['id_user'].'&status=0">
+                                        <img src="../../icons/trash-restore-solid.svg" alt="">
+                                    </a>';
+                                } else {
+                                    echo '<a href="../../../app/deleteUsers.php?delete='.$user['id_user'].'&status=1" >
+                                        <img src="../../icons/trash-fill.svg" alt="">
+                                    </a>';
+                                }                            
+                                echo'
                             </div>
                         </div>
                         ';
                     }
                 }
-
             ?>
-
-            <div class="list-item">
-                <div class="list-state">Sim</div>
-                <div class="list-name">Jorge da Nike</div>
-                <div class="list-email">jorginhodanike58@gmail.com</div>
-                <div class="list-price">12 compras</div>
-                <div class="list-interaction">
-                    <a href="">
-                        <img src="../../icons/eye-fill.svg" alt="">
-                    </a>
-                    <a href="">
-                        <img src="../../icons/pencil-square.svg" alt="">
-                    </a>
-                    <a href="">
-                        <img src="../../icons/trash-fill.svg" alt="">
-                    </a>
-                </div>
-            </div>
         </section>
     </div>
 </body>

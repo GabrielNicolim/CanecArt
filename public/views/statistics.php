@@ -6,7 +6,7 @@
     $icon_folder = '../images/logos/favicon.png';
 
     $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
-                    '<link rel="stylesheet" href="../css/cart.css">'];
+                    '<link rel="stylesheet" href="../css/statistics.css">'];
 
     require("../includes/head.php");
     require("../../app/db/env.php");

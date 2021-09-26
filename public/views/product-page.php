@@ -84,16 +84,17 @@
 
                     <div class="description">
                         <h2>Descrição</h2>
-                        <span class="text"><?=$data['description_product']?><br>
-                        </span>
+                        <span class="text"><?=$data['description_product']?><br></span>
 
-                        <?php
-                            foreach(explode(' ',$data['type_product']) as $tag) {
-                                echo'<a href="products.php?type_product='.$tag.'" class="tag">
-                                    '.ucfirst($tag).'
-                                </a>';
-                            }
-                        ?>
+                        <div class="tags">
+                            <?php
+                                foreach(explode(' ',$data['type_product']) as $tag) {
+                                    echo'<a href="products.php?type_product='.$tag.'" class="tag">
+                                        '.ucfirst($tag).'
+                                    </a>';
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>

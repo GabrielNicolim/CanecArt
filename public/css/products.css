@@ -11,19 +11,20 @@ footer .btn[data-checked='products'] {
 #products {
     padding: 2em;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 50px;
 }
 
 #products .product {
-    width: 300px;
     padding: 1em;
     background: var(--white);
     border-radius: 8px;
+
+    position: relative;
 }
 
 #products .product img {
-    width: 260px;
+    max-width: 260px;
     height: 260px;
     display: block;
     margin: 0 auto;
@@ -45,7 +46,7 @@ footer .btn[data-checked='products'] {
 }
 
 #products .product .btn {
-    width: 100%;
+    width: 92%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,8 +56,16 @@ footer .btn[data-checked='products'] {
     background: var(--bright-blue);
     color: var(--white);
     border-radius: 8px;
+
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
 }
 
 #products .product .btn svg {
     margin-right: 5px;
+}
+
+#products .product .clear {
+    height: 70px;
 }

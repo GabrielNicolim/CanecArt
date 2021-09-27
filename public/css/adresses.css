@@ -45,11 +45,21 @@
 .adress_box .footer{
     padding: 0.15em;
     position: absolute;
+    display: flex;
     bottom: 1em;
 }
 
-.adress_box .footer a{
-    color: var(--danger);
+.adress_box .footer a {
+    color: var(--white);
+    background: var(--danger);
     text-decoration: none;
     justify-content: flex-end;
+    padding: 10px 15px;
+    border-radius: 1em;
+    font-weight: 500;
+}
+
+.adress_box .footer a:hover {
+    background: darkred;
+    transition: 200ms;
 }

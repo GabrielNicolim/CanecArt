@@ -58,3 +58,21 @@
 .shop-car {
     border: 2px solid var(--bright-blue);
 }
+
+#update {
+    padding: 15px;
+    background: var(--bright-blue);
+    color: var(--white);
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 3em 0;
+    font-size: 1.1em;
+    border-radius: 8px;
+}
+
+#car .right .buttons .btn:hover,
+#update:hover {
+    background: var(--dark-blue);
+    transition: 200ms;
+}

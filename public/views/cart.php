@@ -78,13 +78,21 @@
 
                                 $product = $stmt -> fetch(PDO::FETCH_ASSOC);
                                     
+                                if($product['quantity_product'] != 0) {
+                                    $class = 'list-item';
+                                    $text = $product['quantity_product'];
+                                } else {
+                                    $class = 'list-item out';
+                                    $text = 'Produto Indisponível';
+                                }
+
                                 echo '
-                                <div class="list-item" id="'.$product['id_product'].'">
+                                <div class="'.$class.'" id="'.$product['id_product'].'">
                                     <img class="image" src="../images/';
                                     if (empty($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
                                     echo '" alt="">
                                     <div class="list-name"><a href="product-page.php?id='.$product['id_product'].'">'.$product['name_product'].'</a></div>
-                                    <div class="list-avalible">'.$product['quantity_product'].'</div>
+                                    <div class="list-avalible">'.$text.'</div>
                                     <div class="list-price">'.$product['price_product'].'</div>
                                     <div class="list-interaction">
                                         <input type="number" min="0" name="update'.$product['id_product'].'" value="'.$quantity.'" style="width:3em;">
@@ -97,7 +105,7 @@
                                 $final_value += $product['price_product'];    
 
                             }
-                            echo '<button type="submit">atualizar carrinho</button>
+                            echo '<button type="submit" id="update">atualizar carrinho</button>
                             </form>';
                         }
                     ?>

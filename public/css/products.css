@@ -74,6 +74,11 @@ footer .btn[data-checked='products'] {
     left: 1em;
 }
 
+#products .product .btn:hover {
+    background: var(--dark-blue);
+    transition: 200ms;
+}
+
 #products .product .btn svg {
     margin-right: 5px;
 }

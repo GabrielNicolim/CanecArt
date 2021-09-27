@@ -7,3 +7,6 @@ footer .btn[data-checked='statistics'] {
     color: var(--dark-blue) !important;
 }
 /* End Checked Buttons */
+
+section { text-align: center; padding: 10em 0; }
+section img {width: 40%; border-radius: 1em; }

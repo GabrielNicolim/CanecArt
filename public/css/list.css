@@ -66,6 +66,11 @@
     width: 600px;
 }
 
+.list-interaction {
+    display: flex;
+    align-items: center;
+}
+
 .list-interaction img {
     width: 25px;
     margin: 0 5px;
@@ -81,3 +86,30 @@
     padding: 15px;
 }
 /* End List*/
+
+.list-item.out {
+    opacity: .6 !important;
+    background: rgb(180, 180, 180);
+}
+
+.list-item.out .list-avalible {
+    font-weight: 700;
+    font-size: 1.2em;
+    color: var(--danger);
+}
+
+.list-item a {
+    color: var(--dark-blue);
+}
+
+.list-item a:hover {
+    color: var(--bright-blue);
+    transition: 200ms;
+}
+
+.list-item input[type="number"] {
+    border: 1px solid var(--dark-blue);
+    border-radius: 8px;
+    text-align: center;
+    height: 30px;
+}

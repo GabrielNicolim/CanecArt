@@ -27,7 +27,7 @@
 
         <section>
 
-            <h1>Estatísticas</h1>
+            <img src="https://www.encartale.com.br/smart/modulos/produto/imagens/grande/placa-atencao-em-obras_162-17.jpg" alt="">
 
         </section>
     </div>

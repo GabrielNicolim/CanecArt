@@ -55,7 +55,7 @@
                 <input type="text" value="<?=$return['name_product']?>" name="name_product" id="name_product" required>
 
                 <label for="photo_product">Foto</label>
-                <input type="file" name="photo_product" id="photo_upload" accept="image/png, image/jpeg"
+                <input type="file" name="photo_product" id="photo_upload" accept="image/png, image/jpeg, image/jpg"
                 onchange="loadFile(event)">
                 <?php if (!empty($return['photo_product'])) 
                     echo ' <img id="preview_output" width="100%" src="../../images/'.$return['photo_product'].'"/>';
@@ -64,7 +64,7 @@
                 <label for="description_produtc">Descrição</label>
                 <textarea name="description_product" id="description_product" cols="30" rows="5" required><?=$return['description_product']?></textarea>
                 
-                <label for="price_product">Preço<?=$return['price_product']?></label>
+                <label for="price_product">Preço</label>
                 <input type="number" value="<?=$return['price_product']?>" min="0" step="0.01" max="999999" name="price_product" id="price_product" required>
                 
                 <label for="type_product">Tipo</label>

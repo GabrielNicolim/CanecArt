@@ -133,18 +133,18 @@
                             <div class="list-price">'.$user['compras'].' compras</div>
                             <div class="list-interaction">
                                 <a href="" >
-                                    <img src="../../icons/eye-fill.svg" alt="">
+                                    <img src="../../icons/eye-fill.svg" alt="Icone de olho">
                                 </a>
                                 <a href="">
-                                    <img src="../../icons/pencil-square.svg" alt="">
+                                    <img src="../../icons/pencil-square.svg" alt="Icone de editar">
                                 </a>';
                                 if ($user['deleted']) {
                                     echo '<a href="../../../app/deleteUsers.php?delete='.$user['id_user'].'&status=0">
-                                        <img src="../../icons/trash-restore-solid.svg" alt="">
+                                        <img src="../../icons/trash-restore-solid.svg" alt="Icone de restaurar">
                                     </a>';
                                 } else {
                                     echo '<a href="../../../app/deleteUsers.php?delete='.$user['id_user'].'&status=1" >
-                                        <img src="../../icons/trash-fill.svg" alt="">
+                                        <img src="../../icons/trash-fill.svg" alt="Icone de deletar">
                                     </a>';
                                 }                            
                                 echo'

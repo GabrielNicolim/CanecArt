@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['isAuth']) || $_SESSION['idUser'] > 0 || $_SERVER['REQUEST_METHOD'] != 'POST') {
-    header("Location: ../public/view/products.php");
+    header("Location: ../public/views/products.php");
     exit;
 }
 
@@ -19,7 +19,7 @@ $photo = null;
 
 //var_dump($_FILES,$_POST); exit;
 if (empty($product) || empty($description) || empty($price) || empty($type) || empty($quantity)) {
-    header("Location: ../public/view/admin/insert-products-admin.php?notice=invaliddata");
+    header("Location: ../public/views/admin/insert-products-admin.php?notice=invaliddata");
     exit;
 }
 
@@ -29,7 +29,7 @@ if (!empty($_FILES['photo_product']['name'])) {
     $extension = strtolower(pathinfo($_FILES['photo_product']['name'], PATHINFO_EXTENSION));
     
     if ( !in_array( $extension , $allowed_formats ) ) {
-        header("Location: ../public/view/admin/insert-products-admin.php?notice=invalidimageformat");
+        header("Location: ../public/views/admin/insert-products-admin.php?notice=invalidimageformat");
         exit;
     }
 

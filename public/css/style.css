@@ -102,6 +102,13 @@ section.search form input[type="number"]::placeholder {
     width: 30px;
     height: 30px;
 }
+
+.shop-car span:not(:empty) {
+    color: var(--white);
+    background-color:#DC2626;
+    padding: 0 5px 0 5px;
+    border-radius: 100%;
+}
 /* End Shop Car */
 
 .container {

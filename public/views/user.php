@@ -30,7 +30,8 @@
 ?>
 
     <a href="cart.php" class="shop-car">
-        <img src="../icons/shop-car.svg" alt="">
+        <img src="../icons/shop-car.svg" alt="cart_icon">
+        <span><?php if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) echo count($_SESSION['cart']) ?></span>
     </a>
 
     <div class="container">

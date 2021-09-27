@@ -5,7 +5,8 @@
     $icon_folder = '../images/logos/favicon.png';
 
     $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
-                    '<link rel="stylesheet" href="../css/products.css">'];
+                    '<link rel="stylesheet" href="../css/products.css">',
+                    '<script src="../../js/products.js"></script>'];
 
     require("../includes/head.php");
     require("../../app/db/connect.php");
@@ -22,7 +23,8 @@
 ?>
 
     <a href="cart.php" class="shop-car">
-        <img src="../icons/shop-car.svg" alt="">
+        <img src="../icons/shop-car.svg" alt="cart_icon">
+        <span><?php if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) echo count($_SESSION['cart']) ?></span>
     </a>
 
     <div class="container">
@@ -119,15 +121,16 @@
                     $class = 'product out';
                 }
 
-                echo '<!-- Base Product --> 
-                <div href="#" class="'.$class.'"> <!-- Adicionar Class Out id Quantidade == 0 -->
+                echo '<!-- Base Product -->
+                <!-- Adicionar Class Out id Quantidade == 0 -->
+                <div href="#" class="'.$class.'" id="'.$produto['id_product'].'">
                     <a href="product-page.php?id='.$produto['id_product'].'">
                         <img src="../images/';
                         if (empty($produto['photo_product']) || !file_exists('../images/'.$produto['photo_product']))
                             echo'missing-image.png';
                         else echo $produto['photo_product'];
                         echo'
-                        " alt="">
+                        " alt="Foto do produto">
                         <h1>'.ucfirst($produto['name_product']).'</h1>
                         <p>
                             '.ucfirst($produto['description_product']).'
@@ -148,6 +151,11 @@
 
                         <span>Comprar</span>
                     </a>
+                    <span class="to-cart" id='.$produto['id_product'].'>'; if (!isset($_SESSION['idUser'])) echo '<a href="login.php">'; echo'
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+                            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                        </svg>
+                    </span>'; if (!isset($_SESSION['idUser'])) echo '</a>'; echo'
                 </div>
                 <!-- End Base Product -->';
             }

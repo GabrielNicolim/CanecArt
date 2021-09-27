@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['isAuth']) || $_SESSION['idUser'] > 0 || $_SERVER['REQUEST_METHOD'] != 'POST') {
-    header("Location: ../public/view/products.php");
+    header("Location: ../public/views/products.php");
     exit;
 }
 

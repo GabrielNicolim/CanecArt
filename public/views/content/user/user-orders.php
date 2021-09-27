@@ -40,20 +40,20 @@
                     <div class="list-item" id="'.$product['id_product'].'">
                         <img class="image" src="../images/';
                         if (is_null($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
-                        echo '" alt="">
+                        echo '" alt="Foto do produto">
                         <div class="list-name">'.$product['name_product'].'</div>
                         <div class="list-quantity">'.$product['quantity_product'].'</div>
                         <div class="list-type">'.$product['type_product'].'</div>
                         <div class="list-price">'.$product['price_product'].'</div>
                         <div class="list-interaction">
                             <a href="">
-                                <img src="../icons/eye-fill.svg" alt="">
+                                <img src="../icons/eye-fill.svg" alt="Icone olho">
                             </a>
                             <a href="">
-                                <img src="../icons/pencil-square.svg" alt="">
+                                <img src="../icons/pencil-square.svg" alt="Icone editar">
                             </a>
                             <a href="">
-                                <img src="../icons/trash-fill.svg" alt="">
+                                <img src="../icons/trash-fill.svg" alt="Icone Excluir">
                             </a>
                         </div>
                     </div>

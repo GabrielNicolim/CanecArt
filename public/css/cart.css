@@ -76,3 +76,11 @@
     background: var(--dark-blue);
     transition: 200ms;
 }
+
+.list-item .list-interaction img {
+    cursor: pointer;
+}
+
+.adresses .choosen {
+    background-color: #ffdcdc;
+}

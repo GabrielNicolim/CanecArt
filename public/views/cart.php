@@ -2,6 +2,11 @@
 
     session_start();
 
+    if (!isset($_SESSION['idUser'])) {
+        header('Location: login.php');
+        exit;
+    }
+
     $page_title = 'Carrinho';
     $icon_folder = '../images/logos/favicon.png';
 
@@ -15,26 +20,11 @@
     require("../../app/db/connect.php");
     require("../../app/functions.php");
 
-    if (isset($_GET['add_product'])) {
-        $id_product = intval(sanitizeString($_GET['add_product']));
-        if (!empty($id_product)) {
-            if (isset($_SESSION['cart'][$id_product])) {
-                $_SESSION['cart'][$id_product] += 1;
-            } else {
-                $_SESSION['cart'][$id_product] = 1;
-            }
-        }
-    }
-
-    if (isset($_GET['remove_product'])) {
-
-    }
-
-    var_dump($_SESSION['cart']);
 ?>
     
     <a href="cart.php" class="shop-car">
-        <img src="../icons/shop-car.svg" alt="">
+        <img src="../icons/shop-car.svg" alt="cart_icon">
+        <span><?php if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) echo count($_SESSION['cart']) ?></span>
     </a>
 
      <div class="container">
@@ -63,13 +53,13 @@
                     <?php
                         $final_value = 0;
 
-                        if (!isset($_SESSION['cart'])) {
-                            echo '<div class="list-item"><div class="list-name">Nenhum produto cadastrado!</div></div>';
+                        if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+                            echo '<div class="list-item"><div class="list-name">
+                            Nenhum produto no carrinho.
+                            <a href="products.php">Vamos as compras!</a>
+                            </div></div>';
                         } else {
-                            echo '<form method="GET" action"">';
                             foreach($_SESSION['cart'] as $id_product => $quantity) {
-                                
-                                var_dump($id_product);
                             
                                 $query = "SELECT id_product, name_product, photo_product, price_product, quantity_product FROM products WHERE id_product = :id_product";
                                 $stmt = $conn->prepare($query);
@@ -90,67 +80,61 @@
                                 <div class="'.$class.'" id="'.$product['id_product'].'">
                                     <img class="image" src="../images/';
                                     if (empty($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
-                                    echo '" alt="">
+                                    echo '" alt="Imagem do produto">
                                     <div class="list-name"><a href="product-page.php?id='.$product['id_product'].'">'.$product['name_product'].'</a></div>
                                     <div class="list-avalible">'.$text.'</div>
                                     <div class="list-price">'.$product['price_product'].'</div>
                                     <div class="list-interaction">
-                                        <input type="number" min="0" name="update'.$product['id_product'].'" value="'.$quantity.'" style="width:3em;">
-                                        <a href="">
-                                            <img src="../icons/trash-fill.svg" alt="">
-                                        </a>
+                                        <input type="number" class="input-quantity" min="0" name="update'.$product['id_product'].'" value="'.$quantity.'">
+                                        <img src="../icons/trash-fill.svg" id='.$product['id_product'].'" alt="Excluir produto">
                                     </div>
                                 </div>
                                 ';
-                                $final_value += $product['price_product'];    
+                                $final_value += $product['price_product']*$_SESSION['cart'][$product['id_product']];    
 
                             }
-                            echo '<button type="submit" id="update">atualizar carrinho</button>
-                            </form>';
+                            echo '<a href="?"><button type="submit" id="update">Atualizar Carrinho</button></a>';
                         }
                     ?>
 
                 </section>
-
-                <h2>Escolher endereço</h2>
-                <div class="adresses">
-                    
+    
                 <?php
+                    echo '<h2>Escolher endereço</h2>
+                    <div class="adresses">';
 
-                    if (!isset($_SESSIOn['idUser'])) {
+                    $query = "SELECT * FROM adresses WHERE fk_user = :session_id";
 
-                        $query = "SELECT * FROM adresses WHERE fk_user = :session_id";
+                    $stmt = $conn -> prepare($query);
+                    $stmt -> bindValue(':session_id', $_SESSION['idUser'], PDO::PARAM_INT);
 
-                        $stmt = $conn -> prepare($query);
-                        $stmt -> bindValue(':session_id', $_SESSION['idUser'], PDO::PARAM_INT);
+                    $stmt -> execute();
 
-                        $stmt -> execute();
+                    $result = $stmt -> fetchALL(PDO::FETCH_ASSOC);
 
-                        $result = $stmt -> fetchALL(PDO::FETCH_ASSOC);
-
-                        if ($stmt -> rowCount() == 0)
-                            echo '<div class="adress_box"><h1>Nenhum endereço cadastrado no momento</h1></div>';
-                        foreach($result as $adress) {
-                            echo '<div class="adress_box">
-                            <div class="adress_top">
-                            <i class="fas fa-address-book"></i>
-                                '.$adress['contact_adress'].'
-                            </div>
-                            <div class="adress_body">
-                                CEP: '.$adress['cep_adress'].', '.$adress['city_adress'].', '.$adress['state_adress'].'<br>
-                                Bairro '.$adress['district_adress'].',<br>
-                                '.$adress['street_adress'].',
-                                Numero '.$adress['number_adress'].',<br>
-                                Complemento: '.$adress['complement_adress'].'
-                            </div>
-                            <div class="footer">
-                                <a href="../../app/deleteAdresses.php?delete='.$adress['id_adress'].'"><i class="fas fa-trash-alt"></i> Excluir</a>
-                            </div>
-                            </div>';
-                        }
+                    if ($stmt -> rowCount() == 0)
+                        echo '<div class="adress_box"><h1>Nenhum endereço cadastrado no momento</h1></div>';
+                    foreach($result as $key=>$adress) {
+                        echo '<div class="adress_box">
+                        <div class="adress_top">
+                        <i class="fas fa-address-book"></i>
+                            '.$adress['contact_adress'].' <input type="radio" id="'.$adress['id_adress'].'" name="choosen" '; if ($key == 0) echo 'checked'; echo'>
+                        </div>
+                        <div class="adress_body">
+                            CEP: '.$adress['cep_adress'].', '.$adress['city_adress'].', '.$adress['state_adress'].'<br>
+                            Bairro '.$adress['district_adress'].',<br>
+                            '.$adress['street_adress'].',
+                            Numero '.$adress['number_adress'].',<br>
+                            Complemento: '.$adress['complement_adress'].'
+                        </div>
+                        <div class="footer">
+                            <a href="../../app/deleteAdresses.php?delete='.$adress['id_adress'].'"><i class="fas fa-trash-alt"></i> Excluir</a>
+                        </div>
+                        </div>';
                     }
+                    echo '</div>';
                 ?>
-                </div>
+                
             </div>
 
             <div class="right">
@@ -162,7 +146,9 @@
                 </div>
 
                 <div class="buttons">
-                    <a href="#"><div class="btn primary">Ir para o pagamento</div></a>
+                    <a  id="payment_button"><div class="btn primary">
+                        Ir para o pagamento
+                    </div></a>
                     <a href="products.php"><div class="btn">Continuar Comprando</div></a>
                 </div>
             </div>

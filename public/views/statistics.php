@@ -14,7 +14,8 @@
 ?>
 
     <a href="cart.php" class="shop-car">
-        <img src="../icons/shop-car.svg" alt="">
+        <img src="../icons/shop-car.svg" alt="cart_icon">
+        <span><?php if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) echo count($_SESSION['cart']) ?></span>
     </a>
 
     <div class="container">
@@ -27,7 +28,7 @@
 
         <section>
 
-            <img src="https://www.encartale.com.br/smart/modulos/produto/imagens/grande/placa-atencao-em-obras_162-17.jpg" alt="">
+            <img src="https://www.encartale.com.br/smart/modulos/produto/imagens/grande/placa-atencao-em-obras_162-17.jpg" alt="Em obras">
 
         </section>
     </div>

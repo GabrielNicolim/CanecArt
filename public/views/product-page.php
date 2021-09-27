@@ -5,7 +5,8 @@
     $icon_folder = '../images/logos/favicon.png';
 
     $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
-                    '<link rel="stylesheet" href="../css/product-page.css">'];
+                    '<link rel="stylesheet" href="../css/product-page.css">',
+                    '<script src="../../js/products.js"></script>'];
 
     require("../includes/head.php");
     require("../../app/functions.php");
@@ -45,7 +46,8 @@
 ?>
 
     <a href="cart.php" class="shop-car">
-        <img src="../icons/shop-car.svg" alt="">
+        <img src="../icons/shop-car.svg" alt="cart_icon">
+        <span><?php if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) echo count($_SESSION['cart']) ?></span>
     </a>
 
     <div class="container">
@@ -60,8 +62,8 @@
                 <div class="left">
                     <?php
                         if (empty($data['photo_product']) || !file_exists('../images/'.$data['photo_product']))
-                        echo'<img src="../images/missing-image.png" alt="">';
-                        else echo '<img src="../images/'.$data['photo_product'].'" alt="">';
+                        echo'<img src="../images/missing-image.png" alt="missing-image">';
+                        else echo '<img src="../images/'.$data['photo_product'].'" alt="Foto do produto">';
                     ?>
                 </div>
 
@@ -72,17 +74,11 @@
                         Pedidos: <?=$orders['count'] ?>
                     </div>
 
-                    <div class="price-procut">R$ <?= str_replace('.',',',$data['price_product']) ?></div>
-                    
-                    <?php 
-                        if($data['quantity_product'] != 0) {
-                            $href = "href='cart.php?add_product=".$data['id_product']."'";
-                        } else {
-                            $href = "";
-                        }
-                    ?>
+                    <div class="price-procut">
+                        R$ <?= str_replace('.',',',$data['price_product']) ?>
+                    </div>
 
-                    <a <?= $href ?> class="btn <?= $data['quantity_product'] == 0 ? 'disabled' : '' ?>">
+                    <a  class="btn <?= $data['quantity_product'] == 0 ? 'disabled' : '' ?>">
                         Comprar
                     </a>
 

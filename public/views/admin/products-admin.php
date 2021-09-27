@@ -146,25 +146,25 @@
                         <div class="list-item '; if($product['deleted']) echo 'item-deleted'; echo '" id="'.$product['id_product'].'">
                             <img class="image" src="../../images/';
                             if (empty($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
-                            echo '" alt="">
+                            echo '" alt="Foto do produto">
                             <div class="list-name">'.$product['name_product'].'</div>
                             <div class="list-avalible">'.$product['quantity_product'].'</div>
                             <div class="list-type">'.$product['type_product'].'</div>
                             <div class="list-price">'.$product['price_product'].'</div>
                             <div class="list-interaction">
                                 <a href="../product-page.php?id='.$product['id_product'].'">
-                                    <img src="../../icons/eye-fill.svg" alt="">
+                                    <img src="../../icons/eye-fill.svg" alt="Icone para acessar o produto">
                                 </a>
                                 <a href="edit-product.php?product='.$product['id_product'].'">
-                                    <img src="../../icons/pencil-square.svg" alt="">
+                                    <img src="../../icons/pencil-square.svg" alt="Icone para editar o produto">
                                 </a>';
                                 if ($product['deleted']) {
                                     echo '<a href="../../../app/deleteProducts.php?delete='.$product['id_product'].'&status=0">
-                                        <img src="../../icons/trash-restore-solid.svg" alt="">
+                                        <img src="../../icons/trash-restore-solid.svg" alt="Icone para deletar produto">
                                     </a>';
                                 } else {
                                     echo '<a href="../../../app/deleteProducts.php?delete='.$product['id_product'].'&status=1" >
-                                        <img src="../../icons/trash-fill.svg" alt="">
+                                        <img src="../../icons/trash-fill.svg" alt="Icone para restaurar produto">
                                     </a>';
                                 }                            
                                 echo'

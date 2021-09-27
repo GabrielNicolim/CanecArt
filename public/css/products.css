@@ -58,7 +58,7 @@ footer .btn[data-checked='products'] {
 }
 
 #products .product .btn {
-    width: 92%;
+    width: 77%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,10 +68,9 @@ footer .btn[data-checked='products'] {
     background: var(--bright-blue);
     color: var(--white);
     border-radius: 8px;
-
     position: absolute;
     bottom: 1em;
-    left: 1em;
+    left: 4.3em;
 }
 
 #products .product .btn:hover {
@@ -85,4 +84,25 @@ footer .btn[data-checked='products'] {
 
 #products .product .clear {
     height: 70px;
+}
+
+#products .product .to-cart {
+    font-weight: 700;
+    font-size: 1.1em;
+    padding: 13px 1em 13px 1em;
+    background: var(--bright-blue);
+    color: var(--white);
+    border-radius: 8px;
+    bottom: 1em;
+    position: absolute;
+}
+
+#products .product .to-cart a {
+    color: var(--white);
+}
+
+#products .product .to-cart:hover {
+    background: var(--dark-blue);
+    transition: 200ms;
+    cursor: pointer;
 }

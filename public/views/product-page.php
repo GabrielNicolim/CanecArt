@@ -74,13 +74,25 @@
 
                     <div class="price-procut">R$ <?= str_replace('.',',',$data['price_product']) ?></div>
                     
-                    <a href="cart.php?add_product=<?=$data['id_product']?>" class="btn">
+                    <?php 
+                        if($data['quantity_product'] != 0) {
+                            $href = "href='cart.php?add_product=".$data['id_product']."'";
+                        } else {
+                            $href = "";
+                        }
+                    ?>
+
+                    <a <?= $href ?> class="btn <?= $data['quantity_product'] == 0 ? 'disabled' : '' ?>">
                         Comprar
                     </a>
 
-                    <div class="product-avalible">
-                        Disponível: <?=$data['quantity_product']?>
-                    </div>
+                    <?php   
+                        if($data['quantity_product'] != 0) {
+                            echo "<div class='product-avalible'>Disponível: ".$data['quantity_product']."</div>";
+                        } else {
+                            echo "<div class='out'>Produto fora de estoque</div>";
+                        }
+                    ?>                     
 
                     <div class="description">
                         <h2>Descrição</h2>

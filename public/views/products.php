@@ -110,8 +110,17 @@
             $return = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
             foreach($return as $produto) {
+
+                if ($produto['quantity_product'] != 0) {
+                    $quantity_product = $produto['quantity_product']." restantes";
+                    $class = 'product';
+                } else {
+                    $quantity_product = "Fora de Estoque";
+                    $class = 'product out';
+                }
+
                 echo '<!-- Base Product --> 
-                <div href="#" class="product">
+                <div href="#" class="'.$class.'"> <!-- Adicionar Class Out id Quantidade == 0 -->
                     <a href="product-page.php?id='.$produto['id_product'].'">
                         <img src="../images/';
                         if (empty($produto['photo_product']) || !file_exists('../images/'.$produto['photo_product']))
@@ -127,7 +136,7 @@
                         <div class="price-product">
                             R$ '.str_replace('.',',',$produto['price_product']).'
                         </div>
-                        '.$produto['quantity_product'].' restantes
+                        <span>'.$quantity_product.'</span>
                     </a>
 
                     <div class="clear"></div>

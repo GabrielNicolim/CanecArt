@@ -23,6 +23,19 @@ footer .btn[data-checked='products'] {
     position: relative;
 }
 
+/* Product out of stock */
+#products .product.out {
+    opacity: .6;
+}
+
+#products .product.out .price-product + span {
+    color: var(--danger);
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+/* End Product out of stock */
+
 #products .product img {
     height: 260px;
     display: block;

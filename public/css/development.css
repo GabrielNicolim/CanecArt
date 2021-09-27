@@ -25,6 +25,14 @@ footer .btn[data-checked='development'] {
     
 }
 
+.dev a {
+    color: var(--white);
+}
+
+.dev img {
+    width: 18px;
+}
+
 .dev .left h3 {
     font-size: 1.7em;
 }

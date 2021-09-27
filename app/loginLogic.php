@@ -25,7 +25,6 @@ try {
     }
 
 } catch (Exception $e) {
-    //echo 'Exceção capturada: ',  $e->getMessage(), "\n";
     header("Location: ../public/views/login.php?error=" . $e->getMessage() );
     exit;
 }
@@ -41,7 +40,7 @@ if ($email == 'admin@gmail.com' && $password_user == 'admin') {
 
 $dbpassword = generateFakePassword();
 
-$query = 'SELECT id_user, email_user, password_user FROM users WHERE email_user = :email';
+$query = 'SELECT id_user, email_user, password_user, deleted, deleted_at FROM users WHERE email_user = :email';
 $stmt = $conn -> prepare($query);
 $stmt -> bindValue(':email', $email, PDO::PARAM_STR);
 $stmt -> execute();
@@ -53,6 +52,11 @@ if ($stmt -> rowCount() > 0) {
 }
 
 if ( password_verify($password_user, $dbpassword) ) {
+
+    if ($return['deleted']) {
+        header("Location: ../public/views/login.php?error=disabled&date=". $return['deleted_at']);
+        exit();
+    }
 
     session_regenerate_id(true);
 

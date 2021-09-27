@@ -29,6 +29,11 @@
                         case 'missingdata':
                             echo '<div class="error">Informações inválidas!</div>';
                             break;
+                        case 'disabled':
+                            $myDateTime = DateTime::createFromFormat('Y-m-d', $_GET['date']);
+                            echo '<div class="error">Sua conta foi desativada em '.$myDateTime->format('d/m/Y').'!<br>
+                            Se acha que foi um engano <a href="development.php">fale conosco por email</a></div>';
+                            break;
                     }
                 }
             ?>

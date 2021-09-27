@@ -15,6 +15,8 @@
                     '<link rel="stylesheet" href="../../css/list.css">'];
 
     require("../../includes/head.php");
+    require("../../../app/db/connect.php");
+    require("../../../app/functions.php");
 
 ?>
     <div class="container">
@@ -71,10 +73,7 @@
             <!--Content of table-->
             <?php
 
-                require("../../../app/db/connect.php");
-                require("../../../app/functions.php");
-
-                $query = "SELECT id_user, name_user, email_user, deleted, (SELECT COUNT(*) FROM orders WHERE fk_user = id_user) AS compras 
+                $query = "SELECT id_user, name_user, email_user, deleted, deleted_at, (SELECT COUNT(*) FROM orders WHERE fk_user = id_user) AS compras 
                         FROM users
                         WHERE (LOWER(name_user) LIKE :search OR LOWER(email_user) LIKE :search_mail) 
                         AND (SELECT COUNT(*) FROM orders WHERE fk_user = id_user) >= :orders ";
@@ -124,7 +123,10 @@
                         echo '
                         <div class="list-item '; if($user['deleted']) echo 'item-deleted'; echo '" id="'.$user['id_user'].'">
                             <div class="list-state">'; 
-                            if($user['deleted']) echo 'Sim'; else echo 'Não';
+                            if($user['deleted']) {
+                                $myDateTime = DateTime::createFromFormat('Y-m-d', $user['deleted_at']);
+                                echo 'Sim<br>'.$myDateTime->format('d/m/Y');
+                            } else echo 'Não';
                             echo '</div>
                             <div class="list-name">'.ucwords($user['name_user']).'</div>
                             <div class="list-email">'.$user['email_user'].'</div>
@@ -147,8 +149,7 @@
                                 }                            
                                 echo'
                             </div>
-                        </div>
-                        ';
+                        </div>';
                     }
                 }
             ?>

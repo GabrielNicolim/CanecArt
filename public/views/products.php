@@ -11,12 +11,14 @@
     require("../../app/db/connect.php");
     require("../../app/functions.php");
 
-    $query = 'SELECT DISTINCT type_product FROM products';
+    // Select all distinct type_products, convertir the string to an array with every space
+    // then unnesting this array into a row per word.
+    $query = "SELECT DISTINCT UNNEST(string_to_array(type_product,' ')) AS string FROM products";
 
     $stmt = $conn -> prepare($query);
     $stmt -> execute();
     $product_types = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-
+    
 ?>
 
     <a href="cart.php" class="shop-car">
@@ -39,8 +41,8 @@
                 <select name="type_product" id="type_product">
                     <option value="" disabled selected>Selecione algo</option>
                     <?php
-                        foreach ($product_types as $types) {
-                            echo '<option value="'.$types["type_product"].'">'.ucfirst($types["type_product"]).'</option>';
+                        foreach ($product_types as $type) {
+                            echo '<option value="'.$type['string'].'">'.ucfirst($type['string']).'</option>';
                         }
                     ?>
                 </select>
@@ -67,9 +69,9 @@
             }
 
             if (isset($_GET['type_product'])) {
-                $typeSearch = sanitizeString($_GET['type_product']);
+                $typeSearch = '%'.sanitizeString($_GET['type_product']).'%';
                 if (!empty($typeSearch)) {
-                    $query .= 'AND type_product = :typeproduct ';   
+                    $query .= 'AND type_product LIKE :typeproduct ';   
                 }
             }
             
@@ -125,6 +127,7 @@
                         <div class="price-product">
                             R$ '.str_replace('.',',',$produto['price_product']).'
                         </div>
+                        '.$produto['quantity_product'].' restantes
                     </a>
 
                     <div class="clear"></div>

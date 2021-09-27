@@ -79,7 +79,7 @@
             <div class="list-info">
                 <div class="list-name">Nome</div>
                 <div class="list-avalible">Estoque</div>
-                <div class="list-type">Tipo</div>
+                <div class="list-type">Tipos</div>
                 <div class="list-price">Preço</div>
                 <div class="list-interaction">Interação</div>
             </div>

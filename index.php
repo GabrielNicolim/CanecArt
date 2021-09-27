@@ -46,19 +46,19 @@
     
         <section class="cards">
             <div class="card">
-                <img src="public/images/card1-image.png" alt="">
+                <a href="public/views/product-page.php?id=1"><img src="public/images/card1-image.png" alt="Caneca Attack on titan"></a>
                 <h3>Prontas para você...</h3>
                 <p>Contando com diversas canecas personalizadas feitas sobre diferentes formas, tipos e desenhos, nossa empresa busca oferecer com eficiência o produto perfeito voltado diretamente à você.</p>
             </div>
 
             <div class="card">
-                <img src="public/images/card2-image.jpg" alt="">
+                <a href="public/views/product-page.php?id=2"><img src="public/images/card2-image.jpg" alt="Caneca Bulbassauro"></a>
                 <h3>Confortável para o Meio Ambiente...</h3>
                 <p>Pensando na Sustentabilidade, nós da CanecArt oferecemos uma nova linha de canecas ecológicas. Feitas a partir de fibra de coco e plástico PP, nossa linhas busca unir preços baixos produtos de grande qualidade.</p>
             </div>
 
             <div class="card">
-                <img src="public/images/card3-image.jpg" alt="">
+                <a href="public/views/product-page.php?id=3"><img src="public/images/card3-image.jpg" alt="Caneca Goku"></a>
                 <h3>Perfeita para Presentear...</h3>
                 <p>Com vários modelos e embalagens decorativos, lembre-se que uma caneca sempre cai como um excelente lembrança numa data especial.</p>
             </div>

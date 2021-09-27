@@ -34,7 +34,8 @@
                 <div class="left">                                
                     <p>Número de chamada: 03</p>                
                     <p>Nome: Bianca Oliveira De Camargo </p>
-                    <p>Email: bianca.camargo@unesp.br</p>
+                    <p>Email: <a href="mailto:bianca.camargo@unesp.br">bianca.camargo@unesp.br <img src="../icons/external-link-alt-solid.svg"></a></p>
+                    
                 </div>
             </div>
         
@@ -47,7 +48,7 @@
                     <div class="left">
                         <p>Número de chamada: 04</p>
                         <p>Nome: Carla Julia Franco de Toledo</p>
-                        <p>Email: carla.franco@unesp.br</p>
+                        <p>Email: <a href="mailto:carla.franco@unesp.br">carla.franco@unesp.br <img src="../icons/external-link-alt-solid.svg"></a></p>
                     </div>
             </div>
             
@@ -59,7 +60,7 @@
                     <div class="left">
                         <p>Número de chamada: 06</p>                
                         <p>Nome: Felipe Lima Estevanatto </p>
-                        <p>Email: felipe.estevanatto@unesp.br</p>
+                        <p>Email: <a href="mailto:felipe.estevanatto@unesp.br">felipe.estevanatto@unesp.br <img src="../icons/external-link-alt-solid.svg"></a></p>
                     </div>
             </div>
         
@@ -72,7 +73,7 @@
                 <div class="left">
                     <p>Número de chamada: 08</p>                
                     <p>Nome: Gabriel Gomes Nicolim </p>
-                    <p>Email: gabriel.nicolim@unesp.br</p>
+                    <p>Email: <a href="mailto:gabriel.nicolim@unesp.br">gabriel.nicolim@unesp.br <img src="../icons/external-link-alt-solid.svg"></a></p>
                 </div>
             </div>
             
@@ -87,7 +88,7 @@
                 <div class="left">
                     <p>Número de chamada: 32</p>                
                     <p>Nome: Samuel Sensolo Goldflus  </p>
-                    <p>Email: samuel.goldflus@unesp.br</p>
+                    <p>Email: <a href="mailto:samuel.goldflus@unesp.br">samuel.goldflus@unesp.br <img src="../icons/external-link-alt-solid.svg"></a></p>
                 </div>
             </div>
         </section>

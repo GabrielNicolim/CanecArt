@@ -31,13 +31,13 @@
             <img src="https://www.encartale.com.br/smart/modulos/produto/imagens/grande/placa-atencao-em-obras_162-17.jpg" alt="Em obras">
 
         </section>
+        
+        <?php
+
+            include("../includes/footer.php");
+
+        ?>
     </div>
-
-    <?php
-
-        include("../includes/footer.php");
-
-    ?>
 
 </body>
 </html>

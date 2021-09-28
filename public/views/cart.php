@@ -115,10 +115,10 @@
                     if ($stmt -> rowCount() == 0)
                         echo '<div class="adress_box"><h1>Nenhum endereço cadastrado no momento</h1></div>';
                     foreach($result as $key=>$adress) {
-                        echo '<div class="adress_box">
+                        echo '<div class="adress_box" id="'.$adress['id_adress'].'">
                         <div class="adress_top">
                         <i class="fas fa-address-book"></i>
-                            '.$adress['contact_adress'].' <input type="radio" id="'.$adress['id_adress'].'" name="choosen" '; if ($key == 0) echo 'checked'; echo'>
+                            '.$adress['contact_adress'].' <input type="radio" name="choosen" '; if ($key == 0) echo 'checked'; echo'>
                         </div>
                         <div class="adress_body">
                             CEP: '.$adress['cep_adress'].', '.$adress['city_adress'].', '.$adress['state_adress'].'<br>

@@ -1,26 +1,38 @@
 window.addEventListener('load', () => {
-    let input = window.document.querySelectorAll('.list-item .input-quantity');
+    let quantity = window.document.querySelectorAll('.list-item .input-quantity');
     let ids = window.document.querySelectorAll('.list-item');
     let exclude = window.document.querySelectorAll('.list-item .list-interaction img');
 
-    let choosen = window.document.querySelector('.adress_box .adress_top input[type="radio" i]:checked').id;
-    let parent_choosen = window.document.querySelector('.adress_box .adress_top input[type="radio" i]:checked').parentElement.parentElement;
+    let inputRadio = window.document.querySelectorAll('.adress_box .adress_top input[type="radio"]');
+    let adresses = window.document.querySelectorAll('.adresses .adress_box');
     let btnSend = window.document.getElementById('payment_button');
 
     // Change main adress
-    parent_choosen.classList.add('choosen')
-    console.log(parent_choosen);
+    if (adresses != null) {
+        var adress_id = adresses[0].id;
+        adresses[0].classList.add('choosen');
 
+        inputRadio.forEach((element, key) => {
+            element.addEventListener('change', () => {
+                adresses.forEach((element) => {
+                    element.classList.remove('choosen');
+                })
+                console.log(adresses[key].id);
+                adress_id = adresses[key].id
+                adresses[key].classList.add('choosen');
+            })
+        })
+    }
     
-    // When input number changes
-    input.forEach((element, key) => {
+    // When quantity number changes
+    quantity.forEach((element, key) => {
         element.addEventListener('change', () => {
             if(element.value == 0) {
-                // if (ids.length == 1) {
-                //     ids[key].innerHTML = '<div class="list-name">Nenhum produto no carrinho.<a href="products.php">Vamos as compras!</a></div>';
-                // } else {
-                //     ids[key].remove();
-                // }
+                if (ids.length == 1) {
+                    ids[key].innerHTML = '<div class="list-name">Nenhum produto no carrinho.<a href="products.php">Vamos as compras!</a></div>';
+                } else {
+                    ids[key].remove();
+                }
             }
 
             var xhr = new XMLHttpRequest();
@@ -32,7 +44,7 @@ window.addEventListener('load', () => {
                     // console.log('aaa');
                 }
             };
-            xhr.send('id_update='+ids[key].id + '&quantity='+input[key].value);
+            xhr.send('id_update='+ids[key].id + '&quantity='+quantity[key].value);
         })
     })
 
@@ -71,8 +83,7 @@ window.addEventListener('load', () => {
             }
         };
         if (ids.length > 0) {
-            xhr.send('payment=1&adress='+choosen);
-
+            xhr.send('payment=1&adress='+adress_id);
         }
 
     })

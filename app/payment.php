@@ -24,20 +24,25 @@ $stmt -> execute();
 
 if ($stmt -> rowCount() > 0) {
     
-    $sql = "INSERT INTO orders(status_order,fk_user,fk_adress) VALUES('AGUARDANDO PAGAMENTO', :fk_user, :fk_adress) RETURNING id_order";
+    $sql = "INSERT INTO orders(status_order,fk_user,fk_adress) VALUES('AGUARDANDO PAGAMENTO', :fk_user, :fk_adress)";
     $stmt = $conn -> prepare($sql);
     $stmt -> bindValue(':fk_user', $_SESSION['idUser'], PDO::PARAM_INT);
     $stmt -> bindValue(':fk_adress', $id_adress, PDO::PARAM_STR);
     $stmt -> execute();
-    $return = $stmt -> fetch(PDO::FETCH_ASSOC);
+    $id_order = $conn -> lastInsertID();
 
-    foreach($_SESSION['cart'] as $product_id) {
-        $fk_order = $return['id_order'];
-        //echo $product_id;
-        $sql = 'INSERT INTO order_products(fk_order, fk_product) VALUES(:fk_order, :fk_product)';
+    foreach($_SESSION['cart'] as $product_id=>$quantity) {
+        $sql = 'UPDATE products SET quantity_product = quantity_product - :quantity WHERE id_product = :id_product';
         $stmt = $conn -> prepare($sql);
-        $stmt -> bindValue(':fk_order', $fk_order, PDO::PARAM_STR);
+        $stmt -> bindValue(':id_product', $product_id, PDO::PARAM_INT);
+        $stmt -> bindValue(':quantity', $quantity, PDO::PARAM_INT);
+        $stmt -> execute(); 
+
+        $sql = 'INSERT INTO order_products(fk_order, fk_product, quantity_product) VALUES(:fk_order, :fk_product, :quantity_product)';
+        $stmt = $conn -> prepare($sql);
+        $stmt -> bindValue(':fk_order', $id_order, PDO::PARAM_STR);
         $stmt -> bindValue(':fk_product', $product_id, PDO::PARAM_INT);
+        $stmt -> bindValue(':quantity_product', $quantity, PDO::PARAM_INT);
         $stmt -> execute(); 
     }
     unset($_SESSION['cart']);

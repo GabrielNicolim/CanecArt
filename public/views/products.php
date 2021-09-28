@@ -63,7 +63,7 @@
 
         <?php
             $query = "SELECT * FROM products 
-                    WHERE (LOWER(name_product) LIKE :search OR description_product LIKE LOWER(:search)) ";
+                    WHERE deleted = FALSE AND (LOWER(name_product) LIKE :search OR description_product LIKE LOWER(:search)) ";
             
             $search = '%%';
             if (isset($_GET['name_product'])) { 
@@ -159,6 +159,7 @@
                 </div>
                 <!-- End Base Product -->';
             }
+            echo '<div>Produtos acabaram</div>'
         ?>
 
         </section>

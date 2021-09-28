@@ -14,6 +14,8 @@
 
             require("../../app/db/connect.php");
 
+            //$query = 'SELECT * FROM order_products';
+
             $query = "SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product 
                       FROM products INNER JOIN orders ON orders.fk_user = :id_session";
             $stmt = $conn->prepare($query);
@@ -29,7 +31,7 @@
                     <div class="list-info">
                         <div class="list-name">Nome</div>
                         <div class="list-quantity">Quantidade</div>
-                        <div class="list-type">Tipo</div>
+                        <div class="list-type">Status</div>
                         <div class="list-price">Preço</div>
                         <div class="list-interaction">Interação</div>
                     </div>

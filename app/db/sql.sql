@@ -6,7 +6,7 @@
     Samuel Sensolo Goldflus - 32
 */
 
-/* =-=-=-=-= Data Última Atualização 24/09/2021 =-=-=-=-= */
+/* =-=-=-=-= Data Última Atualização 27/09/2021 =-=-=-=-= */
 
 DROP TABLE IF EXISTS pwdreset, order_products, orders, products, adresses, users;
 
@@ -67,7 +67,8 @@ CREATE TABLE order_products (
     FOREIGN KEY (fk_order) REFERENCES orders (id_order),
 
     fk_product BIGINT NOT NULL,
-    FOREIGN KEY (fk_product) REFERENCES products (id_product)
+    FOREIGN KEY (fk_product) REFERENCES products (id_product),
+    quantity_product INT DEFAULT 1
 );
 
 CREATE TABLE pwdreset (

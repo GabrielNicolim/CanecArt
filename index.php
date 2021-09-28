@@ -2,11 +2,6 @@
 
     session_start();
 
-    if (isset($_SESSION['idUser'])) {
-        //header('Location: products.php');
-        //exit;
-    }
-
     $page_title = 'CanecArte - Home';
     $icon_folder = 'public/images/logos/favicon.png';
 

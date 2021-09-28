@@ -10,19 +10,19 @@ if (!isset($_SESSION['isAuth']) || $_SESSION['idUser'] > 0 || $_SERVER['REQUEST_
 require('db/connect.php');
 require('functions.php');
 
-$product_id = sanitizeString($_POST['id_product']);
+$product_id = intval(sanitizeString($_POST['id_product']));
 
 if ($_POST['operation'] == 'Atualizar dados') {
 
     $product = filter_var($_POST['name_product'], FILTER_SANITIZE_STRING);
     $description = filter_var($_POST['description_product'], FILTER_SANITIZE_STRING);
-    $price = sanitizeString($_POST['price_product']);
+    $price = (float)sanitizeString($_POST['price_product']);
     $type = filter_var($_POST['type_product'], FILTER_SANITIZE_STRING);
-    $quantity = filter_var($_POST['quantity_product'], FILTER_SANITIZE_NUMBER_INT);
+    $quantity = intval(filter_var($_POST['quantity_product'], FILTER_SANITIZE_NUMBER_INT));
     $photo_name = filter_var($_POST['photo_name'], FILTER_SANITIZE_STRING) ?? null;
-    
-    if (empty($product) || empty($description) || empty($price) || empty($type) || empty($quantity) ||
-        !is_numeric($price) || $price < 0) {
+
+    if (empty($product) || empty($description) || empty($price) || empty($type) || !is_numeric($quantity)
+        || $price < 0 || $quantity < 0) {
         header("Location: ../public/views/admin/edit-product.php?product=".$product_id."&notice=invaliddata");
         exit;
     }

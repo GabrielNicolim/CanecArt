@@ -12,10 +12,15 @@
     require("app/db/env.php")
 ?>
 
-    <a href="public/views/cart.php" class="shop-car">
-        <img src="public/icons/shop-car.svg" alt="cart_icon">
-        <span><?php if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) echo count($_SESSION['cart']) ?></span>
-    </a>
+    <div class="shop-car">
+        <a href="public/views/cart.php">
+            <img src="public/icons/shop-car.svg" alt="cart_icon">
+
+            <span>
+                <?php if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) echo count($_SESSION['cart']) ?>
+            </span>
+        </a>
+    </div>
     
     <div class="container">
         <?php

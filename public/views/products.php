@@ -165,10 +165,14 @@
                 </div>
                 <!-- End Base Product -->';
             }
-            echo '<div>Produtos acabaram</div>'
         ?>
 
         </section>
+
+        <?php 
+        if(empty($return)) echo '<div class="void-products">Não Encontramos Nenhum Produto Como o Desejado :(</div>';
+        ?>
+
         <?php
 
             include("../includes/footer.php");

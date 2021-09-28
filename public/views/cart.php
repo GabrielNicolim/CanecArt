@@ -54,6 +54,8 @@
                         <div class="list-interaction">Quantidade</div>
                     </div>
 
+                    <div id="empty"></div>
+                    
                     <!--Content of table-->
                     <?php
                         $final_value = 0;

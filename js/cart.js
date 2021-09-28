@@ -35,14 +35,15 @@ window.addEventListener('load', () => {
                 }
             }
 
+            changePrice();
+            listIsEmpty();
+
             var xhr = new XMLHttpRequest();
 
             xhr.open("POST", "../../app/manageCart.php");
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = (e) => {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // console.log('aaa');
-                }
+                if (xhr.readyState === 4 && xhr.status === 200) {}
             };
             xhr.send('id_update='+ids[key].id + '&quantity='+quantity[key].value);
         })
@@ -53,6 +54,10 @@ window.addEventListener('load', () => {
         element.addEventListener('click', () => {
             var xhr = new XMLHttpRequest();
 
+            quantity[key].value = 0;
+            changePrice();
+            listIsEmpty();
+            
             xhr.open("POST", "../../app/manageCart.php");
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = (e) => {
@@ -87,4 +92,26 @@ window.addEventListener('load', () => {
         }
 
     })
+
+    let totalPrice = window.document.querySelector('#total-price');
+    let listPrice = window.document.querySelectorAll('.list-price');
+    let listEmpty = window.document.querySelector('#empty');
+
+    function changePrice() {
+        let value = 0;
+        quantity.forEach((element, key) => {
+            value += parseInt(quantity[key].value) * parseFloat(listPrice[key + 1].innerHTML);
+        })
+        totalPrice.innerHTML = "R$ " + value;
+    }
+
+    function listIsEmpty() {
+        if(totalPrice.innerHTML == "R$ 0") {
+            listEmpty.innerHTML = `<div class="list-item">
+                                    <div class="list-name"> 
+                                        Nenhum produto no carrinho. <a href="products.php">Vamos as compras!</a>
+                                    </div>
+                                </div>`
+        }
+    }
 })

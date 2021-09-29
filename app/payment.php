@@ -24,10 +24,14 @@ $stmt -> execute();
 
 if ($stmt -> rowCount() > 0) {
     
-    $sql = "INSERT INTO orders(status_order,fk_user,fk_adress) VALUES('AGUARDANDO PAGAMENTO', :fk_user, :fk_adress)";
+    $random_tracker = bin2hex(random_bytes(6));
+
+    $sql = 'INSERT INTO orders(status_order, fk_user, fk_adress, track_order) 
+            VALUES(\'AGUARDANDO PAGAMENTO\', :fk_user, :fk_adress, :track_order)';
     $stmt = $conn -> prepare($sql);
     $stmt -> bindValue(':fk_user', $_SESSION['idUser'], PDO::PARAM_INT);
     $stmt -> bindValue(':fk_adress', $id_adress, PDO::PARAM_STR);
+    $stmt -> bindValue(':track_order', $random_tracker, PDO::PARAM_STR);
     $stmt -> execute();
     $id_order = $conn -> lastInsertID();
 

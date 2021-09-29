@@ -52,6 +52,8 @@ CREATE TABLE products (
 CREATE TABLE orders (
     id_order SERIAL PRIMARY KEY,
     status_order VARCHAR(128) NOT NULL,
+    date_order DATE DEFAULT CURRENT_DATE,
+    track_order VARCHAR(32) DEFAULT NULL,
 
     fk_user BIGINT NOT NULL,
     FOREIGN KEY (fk_user) REFERENCES users (id_user),
@@ -62,13 +64,13 @@ CREATE TABLE orders (
 
 CREATE TABLE order_products (
     id_order_product SERIAL PRIMARY KEY,
+    quantity_product INT DEFAULT 1,
 
     fk_order BIGINT NOT NULL,
     FOREIGN KEY (fk_order) REFERENCES orders (id_order),
 
     fk_product BIGINT NOT NULL,
-    FOREIGN KEY (fk_product) REFERENCES products (id_product),
-    quantity_product INT DEFAULT 1
+    FOREIGN KEY (fk_product) REFERENCES products (id_product) 
 );
 
 CREATE TABLE pwdreset (

@@ -43,12 +43,12 @@
     text-align: center;
 }
 
-.list-state {
+.list-state,.list-id {
     width: 200px;
     text-align: center;
 }
 
-.list-item > .list-state {
+.list-item > .list-state, .list-item > .list-id {
     padding-left: 1.25em;
 }
 

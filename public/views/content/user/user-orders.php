@@ -14,10 +14,15 @@
 
             require("../../app/db/connect.php");
 
-            //$query = 'SELECT * FROM order_products';
+            $query = "SELECT id_order, status_order, track_order, id_product, name_product, photo_product, description_product,
+                        price_product, type_product, deleted, order_products.quantity_product, id_adress, contact_adress,
+                        state_adress, district_adress 
+                    FROM orders 
+                        INNER JOIN order_products ON fk_order = id_order
+                        INNER JOIN products ON id_product = fk_product
+                        INNER JOIN adresses ON id_adress = fk_adress
+                    WHERE orders.fk_user = :id_session";
 
-            $query = "SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product 
-                      FROM products INNER JOIN orders ON orders.fk_user = :id_session";
             $stmt = $conn->prepare($query);
             $stmt -> bindValue(':id_session', $_SESSION['idUser'], PDO::PARAM_INT);
             $stmt -> execute();
@@ -28,16 +33,39 @@
                 echo '<div class="no-order"><div class="list-name">Nenhum Pedido Encontrado!</div></div>';
             } else {
                 echo '
-                    <div class="list-info">
-                        <div class="list-name">Nome</div>
-                        <div class="list-quantity">Quantidade</div>
-                        <div class="list-type">Status</div>
-                        <div class="list-price">Preço</div>
-                        <div class="list-interaction">Interação</div>
-                    </div>
-                ';
+                <div class="list-info">
+                    <div class="list-id">#ID Pedido</div>
+                    <div class="list-name">Produtos</div>
+                    <div class="list-quantity">Quantidade</div>
+                    <div class="list-price">Valor</div>
+                    <div class="list-type">Status</div>
+                    <div class="list-interaction">Interação</div>
+                </div>';
 
+                $id_order = 0;
                 foreach ($return as $product) {
+                    //var_dump($product);
+                    // Means it's the first product of an order
+                    if ($id_order != $product['id_order']) {
+                        echo '<div class="list-item item-deleted" id="'.$product['id_order'].'">
+                                <div class="list-id">Pedido: #'.$product['id_order'].'</div>
+                                <div class="list-name">Caneca Goku branca 325ml, Caneca bulbassauro com X a as </div>
+                                <div class="list-quantity">'.$product['quantity_product'].'</div>
+                                <div class="list-type">R$ '.floatval($product['price_product']*$product['quantity_product']).'</div>
+                                <div class="list-price">AGUARDANDO PAGAMENTO</div>
+                                <div class="list-interaction">
+                                    <a href="">
+                                        <img src="../icons/eye-fill.svg" alt="Icone olho">
+                                    </a>
+                                    <a href="">
+                                        <img src="../icons/trash-fill.svg" alt="Icone Excluir">
+                                    </a>
+                                </div>
+                            </div>';
+
+                    }
+                    // Means that it's another product of the same order
+                    //var_dump($product);
                     echo '
                     <div class="list-item" id="'.$product['id_product'].'">
                         <img class="image" src="../images/';
@@ -45,24 +73,20 @@
                         echo '" alt="Foto do produto">
                         <div class="list-name">'.$product['name_product'].'</div>
                         <div class="list-quantity">'.$product['quantity_product'].'</div>
-                        <div class="list-type">'.$product['type_product'].'</div>
-                        <div class="list-price">'.$product['price_product'].'</div>
+                        <div class="list-price">'.$product['price_product'].'<br>(Unidade)</div>
+                        <div class="list-type">status</div>
                         <div class="list-interaction">
-                            <a href="">
-                                <img src="../icons/eye-fill.svg" alt="Icone olho">
-                            </a>
-                            <a href="">
-                                <img src="../icons/pencil-square.svg" alt="Icone editar">
-                            </a>
-                            <a href="">
-                                <img src="../icons/trash-fill.svg" alt="Icone Excluir">
-                            </a>
+                            Cód Rastreio:<br>    
+                            '.strtoupper($product['track_order']).'
                         </div>
                     </div>
                     ';
+
+                    $id_order = $product['id_order'];
                 }
             }
             
-        ?>
+        ?> 
+        
     </section>
 </div>

@@ -39,7 +39,6 @@
                     <div class="list-quantity">Quantidade</div>
                     <div class="list-price">Valor</div>
                     <div class="list-type">Status</div>
-                    <div class="list-interaction">Interação</div>
                 </div>';
 
                 $id_order = 0;
@@ -47,20 +46,12 @@
                     //var_dump($product);
                     // Means it's the first product of an order
                     if ($id_order != $product['id_order']) {
-                        echo '<div class="list-item item-deleted" id="'.$product['id_order'].'">
+                        echo '<div class="list-item order-header" id="'.$product['id_order'].'">
                                 <div class="list-id">Pedido: #'.$product['id_order'].'</div>
                                 <div class="list-name">Caneca Goku branca 325ml, Caneca bulbassauro com X a as </div>
                                 <div class="list-quantity">'.$product['quantity_product'].'</div>
-                                <div class="list-type">R$ '.floatval($product['price_product']*$product['quantity_product']).'</div>
-                                <div class="list-price">AGUARDANDO PAGAMENTO</div>
-                                <div class="list-interaction">
-                                    <a href="">
-                                        <img src="../icons/eye-fill.svg" alt="Icone olho">
-                                    </a>
-                                    <a href="">
-                                        <img src="../icons/trash-fill.svg" alt="Icone Excluir">
-                                    </a>
-                                </div>
+                                <div class="list-price">R$ '.floatval($product['price_product']*$product['quantity_product']).'</div>
+                                <div class="list-type">AGUARDANDO PAGAMENTO</div>
                             </div>';
 
                     }
@@ -68,14 +59,15 @@
                     //var_dump($product);
                     echo '
                     <div class="list-item" id="'.$product['id_product'].'">
+                    <div class="list-id">
                         <img class="image" src="../images/';
                         if (is_null($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
                         echo '" alt="Foto do produto">
+                        </div>
                         <div class="list-name">'.$product['name_product'].'</div>
                         <div class="list-quantity">'.$product['quantity_product'].'</div>
                         <div class="list-price">'.$product['price_product'].'<br>(Unidade)</div>
-                        <div class="list-type">status</div>
-                        <div class="list-interaction">
+                        <div class="list-type">
                             Cód Rastreio:<br>    
                             '.strtoupper($product['track_order']).'
                         </div>

@@ -116,3 +116,12 @@
     font-size: 1.1em;
     width: 4em;
 }
+
+/* Order */
+
+.order-header {
+    background: rgb(224, 224, 224);
+    border: 2px solid rgb(151, 151, 151);
+}
+
+/* End Order */

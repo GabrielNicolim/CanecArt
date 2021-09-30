@@ -38,7 +38,7 @@ footer .btn.primary {
 }
 
 .app .content {
-    width: 80%;
+    width: 100%;
     margin: 2em auto 8em auto;
     color: var(--dark-blue);
     

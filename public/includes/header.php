@@ -17,7 +17,7 @@
                         echo '<a href="'.URLROOT.'/public/views/user.php" data-checked="register" class="btn primary">Perfil</a>';
                     }
                 } else {
-                    echo '<a href="'.URLROOT.'/public/views/register.php" data-checked="register" class="btn primary">Cadastre-se</a>';
+                    echo '<a href="'.URLROOT.'/public/views/login.php" data-checked="register" class="btn primary">Faça Login</a>';
                 } 
             ?>
         </nav> 

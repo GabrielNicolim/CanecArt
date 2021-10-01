@@ -11,8 +11,8 @@
     $icon_folder = '../../images/logos/favicon.png';
 
     $style_scripts = ['<link rel="stylesheet" href="../../css/style.css">',
-                    '<link rel="stylesheet" href="../../css/admin.css">',
-                    '<link rel="stylesheet" href="../../css/list.css">'];
+                    '<link rel="stylesheet" href="../../css/list.css">',
+                    '<link rel="stylesheet" href="../../css/admin.css">'];
 
     require("../../includes/head.php");
     require("../../../app/db/connect.php");
@@ -91,7 +91,6 @@
 
                 if (isset($_GET['type_user'])) {
                     $typeSearch = sanitizeString($_GET['type_user']);
-                    var_dump($typeSearch);
                     if (!empty($typeSearch)) {
                         if ($typeSearch == 'True') {
                             $query .= ' AND deleted = TRUE';

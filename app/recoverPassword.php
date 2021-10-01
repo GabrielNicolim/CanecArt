@@ -49,7 +49,7 @@ if ($stmt -> rowCount() > 0) {
     $hashedToken = password_hash($token, PASSWORD_DEFAULT);
     $expires = date("U") + 3600; // 1 hour token validation in UNIX time
 
-    $url = 'http://'.$_SERVER['HTTP_HOST'].'/canecart/public/views/';
+    $url = URLROOT.'/public/views/';
     $url .= 'new-password.php?selector=' . $selector . '&validator='. bin2hex($token);
     
     $query = 'INSERT INTO pwdreset(ip_pwdrequest, city_pwdrequest, region_pwdrequest, country_pwdrequest, selector_pwdrequest, token_pwdrequest, expires_pwdrequest, fk_email)

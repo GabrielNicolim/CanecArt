@@ -65,3 +65,8 @@ footer .btn.active {
     font-size: 1.1em;
 }
 /* End Search*/
+
+.list-info .list-interaction,
+.list-item .list-interaction {
+   display: block;
+}

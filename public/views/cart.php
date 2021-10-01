@@ -110,7 +110,7 @@
                     echo '<h2>Escolher endereço</h2>
                     <div class="adresses">';
 
-                    $query = "SELECT * FROM adresses WHERE fk_user = :session_id";
+                    $query = "SELECT * FROM adresses WHERE fk_user = :session_id AND deleted = false";
 
                     $stmt = $conn -> prepare($query);
                     $stmt -> bindValue(':session_id', $_SESSION['idUser'], PDO::PARAM_INT);
@@ -120,7 +120,12 @@
                     $result = $stmt -> fetchALL(PDO::FETCH_ASSOC);
 
                     if ($stmt -> rowCount() == 0)
-                        echo '<div class="adress_box"><h1>Nenhum endereço cadastrado no momento</h1></div>';
+                        echo '<div class="adress_box"><h1>Nenhum endereço cadastrado no momento</h1>
+                        <a href="user.php?page=adresses"><button id="add-adress">
+                            <i class="fas fa-plus"></i>
+                            <span>Adicionar Endereço</span>
+                        </button></a>
+                        </div>';
                     foreach($result as $key=>$adress) {
                         echo '<div class="adress_box" id="'.$adress['id_adress'].'">
                         <div class="adress_top">

@@ -16,6 +16,29 @@ footer .btn.active {
     padding: 0.5em;
     border-radius: 10px;
     height: 500px;
+    position: relative;
+}
+
+.panel .box {
+    font-size: 1em;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.panel .left {
+    width: 50%;
+    overflow-wrap: break-word;
+}
+
+.panel .right {
+    width: 50%;
+    overflow-wrap: break-word;
+}
+
+.btn.logout {
+    position: absolute;
+    bottom: 1em;
 }
 /* End Home */
 

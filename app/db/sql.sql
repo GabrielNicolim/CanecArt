@@ -31,6 +31,7 @@ CREATE TABLE adresses (
     cep_adress CHAR(10) NOT NULL,
     number_adress INT NOT NULL,
     complement_adress TEXT,
+    deleted BOOLEAN DEFAULT FALSE,
 
     fk_user BIGINT NOT NULL,
     FOREIGN KEY (fk_user) REFERENCES users (id_user),

@@ -6,16 +6,17 @@
 </div>
 
 <div class="content">
-    <h2>Dados do Usuário</h2>   
+    <h2>Dados do Usuário</h2>
+    
+    <h1>Olá <?php echo $return['name_user'] ?>!</h1>
+
+    <p>Você já realizou <?=$return['count']?> pedido(s), obrigado :D</p>
 
     <form>
-        <label for="name-user">Nome</label>
-        <input type="text" name="name-user" id="name-user" value="<?php echo $return['name_user'] ?>" disabled>
-
-        <label for="email-user">Email</label>
+        <label for="email-user">Meu Email</label>
         <input type="text" name="email-user" id="email-user" value="<?php echo $return['email_user'] ?>" disabled>
 
-        <label for="cpf-user">CPF</label>
+        <label for="cpf-user">Meu CPF</label>
         <input type="text" name="cpf-user" id="cpf-user" value="<?php echo $return['cpf_user'] ?>" disabled>
     </form>
     

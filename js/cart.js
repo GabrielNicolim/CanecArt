@@ -8,7 +8,7 @@ window.addEventListener('load', () => {
     let btnSend = window.document.getElementById('payment_button');
 
     // Change main adress
-    if (adresses != null) {
+    if (adresses != null && adresses[0].id != '') {
         var adress_id = adresses[0].id;
         adresses[0].classList.add('choosen');
 
@@ -72,23 +72,26 @@ window.addEventListener('load', () => {
             xhr.send('remove='+element.id);
         })
     })
-
     // Sending the cart to payment
     btnSend.addEventListener('click', () => {
 
-        var xhr = new XMLHttpRequest();
+        if (adresses[0].id != '' && window.document.getElementsByClassName('choosen') != null) {
+            var xhr = new XMLHttpRequest();
 
-        xhr.open("POST", "../../app/payment.php");
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = (e) => {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                if (xhr.responseText == 'Sucess') {
-                    window.location ="user.php?page=orders";
+            xhr.open("POST", "../../app/payment.php");
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = (e) => {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    if (xhr.responseText == 'Sucess') {
+                        window.location ="user.php?page=orders";
+                    }
                 }
+            };
+            if (ids.length > 0) {
+                xhr.send('payment=1&adress='+adress_id);
             }
-        };
-        if (ids.length > 0) {
-            xhr.send('payment=1&adress='+adress_id);
+        } else {
+            alert('Adicione um endereço primeiro!')
         }
 
     })

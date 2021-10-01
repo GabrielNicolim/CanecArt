@@ -14,8 +14,8 @@
 
             require("../../app/db/connect.php");
 
-            $query = "SELECT id_order, status_order, track_order, id_product, name_product, photo_product, description_product,
-                        price_product, type_product, deleted, order_products.quantity_product, id_adress, contact_adress,
+            $query = "SELECT id_order, status_order, track_order, date_order, id_product, name_product, photo_product, description_product,
+                        price_product, type_product, products.deleted, order_products.quantity_product, id_adress, contact_adress,
                         state_adress, district_adress 
                     FROM orders 
                         INNER JOIN order_products ON fk_order = id_order
@@ -42,21 +42,35 @@
                 </div>';
 
                 $id_order = 0;
+                $order_values = [];
+                $order_quantity = [];
                 foreach ($return as $product) {
-                    //var_dump($product);
+                    if ($id_order != $product['id_order']) {
+                        $order_values[$product['id_order']] = floatval($product['price_product']*$product['quantity_product']);
+                        $order_quantity[$product['id_order']] = $product['quantity_product'];
+                    } else {
+                        $order_values[$product['id_order']] += floatval($product['price_product']*$product['quantity_product']);
+                        $order_quantity[$product['id_order']] += $product['quantity_product'];
+                    }
+                    $id_order = $product['id_order'];
+                }
+
+                $id_order = 0;
+                foreach ($return as $key=>$product) {
                     // Means it's the first product of an order
                     if ($id_order != $product['id_order']) {
+                        $myDateTime = DateTime::createFromFormat('Y-m-d', $product['date_order']);
+
                         echo '<div class="list-item order-header" id="'.$product['id_order'].'">
-                                <div class="list-id">Pedido: #'.$product['id_order'].'</div>
-                                <div class="list-name">Caneca Goku branca 325ml, Caneca bulbassauro com X a as </div>
-                                <div class="list-quantity">'.$product['quantity_product'].'</div>
-                                <div class="list-price">R$ '.floatval($product['price_product']*$product['quantity_product']).'</div>
+                                <div class="list-id">Pedido: #'.$product['id_order'].'<br>'.$myDateTime->format('d/m/Y').'</div>
+                                <div class="list-name"></div>
+                                <div class="list-quantity">Total:<br>'.$order_quantity[$product['id_order']].'</div>
+                                <div class="list-price">Total:<br>R$ '.$order_values[$product['id_order']].'</div>
                                 <div class="list-type">AGUARDANDO PAGAMENTO</div>
                             </div>';
 
                     }
                     // Means that it's another product of the same order
-                    //var_dump($product);
                     echo '
                     <div class="list-item" id="'.$product['id_product'].'">
                     <div class="list-id">
@@ -65,7 +79,7 @@
                         echo '" alt="Foto do produto">
                         </div>
                         <div class="list-name">'.$product['name_product'].'</div>
-                        <div class="list-quantity">'.$product['quantity_product'].'</div>
+                        <div class="list-quantity">x'.$product['quantity_product'].'</div>
                         <div class="list-price">'.$product['price_product'].'<br>(Unidade)</div>
                         <div class="list-type">
                             Cód Rastreio:<br>    

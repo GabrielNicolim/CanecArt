@@ -2,7 +2,7 @@
 
     session_start();
 
-    if (!isset($_SESSION['isAuth']) && $_SESSION['idUser'] != -1) {
+    if (!isset($_SESSION['isAuth']) || $_SESSION['idUser'] != -1) {
         header("Location: ../login.php");
         exit();
     }
@@ -14,6 +14,14 @@
                     '<link rel="stylesheet" href="../../css/admin.css">'];
 
     require("../../includes/head.php");
+    require("../../../app/db/connect.php");
+
+    $query = 'SELECT COUNT(id_user) AS users, (SELECT COUNT(*) FROM products) AS products, 
+            (SELECT COUNT(id_order) FROM orders) AS sells
+            FROM users';
+    $stmt = $conn -> query($query);
+    $stmt -> execute();
+    $return = $stmt -> fetch(PDO::FETCH_ASSOC);
 
 ?>
     <div class="container">
@@ -36,13 +44,29 @@
 
             <h3>Bem vindo de volta administrador</h3>
 
-            <a href="../products.php">Página de produtos</a><br>
-
             <?php
                 if (isset($_GET['notice'])) {
                     echo 'Cadastro de produto feito com sucesso';
                 }
             ?>
+            <div class="box">
+                <div class="left">
+                    Resumo:<br>
+                    <?=$return['users']?> usuários cadastrados<br>
+                    <?=$return['products']?> produtos cadastrados<br>
+                    <?=$return['sells']?> vendas feitas<br>
+                </div>
+                <div class="right">
+                    Páginas de usuário:<br>
+                    <a href="../products.php">- Página de produtos</a><br>
+                    <a href="../../../index.php">- Página Home</a><br>
+                </div>
+            </div>
+            
+
+            
+
+            
 
             <a class="btn logout" href="../../../app/logout.php">Logout</a>
         </section>

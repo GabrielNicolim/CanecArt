@@ -84,3 +84,22 @@
 .adresses .choosen {
     background-color: #ffdcdc;
 }
+
+.adress_box:first-child {
+    position: relative;
+}
+
+.adress_box a button {
+    color: var(--white);
+    background: var(--dark-blue);
+    outline: none;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin: 10px 0;
+    position: absolute;
+    bottom: 0;
+}

@@ -18,7 +18,7 @@ if (empty($product_id) || !is_numeric($product_id)) {
     exit;
 }
 
-$query = "DELETE FROM adresses WHERE id_adress = :id_delete AND fk_user = :session_id";
+$query = "UPDATE adresses SET deleted = True WHERE id_adress = :id_delete AND fk_user = :session_id";
 
 $stmt = $conn -> prepare($query);
 

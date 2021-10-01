@@ -21,6 +21,10 @@
     font-weight: 500;
 }
 
+.list-item:last-of-type {
+    border-radius: 0 0 1em 1em;
+}
+
 .item-deleted {
     background-color: rgb(224, 224, 224);
 }

@@ -25,7 +25,7 @@
     <div class="adresses">
         <?php
 
-            $query = "SELECT * FROM adresses WHERE fk_user = :session_id";
+            $query = "SELECT * FROM adresses WHERE fk_user = :session_id AND deleted = false";
 
             $stmt = $conn -> prepare($query);
             $stmt -> bindValue(':session_id', $_SESSION['idUser'], PDO::PARAM_INT);

@@ -34,7 +34,8 @@ footer .btn.primary {
 }
 
 .top-menu .btn.activated {
-    color: var(--desaturated-blue);
+    color: var(--white);
+    background-color: var(--bright-blue);
 }
 
 .app .content {

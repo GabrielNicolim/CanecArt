@@ -22,21 +22,23 @@ try {
         throw new Exception('alreadyregistered');
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 256) {
         //https://www.abstractapi.com/email-verification-validation-api
         //https://www.youtube.com/watch?v=JvGFlAK2fg4
         throw new Exception('invalidemail');
     }
     
-    if ($password !== $confirmPassword) {
+    if ($password !== $confirmPassword || strlen($password) > 256) {
         throw new Exception('differentpasswords');
     }
     
+    //
+    $cpf = preg_replace('/\D/', '', $cpf);
     if (!validateCPF($cpf)) {
-        //throw new Exception('invalidCPF');
+        throw new Exception('invalidCPF');
     }
     
-    if (empty($name_user) || empty($cpf) || empty($password) || empty($confirmPassword)) {
+    if (empty($name_user) || strlen($name_user) > 256 || empty($password) || strlen($password) > 256) {
         throw new Exception('datamissing');
     }
     

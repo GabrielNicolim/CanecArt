@@ -66,10 +66,10 @@
                     <input type="hidden" name="token" value="<?=$validator?>">
 
                     <label for="email">Nova senha:</label>
-                    <input type="password" name="newpassword" id="password" placeholder="Nova senha" required>
+                    <input type="password" name="newpassword" id="password" placeholder="Nova senha" maxlength="256" required>
                     
                     <label for="password">Confirmar nova senha:</label>
-                    <input type="password" name="confirmpassword" id="password" placeholder="Confirmar senha" required>
+                    <input type="password" name="confirmpassword" id="password" placeholder="Confirmar senha" maxlength="256" required>
                     <div id="recover">Lembrou sua senha? <a href="login.php">Faça login</a></div>
 
                     <input type="submit" value="Enviar">

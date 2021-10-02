@@ -48,13 +48,13 @@
                 </div>
 
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Email" required>
+                <input type="email" name="email" id="email" placeholder="Email" maxlength="256" required>
                 
                 <label for="password">Senha</label>
-                <input type="password" name="password" id="password" placeholder="Senha" required>
+                <input type="password" name="password" id="password" placeholder="Senha" maxlength="256" required>
                 <div id="recover">Esqueceu sua senha? <a href="recover.php">Recuperar senha</a></div>
 
-                <input type="submit" value="Enviar">
+                <input type="submit" value="Logar">
             </form>
 
             <a href="register.php">

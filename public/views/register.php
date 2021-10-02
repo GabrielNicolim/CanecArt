@@ -15,7 +15,22 @@
     <div class="container">
         <div class="content">
             <?php if (isset($_GET['error'])) {
-                echo '<div class="error">Erro no registro</div>';
+                switch ($_GET['error']) {
+                    case 'emailregistered':
+                        echo '<div class="error">Email já cadastrado. <a href="login.php">Faça Login!</a></div>';
+                        break;
+                    case 'CPFregistered':
+                        echo '<div class="error">CPF já cadastrado. <a href="recover.php">Esqueceu a senha?</a></div>';
+                        break;
+                    case 'datamissing':
+                    case 'invalidemail':
+                    case 'invalidCPF':
+                        echo '<div class="error">Erro no dados do registro</div>';
+                        break;
+                    case 'differentpasswords':
+                        echo '<div class="error">Erro no registro</div>';
+                        break;
+                }
             }
             ?>
             <form action="../../app/registerLogic.php" method="POST">
@@ -28,21 +43,21 @@
                 </div>
 
                 <label for="name">Nome</label>
-                <input type="text" name="name" id="name" placeholder="Seu nome" required>
+                <input type="text" name="name" id="name" placeholder="Seu nome" maxlength="256" required>
 
                 <label for="cpf">CPF</label>
-                <input type="text" name="cpf" id="cpf" placeholder="CPF" required>
+                <input type="text" name="cpf" id="cpf" placeholder="CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" required>
 
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Email" required>
+                <input type="email" name="email" id="email" placeholder="Email" maxlength="256" required>
 
                 <label for="password">Senha</label>
-                <input type="password" name="password" id="password" placeholder="Senha" required>
+                <input type="password" name="password" id="password" placeholder="Senha" maxlength="256" required>
 
                 <label for="confirm-password">Confirmar Senha</label>
-                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirmar" required>
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirmar" maxlength="256" required>
             
-                <input type="submit" value="Enviar">
+                <input type="submit" value="Cadastrar-se">
             </form>
 
             <a href="login.php">

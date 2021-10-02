@@ -2,10 +2,10 @@ window.addEventListener('load', () => {
     let quantity = window.document.querySelectorAll('.list-item .input-quantity');
     let ids = window.document.querySelectorAll('.list-item');
     let exclude = window.document.querySelectorAll('.list-item .list-interaction img');
-
     let inputRadio = window.document.querySelectorAll('.adress_box .adress_top input[type="radio"]');
     let adresses = window.document.querySelectorAll('.adresses .adress_box');
     let btnSend = window.document.getElementById('payment_button');
+    let cart_icon = window.document.querySelector('.shop-car a span');
 
     // Change main adress
     if (adresses != null && adresses[0].id != '') {
@@ -28,22 +28,20 @@ window.addEventListener('load', () => {
     quantity.forEach((element, key) => {
         element.addEventListener('change', () => {
             if(element.value == 0) {
-                if (ids.length == 1) {
-                    ids[key].innerHTML = '<div class="list-name">Nenhum produto no carrinho.<a href="products.php">Vamos as compras!</a></div>';
-                } else {
-                    ids[key].remove();
-                }
+                ids[key].remove();
             }
-
-            changePrice();
-            listIsEmpty();
 
             var xhr = new XMLHttpRequest();
 
             xhr.open("POST", "../../app/manageCart.php");
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = (e) => {
-                if (xhr.readyState === 4 && xhr.status === 200) {}
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    changePrice();
+                    listIsEmpty();
+                    cart_icon.innerHTML = parseInt(cart_icon.innerHTML) - 1;
+                    if (cart_icon.innerHTML == '0') cart_icon.innerHTML = '';
+                }
             };
             xhr.send('id_update='+ids[key].id + '&quantity='+quantity[key].value);
         })
@@ -56,17 +54,15 @@ window.addEventListener('load', () => {
 
             quantity[key].value = 0;
             changePrice();
-            listIsEmpty();
             
             xhr.open("POST", "../../app/manageCart.php");
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = (e) => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    if (ids.length == 1) {
-                        ids[key].innerHTML = '<div class="list-name">Nenhum produto no carrinho.<a href="products.php">Vamos as compras!</a></div>';
-                    } else {
-                        ids[key].remove();
-                    }
+                    ids[key].remove();
+                    listIsEmpty();
+                    cart_icon.innerHTML = parseInt(cart_icon.innerHTML) - 1;
+                    if (cart_icon.innerHTML == '0') cart_icon.innerHTML = '';
                 }
             };
             xhr.send('remove='+element.id);
@@ -114,7 +110,7 @@ window.addEventListener('load', () => {
                                     <div class="list-name"> 
                                         Nenhum produto no carrinho. <a href="products.php">Vamos as compras!</a>
                                     </div>
-                                </div>`
+                                   </div>`
         }
     }
 })

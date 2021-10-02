@@ -107,7 +107,18 @@
                                     </a>';
                                 }
                             ?>
-                        </div>
+                        </div><br>
+                        <p>Material: Cerâmica<br>
+                        - Impressão em alta definição<br>
+                        - Não sai ao lavar<br>
+                        - Pode ser levado ao micro-ondas e lava-louças.<br>
+                        - Capacidade: 325 ml<br><br>
+                                    
+                        Altura: 9.50 cm<br>
+                        Largura: 8.00 cm<br>
+                        Comprimento: 8.00 cm<br>
+                        Peso: 330 g<br>
+                        </p>
                     </div>
                 </div>
             </div>

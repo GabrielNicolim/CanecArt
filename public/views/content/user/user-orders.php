@@ -66,7 +66,7 @@
                                 <div class="list-name"></div>
                                 <div class="list-quantity">Total:<br>'.$order_quantity[$product['id_order']].'</div>
                                 <div class="list-price">Total:<br>R$ '.$order_values[$product['id_order']].'</div>
-                                <div class="list-type">AGUARDANDO PAGAMENTO</div>
+                                <div class="list-type">'.$product['status_order'].'</div>
                             </div>';
 
                     }
@@ -81,9 +81,13 @@
                         <div class="list-name"><a href="product-page.php?id='.$product['id_product'].'" >'.$product['name_product'].'</a></div>
                         <div class="list-quantity">x'.$product['quantity_product'].'</div>
                         <div class="list-price">'.$product['price_product'].'<br>(Unidade)</div>
-                        <div class="list-type">
-                            Cód Rastreio:<br>    
-                            '.strtoupper($product['track_order']).'
+                        <div class="list-type">';
+                            if ($product['status_order'] == 'AGUARDANDO PAGAMENTO'){
+                                echo 'Para:<br>'.ucfirst($product['contact_adress']).' em '.$product['state_adress'].'-'.$product['district_adress'];
+                            } else {
+                                echo 'Cód Rastreio:<br>'.strtoupper($product['track_order']);
+                            }
+                            echo'
                         </div>
                     </div>
                     ';

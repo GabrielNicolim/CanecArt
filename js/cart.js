@@ -27,9 +27,6 @@ window.addEventListener('load', () => {
     // When quantity number changes
     quantity.forEach((element, key) => {
         element.addEventListener('change', () => {
-            if(element.value == 0) {
-                ids[key].remove();
-            }
 
             var xhr = new XMLHttpRequest();
 
@@ -71,7 +68,15 @@ window.addEventListener('load', () => {
     // Sending the cart to payment
     btnSend.addEventListener('click', () => {
 
-        if (adresses[0].id != '' && window.document.getElementsByClassName('choosen') != null) {
+        let check = window.document.querySelectorAll('.list-item .list-name')[0].innerHTML
+
+        if (check.includes('Nenhum produto no carrinho.')) {
+            alert('Adicione produtos!')
+        } else if (adresses[0].id != '' && window.document.getElementsByClassName('choosen') != null) {
+            
+            let loading = window.document.getElementById('opacity');
+            loading.classList.remove('hidden');
+            
             var xhr = new XMLHttpRequest();
 
             xhr.open("POST", "../../app/payment.php");
@@ -79,7 +84,12 @@ window.addEventListener('load', () => {
             xhr.onload = (e) => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     if (xhr.responseText == 'Sucess') {
-                        window.location ="user.php?page=orders";
+                
+                        document.getElementById("loading").src="../icons/check-circle-solid.svg";
+                        setTimeout(function () {
+                            window.location ="user.php?page=orders";
+                        }, 700);
+                        
                     }
                 }
             };

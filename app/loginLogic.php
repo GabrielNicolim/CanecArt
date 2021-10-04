@@ -63,12 +63,6 @@ if ( password_verify($password_user, $dbpassword) ) {
     $_SESSION['isAuth'] = true;   
     $_SESSION['idUser'] = $return['id_user'];
 
-    if (isset($_COOKIE['resumeProduct'])) {
-        header("Location: ../product.php?id=".$_COOKIE['resumeProduct']);
-        setcookie("resumeProduct", "", -1 , "/");
-        exit();
-    }
-
     header("Location: ../public/views/products.php");
     exit();
 

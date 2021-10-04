@@ -165,6 +165,10 @@
                 </div>
             </div>
         </section>
+
+        <div id="opacity" class="hidden">
+            <img id="loading" src="../images/loading-buffering.gif" width="300px">
+        </div>
         
         <?php
 

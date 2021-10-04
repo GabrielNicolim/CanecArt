@@ -130,13 +130,7 @@
                             <div class="list-name">'.ucwords($user['name_user']).'</div>
                             <div class="list-email">'.$user['email_user'].'</div>
                             <div class="list-price">'.$user['compras'].' compras</div>
-                            <div class="list-interaction">
-                                <a href="" >
-                                    <img src="../../icons/eye-fill.svg" alt="Icone de olho">
-                                </a>
-                                <a href="">
-                                    <img src="../../icons/pencil-square.svg" alt="Icone de editar">
-                                </a>';
+                            <div class="list-interaction">';
                                 if ($user['deleted']) {
                                     echo '<a href="../../../app/deleteUsers.php?delete='.$user['id_user'].'&status=0">
                                         <img src="../../icons/trash-restore-solid.svg" alt="Icone de restaurar">

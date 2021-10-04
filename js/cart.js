@@ -27,17 +27,21 @@ window.addEventListener('load', () => {
     // When quantity number changes
     quantity.forEach((element, key) => {
         element.addEventListener('change', () => {
-
+            if(element.value == 0) {
+                changePrice();
+                listIsEmpty();
+                ids[key].remove();
+                cart_icon.innerHTML = parseInt(cart_icon.innerHTML.match(/\d+/g).join('')) - 1;
+                if (cart_icon.innerHTML.includes('0')) cart_icon.innerHTML = '';
+            }
+                    
             var xhr = new XMLHttpRequest();
 
             xhr.open("POST", "../../app/manageCart.php");
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = (e) => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    changePrice();
-                    listIsEmpty();
-                    cart_icon.innerHTML = parseInt(cart_icon.innerHTML) - 1;
-                    if (cart_icon.innerHTML == '0') cart_icon.innerHTML = '';
+                    //console.log('a')
                 }
             };
             xhr.send('id_update='+ids[key].id + '&quantity='+quantity[key].value);
@@ -51,12 +55,12 @@ window.addEventListener('load', () => {
 
             quantity[key].value = 0;
             changePrice();
+            ids[key].remove();
             
             xhr.open("POST", "../../app/manageCart.php");
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = (e) => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    ids[key].remove();
                     listIsEmpty();
                     cart_icon.innerHTML = parseInt(cart_icon.innerHTML) - 1;
                     if (cart_icon.innerHTML == '0') cart_icon.innerHTML = '';
@@ -111,12 +115,12 @@ window.addEventListener('load', () => {
         quantity.forEach((element, key) => {
             value += parseInt(quantity[key].value) * parseFloat(listPrice[key + 1].innerHTML);
         })
-        totalPrice.innerHTML = "R$ " + value;
+        totalPrice.innerHTML = "R$ " + value.toFixed(2);
     }
 
     function listIsEmpty() {
-        if(totalPrice.innerHTML == "R$ 0") {
-            listEmpty.innerHTML = `<div class="list-item">
+        if(totalPrice.innerHTML.includes('R$ 0')) {
+            listEmpty.innerHTML += `<div class="list-item">
                                     <div class="list-name"> 
                                         Nenhum produto no carrinho. <a href="products.php">Vamos as compras!</a>
                                     </div>

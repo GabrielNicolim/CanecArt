@@ -117,7 +117,7 @@ if ($stmt -> rowCount() > 0 && $user_data['adress'] > 0) {
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->CharSet = 'UTF-8';
-        $mail->Subject = "CanecArt - Ordem de compra realizada!";
+        $mail->Subject = "CanecArt - Ordem de compra realizada! ID#".$id_order;
         $mail->Body    = '<!DOCTYPE html>
         <html lang="pt-br">
             <head>

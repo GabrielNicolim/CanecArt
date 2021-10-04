@@ -21,7 +21,7 @@
                         INNER JOIN order_products ON fk_order = id_order
                         INNER JOIN products ON id_product = fk_product
                         INNER JOIN adresses ON id_adress = fk_adress
-                    WHERE orders.fk_user = :id_session";
+                    WHERE orders.fk_user = :id_session ORDER BY date_order";
 
             $stmt = $conn->prepare($query);
             $stmt -> bindValue(':id_session', $_SESSION['idUser'], PDO::PARAM_INT);

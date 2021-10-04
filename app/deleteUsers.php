@@ -21,7 +21,7 @@ if (empty($user_id) || !is_numeric($user_id) || !is_bool($status)) {
 // status 0 = restore || status 1 = delete
 $status = $status ? 'TRUE' : 'FALSE';
 
-$query = "UPDATE users SET deleted = :status, deleted_at = DEFAULT WHERE id_user = :id_user";
+$query = "UPDATE eq3.users SET deleted = :status, deleted_at = DEFAULT WHERE id_user = :id_user";
 
 $stmt = $conn -> prepare($query);
 

@@ -48,7 +48,7 @@ if (!empty($_FILES['photo_product']['name'])) {
 
 }
 
-$query = 'INSERT INTO products(name_product, photo_product, description_product, price_product, type_product, quantity_product, deleted_at) 
+$query = 'INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, type_product, quantity_product, deleted_at) 
           VALUES(:name_product, :photo_product, :description_product, :price_product, :type_product, :quantity_product, null) RETURNING id_product;';
 
 $stmt = $conn -> prepare($query);

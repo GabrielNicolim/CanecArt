@@ -20,7 +20,7 @@
     require("../includes/head.php");
     require("../../app/db/connect.php");
 
-    $query = "SELECT *, (SELECT COUNT(*) FROM orders WHERE fk_user = :id_session) FROM users WHERE id_user = :id_session";
+    $query = "SELECT *, (SELECT COUNT(*) FROM eq3.orders WHERE fk_user = :id_session) FROM eq3.users WHERE id_user = :id_session";
     $stmt = $conn -> prepare($query);
     $stmt -> bindValue(':id_session', $_SESSION['idUser'], PDO::PARAM_INT);
     $stmt -> execute();

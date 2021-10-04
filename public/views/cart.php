@@ -68,7 +68,7 @@
                         } else {
                             foreach($_SESSION['cart'] as $id_product => $quantity) {
                             
-                                $query = "SELECT id_product, name_product, photo_product, price_product, quantity_product FROM products WHERE id_product = :id_product";
+                                $query = "SELECT id_product, name_product, photo_product, price_product, quantity_product FROM eq3.products WHERE id_product = :id_product";
                                 $stmt = $conn->prepare($query);
                                 $stmt -> bindValue(':id_product', $id_product, PDO::PARAM_INT);
                                 $stmt -> execute();
@@ -110,7 +110,7 @@
                     echo '<h2>Escolher endereço</h2>
                     <div class="adresses">';
 
-                    $query = "SELECT * FROM adresses WHERE fk_user = :session_id AND deleted = false";
+                    $query = "SELECT * FROM eq3.adresses WHERE fk_user = :session_id AND deleted = false";
 
                     $stmt = $conn -> prepare($query);
                     $stmt -> bindValue(':session_id', $_SESSION['idUser'], PDO::PARAM_INT);

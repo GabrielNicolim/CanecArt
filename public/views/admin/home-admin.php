@@ -16,9 +16,9 @@
     require("../../includes/head.php");
     require("../../../app/db/connect.php");
 
-    $query = 'SELECT COUNT(id_user) AS users, (SELECT COUNT(*) FROM products) AS products, 
-            (SELECT COUNT(id_order) FROM orders) AS sells
-            FROM users';
+    $query = 'SELECT COUNT(id_user) AS users, (SELECT COUNT(*) FROM eq3.products) AS products, 
+            (SELECT COUNT(id_order) FROM eq3.orders) AS sells
+            FROM eq3.users';
     $stmt = $conn -> query($query);
     $stmt -> execute();
     $return = $stmt -> fetch(PDO::FETCH_ASSOC);

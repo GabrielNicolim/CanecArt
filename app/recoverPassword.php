@@ -18,7 +18,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-$query = 'SELECT id_user, name_user FROM users WHERE email_user = :email';
+$query = 'SELECT id_user, name_user FROM eq3.users WHERE email_user = :email';
 $stmt = $conn -> prepare($query);
 $stmt -> bindValue(':email', $email, PDO::PARAM_STR);
 $stmt -> execute();
@@ -52,7 +52,7 @@ if ($stmt -> rowCount() > 0) {
     $url = URLROOT.'/public/views/';
     $url .= 'new-password.php?selector=' . $selector . '&validator='. bin2hex($token);
     
-    $query = 'INSERT INTO pwdreset(ip_pwdrequest, city_pwdrequest, region_pwdrequest, country_pwdrequest, selector_pwdrequest, token_pwdrequest, expires_pwdrequest, fk_email)
+    $query = 'INSERT INTO eq3.pwdreset(ip_pwdrequest, city_pwdrequest, region_pwdrequest, country_pwdrequest, selector_pwdrequest, token_pwdrequest, expires_pwdrequest, fk_email)
              VALUES(:ip, :city, :region, :country, :selector, :token, :expires, :fk_email)';
     $stmt = $conn -> prepare($query);
 

@@ -18,7 +18,7 @@ if (empty($newpassword) || empty($confirmPassword) || empty($selector) || empty(
     exit;
 }
 
-$query = 'SELECT token_pwdrequest, fk_email FROM pwdReset WHERE selector_pwdrequest = :selector';
+$query = 'SELECT token_pwdrequest, fk_email FROM eq3.pwdReset WHERE selector_pwdrequest = :selector';
 $stmt = $conn -> prepare($query);
 $stmt -> bindValue(':selector', $selector, PDO::PARAM_STR);
 $stmt -> execute();
@@ -27,13 +27,13 @@ $return = $stmt -> fetch(PDO::FETCH_ASSOC);
 
 if ($stmt -> rowCount() > 0 && password_verify(hex2bin($token), $return['token_pwdrequest'])) {
     
-    $query = 'UPDATE users SET password_user = :newpassword WHERE email_user = :email_user';
+    $query = 'UPDATE eq3.users SET password_user = :newpassword WHERE email_user = :email_user';
     $stmt = $conn -> prepare($query);
     $stmt -> bindValue(':newpassword', password_hash($confirmPassword, PASSWORD_DEFAULT) , PDO::PARAM_STR);
     $stmt -> bindValue(':email_user', $return['fk_email'], PDO::PARAM_STR);
     $stmt -> execute();
 
-    $query = 'DELETE FROM pwdReset WHERE fk_email = :email_user';
+    $query = 'DELETE FROM eq3.pwdReset WHERE fk_email = :email_user';
     $stmt = $conn -> prepare($query);
     $stmt -> bindValue(':email_user', $return['fk_email'], PDO::PARAM_STR);
     $stmt -> execute();

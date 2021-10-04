@@ -21,7 +21,7 @@ if (empty($product_id) || !is_numeric($product_id) || !is_bool($status)) {
 // status 0 = restore || status 1 = delete
 $status = $status ? 'TRUE' : 'FALSE';
 
-$query = "UPDATE products SET deleted = :status WHERE id_product = :id_product";
+$query = "UPDATE eq3.products SET deleted = :status WHERE id_product = :id_product";
 
 $stmt = $conn -> prepare($query);
 

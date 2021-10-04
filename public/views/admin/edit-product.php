@@ -22,7 +22,7 @@
 
     $id_product = sanitizeString($_GET['product']);
 
-    $query = "SELECT * FROM products WHERE id_product = :id_product";
+    $query = "SELECT * FROM eq3.products WHERE id_product = :id_product";
 
     $stmt = $conn -> prepare($query);
 

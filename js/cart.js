@@ -111,7 +111,7 @@ window.addEventListener('load', () => {
         quantity.forEach((element, key) => {
             value += parseInt(quantity[key].value) * parseFloat(listPrice[key + 1].innerHTML);
         })
-        totalPrice.innerHTML = "R$ " + value;
+        totalPrice.innerHTML = "R$ " + value.toFixed(2);
     }
 
     function listIsEmpty() {

@@ -42,7 +42,7 @@ try {
         throw new Exception('datamissing');
     }
     
-    $query = 'SELECT email_user, cpf_user FROM users WHERE email_user = :email OR cpf_user = :cpf';
+    $query = 'SELECT email_user, cpf_user FROM eq3.users WHERE email_user = :email OR cpf_user = :cpf';
     $stmt = $conn -> prepare($query);
     $stmt -> bindValue(':email', $email, PDO::PARAM_STR);
     $stmt -> bindValue(':cpf', $cpf, PDO::PARAM_STR);
@@ -72,7 +72,7 @@ try {
 
 $confirmPassword = password_hash($confirmPassword, PASSWORD_DEFAULT);
 
-$query = 'INSERT INTO users(name_user, cpf_user, email_user, password_user, deleted_at) 
+$query = 'INSERT INTO eq3.users(name_user, cpf_user, email_user, password_user, deleted_at) 
           VALUES(:name_user, :cpf_user, :email_user, :password_user, null) ON CONFLICT DO NOTHING RETURNING id_user;';
 
 $stmt = $conn -> prepare($query);

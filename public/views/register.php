@@ -6,7 +6,8 @@
 
     $style_scripts = ['<script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>',
                     '<link rel="stylesheet" href="../css/style.css">',
-                    '<link rel="stylesheet" href="../css/form.css">'];
+                    '<link rel="stylesheet" href="../css/form.css">',
+                    '<script src="../../js/validatepassword.js"></script>'];
 
     require("../includes/head.php");
 
@@ -53,6 +54,7 @@
 
                 <label for="password">Senha</label>
                 <input type="password" name="password" id="password" placeholder="Senha" maxlength="256" required>
+                <span id="password_level"></span>
 
                 <label for="confirm-password">Confirmar Senha</label>
                 <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirmar" maxlength="256" required>

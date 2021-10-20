@@ -50,6 +50,10 @@ footer .btn.active {
     align-items: center;
 }
 
+#rangeInput {
+    padding: 0;
+}
+
 .search input[type="numeric"] {
     width: 80px;
     text-align: center;

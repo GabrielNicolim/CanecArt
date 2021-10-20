@@ -61,7 +61,7 @@ if ($_POST['operation'] == 'Atualizar dados') {
         }
     }
 
-    $query = "UPDATE products 
+    $query = "UPDATE eq3.products 
             SET name_product = :name_product, photo_product = :photo_product, 
             description_product = :description_product, price_product = :price_product, 
             type_product = :type_product, quantity_product = :quantity_product

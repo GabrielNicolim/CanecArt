@@ -49,7 +49,7 @@ $mail_body = "
     </div>
     <h1>Recuperação de senha</h1>
         <p class='texto'>
-        Olá ".ucfirst($name_user).", nós recebemos uma requisição de recuperação de senha da sua conta no CanecArt de";
+        Olá ".ucfirst($name_user).", nós recebemos uma requisição de recuperação de senha da sua conta no CanecArt de ";
         if ($ipDetails->ip == 'Localhost'){
             $mail_body .= "uma máquina local";
         } else {

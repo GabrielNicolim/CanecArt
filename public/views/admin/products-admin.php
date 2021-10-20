@@ -19,7 +19,7 @@
     require("../../../app/db/connect.php");
     require("../../../app/functions.php");
 
-    $query = 'SELECT DISTINCT type_product FROM products';
+    $query = 'SELECT DISTINCT type_product FROM eq3.products';
 
     $stmt = $conn -> prepare($query);
     $stmt -> execute();
@@ -88,7 +88,7 @@
             <?php
 
                 $query = 'SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product, deleted
-                          FROM products
+                          FROM eq3.products
                           WHERE (LOWER(name_product) LIKE :nameproduct OR LOWER(description_product) LIKE :nameproduct) ';
 
                 $nameSearch = '%%';

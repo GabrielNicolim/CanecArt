@@ -15,12 +15,12 @@
             require("../../app/db/connect.php");
 
             $query = "SELECT id_order, status_order, track_order, date_order, id_product, name_product, photo_product, description_product,
-                        price_product, type_product, products.deleted, order_products.quantity_product, id_adress, contact_adress,
+                        price_product, type_product, products.deleted, eq3.order_products.quantity_product, id_adress, contact_adress,
                         state_adress, district_adress 
-                    FROM orders 
-                        INNER JOIN order_products ON fk_order = id_order
-                        INNER JOIN products ON id_product = fk_product
-                        INNER JOIN adresses ON id_adress = fk_adress
+                    FROM eq3.orders 
+                        INNER JOIN eq3.order_products ON fk_order = id_order
+                        INNER JOIN eq3.products ON id_product = fk_product
+                        INNER JOIN eq3.adresses ON id_adress = fk_adress
                     WHERE orders.fk_user = :id_session ORDER BY date_order";
 
             $stmt = $conn->prepare($query);

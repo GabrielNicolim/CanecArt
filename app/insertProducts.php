@@ -12,13 +12,15 @@ require('functions.php');
 
 $product = filter_var($_POST['name_product'], FILTER_SANITIZE_STRING);
 $description = filter_var($_POST['description_product'], FILTER_SANITIZE_STRING);
+$base_cost = filter_var($_POST['base_cost_product'], FILTER_SANITIZE_STRING);
+$icms_product = filter_var($_POST['icms_product'], FILTER_SANITIZE_STRING);
 $price = sanitizeString($_POST['price_product']);
 $type = strtolower(filter_var($_POST['type_product'], FILTER_SANITIZE_STRING));
 $quantity = filter_var($_POST['quantity_product'], FILTER_SANITIZE_NUMBER_INT);
 $photo = null;
 
 //var_dump($_FILES,$_POST); exit;
-if (empty($product) || empty($description) || empty($price) || empty($type) || empty($quantity)) {
+if (empty($product) || empty($description) || empty($price) || empty($type) || empty($quantity) || empty($base_cost) || empty($icms_product)) {
     header("Location: ../public/views/admin/insert-products-admin.php?notice=invaliddata");
     exit;
 }
@@ -48,8 +50,12 @@ if (!empty($_FILES['photo_product']['name'])) {
 
 }
 
-$query = 'INSERT INTO products(name_product, photo_product, description_product, price_product, type_product, quantity_product, deleted_at) 
-          VALUES(:name_product, :photo_product, :description_product, :price_product, :type_product, :quantity_product, null) RETURNING id_product;';
+$profit = ($price-$base_cost-($price*$icms)/100);
+
+$query = 'INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, 
+          type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
+          VALUES(:name_product, :photo_product, :description_product, :price_product, :type_product, 
+          :quantity_product, :base_cost_product, :profit_product, :tax_product, null) RETURNING id_product;';
 
 $stmt = $conn -> prepare($query);
 
@@ -58,6 +64,9 @@ $stmt -> bindValue(':photo_product', $photo);
 $stmt -> bindValue(':description_product', $description, PDO::PARAM_STR);
 $stmt -> bindValue(':price_product', $price);
 $stmt -> bindValue(':type_product', $type, PDO::PARAM_STR);
+$stmt -> bindValue(':base_cost_product', $base_cost);
+$stmt -> bindValue(':profit_product', $profit);
+$stmt -> bindValue(':tax_product', $icms_product);
 $stmt -> bindValue(':quantity_product', $quantity, PDO::PARAM_INT);
 
 $stmt -> execute();

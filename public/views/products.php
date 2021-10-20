@@ -14,7 +14,7 @@
 
     // Select all distinct type_products, convertir the string to an array with every space
     // then unnesting this array into a row per word.
-    $query = "SELECT DISTINCT UNNEST(string_to_array(type_product,' ')) AS string FROM products";
+    $query = "SELECT DISTINCT UNNEST(string_to_array(type_product,' ')) AS string FROM eq3.products";
 
     $stmt = $conn -> prepare($query);
     $stmt -> execute();
@@ -66,7 +66,7 @@
         <section id="products">
 
         <?php
-            $query = "SELECT * FROM products 
+            $query = "SELECT * FROM eq3.products 
                     WHERE deleted = FALSE AND (LOWER(name_product) LIKE :search OR description_product LIKE LOWER(:search)) ";
             
             $search = '%%';

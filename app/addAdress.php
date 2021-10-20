@@ -25,7 +25,7 @@ if (empty($contact_name) || empty($CEP) || empty($city) || empty($state) || empt
     exit;
 }
 
-$query = 'INSERT INTO adresses(contact_adress, state_adress, city_adress, street_adress, district_adress, cep_adress, number_adress, complement_adress, fk_user) 
+$query = 'INSERT INTO eq3.adresses(contact_adress, state_adress, city_adress, street_adress, district_adress, cep_adress, number_adress, complement_adress, fk_user) 
           VALUES(:contact, :state, :city, :street, :district, :cep, :number, :complement, :fk_user)';
 
 $stmt = $conn -> prepare($query);

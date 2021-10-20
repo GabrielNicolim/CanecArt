@@ -24,7 +24,7 @@
         exit;
     }
 
-    $query = 'SELECT * FROM products WHERE id_product = :product_id';
+    $query = 'SELECT * FROM eq3.products WHERE id_product = :product_id';
 
     $stmt = $conn -> prepare($query);
     $stmt -> bindValue(':product_id', $product_id, PDO::PARAM_INT);
@@ -37,7 +37,7 @@
 
     $data = $stmt -> fetch(PDO::FETCH_ASSOC);
 
-    $query = 'SELECT COUNT(*) FROM order_products WHERE fk_product = :product_id';
+    $query = 'SELECT COUNT(*) FROM eq3.order_products WHERE fk_product = :product_id';
     $stmt = $conn -> prepare($query);
     $stmt -> bindValue(':product_id', $product_id, PDO::PARAM_INT);
     $stmt -> execute();

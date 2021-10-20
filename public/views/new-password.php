@@ -28,7 +28,7 @@
 
     $currentDate = date("U");
 
-    $query = 'SELECT id_pwdrequest, selector_pwdrequest, token_pwdrequest, fk_email FROM pwdReset 
+    $query = 'SELECT id_pwdrequest, selector_pwdrequest, token_pwdrequest, fk_email FROM eq3.pwdReset 
               WHERE selector_pwdrequest = :selector AND expires_pwdrequest >= :currentTime';
 
     $stmt = $conn -> prepare($query);

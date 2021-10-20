@@ -73,10 +73,10 @@
             <!--Content of table-->
             <?php
 
-                $query = "SELECT id_user, name_user, email_user, deleted, deleted_at, (SELECT COUNT(*) FROM orders WHERE fk_user = id_user) AS compras 
-                        FROM users
+                $query = "SELECT id_user, name_user, email_user, deleted, deleted_at, (SELECT COUNT(*) FROM eq3.orders WHERE fk_user = id_user) AS compras 
+                        FROM eq3.users
                         WHERE (LOWER(name_user) LIKE :search OR LOWER(email_user) LIKE :search_mail) 
-                        AND (SELECT COUNT(*) FROM orders WHERE fk_user = id_user) >= :orders ";
+                        AND (SELECT COUNT(*) FROM eq3.orders WHERE fk_user = id_user) >= :orders ";
 
                 $search = '%%';
                 $searchMail = '%%';

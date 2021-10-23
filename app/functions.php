@@ -34,3 +34,21 @@ function validateCPF($cpf) {
     return true;
 
 }
+
+function validatePassword($password) {
+    // IF has more than 6 characters
+    if(preg_match($password,'/.{6,}/')) {
+        return false;
+    }
+    // if has at least one capital letter
+    if(preg_match($password,'/[A-Z]{1,}/')) {
+        return false;
+    }
+
+    // if has at least one number
+    if(preg_match($password,'/[0-9]{1,}/')) {
+        return false;
+    }
+
+    return true;
+}

@@ -24,7 +24,7 @@ Utilizem o Git e GitHub para a organização. É importante que reuniões sejam 
 
 ## Aplicativos
 
-Link de acesso no [Servidor](http://200.145.153.175/felipeestevanatto/ecommerce/)
+Link de acesso no [Servidor](http://www.projetosctibauru.com.br/w72AEquipe3/ecommerce/)
 
 Esses links devem ser utilizados para realizar a instalação dos aplicativos utilizados para o desenvolvimento do projeto em conjunto.
 

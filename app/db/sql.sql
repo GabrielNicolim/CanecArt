@@ -2,15 +2,16 @@
     Bianca Oliveira De Camargo - 03
     Carla Julia Franco de Toledo - 04
     Felipe Lima Estevanatto - 06
-    Gabriel Gomes Nicolim - 08 
+    Gabriel Gomes Nicolim - 08
     Samuel Sensolo Goldflus - 32
 */
 
-/* =-=-=-=-= Data Última Atualização 19/10/2021 =-=-=-=-= */
+/* =-=-=-=-= Data Última Atualização 23/10/2021 =-=-=-=-= */
 
+DROP SCHEMA IF EXISTS eq3 CASCADE;
 CREATE SCHEMA IF NOT EXISTS eq3;
 
-DROP TABLE IF EXISTS eq3.pwdreset, eq3.order_products, eq3.orders, eq3.products, eq3.adresses, eq3.users;
+DROP TABLE IF EXISTS eq3.pwdreset, eq3.order_products, eq3.orders, eq3.products, eq3.adresses, eq3.users CASCADE;
 
 CREATE TABLE eq3.users (
     id_user SERIAL PRIMARY KEY,
@@ -42,6 +43,7 @@ CREATE TABLE eq3.adresses (
 
 CREATE TABLE eq3.products (
     id_product SERIAL PRIMARY KEY,
+    code_product VARCHAR(14) NOT NULL,
     name_product VARCHAR(128) NOT NULL,
     photo_product TEXT DEFAULT NULL,
     description_product VARCHAR(512) NOT NULL,
@@ -57,6 +59,8 @@ CREATE TABLE eq3.products (
 
 CREATE TABLE eq3.orders (
     id_order SERIAL PRIMARY KEY,
+    backup_adress_order TEXT NOT NULL CHECK (backup_adress_order <> ''),
+    contact_order VARCHAR(384) NOT NULL CHECK (contact_order <> ''),
     status_order VARCHAR(128) NOT NULL,
     date_order DATE DEFAULT CURRENT_DATE,
     track_order VARCHAR(32) DEFAULT NULL,
@@ -70,7 +74,7 @@ CREATE TABLE eq3.orders (
 
 CREATE TABLE eq3.order_products (
     id_order_product SERIAL PRIMARY KEY,
-    quantity_product INT DEFAULT 1,
+    quantity_product INT NOT NULL DEFAULT 1,
 
     fk_order INT NOT NULL,
     FOREIGN KEY (fk_order) REFERENCES eq3.orders (id_order),
@@ -94,96 +98,26 @@ CREATE TABLE eq3.pwdreset (
   FOREIGN KEY (fk_email) REFERENCES eq3.users (email_user)
 );
 
-/* Dummy data for first time insert */
-
-/* jorge@gmail.com - jorge */
-INSERT INTO eq3.users(name_user, cpf_user, email_user, password_user, deleted_at) 
-VALUES('Jorge', '21935947087', 'jorge@gmail.com', '$2y$10$lm52RriLOKv.j159jSfegu9NidmJarl54gQivT0azOeVsaSK/1L9O', null) ON CONFLICT DO NOTHING;
-
-/* pedro@gmail.com - pedro */
-INSERT INTO eq3.users(name_user, cpf_user, email_user, password_user, deleted_at) 
-VALUES('Pedro', '76106379041', 'pedro@gmail.com', '$2y$10$GF0IuWQmzOSzH8eYtVesx.LBsoAgC0kMRveGatE6W3Qs9dfPAmmHy', null) ON CONFLICT DO NOTHING;
-
-/* joao@gmail.com - joao */
-INSERT INTO eq3.users(name_user, cpf_user, email_user, password_user, deleted_at) 
-VALUES('João', '57865450087', 'joao@gmail.com', '$2y$10$Lpy.6dI1H.FPEYH2TIgkFeOZnQbDGORKIgrColL1xeiQofZaQg3M.', null) ON CONFLICT DO NOTHING;
-
-/* ========================================================================================================== */
-/* Endereço Jorge */
-INSERT INTO eq3.adresses(contact_adress, state_adress, city_adress, street_adress, district_adress, cep_adress, number_adress, complement_adress, fk_user) 
-VALUES('Jorge da Silva', 'SP', 'Bauru', 'Rua Pedrinho de Liberato', 'Bela vista', '17040560', '28', 'Quadra 5', '1');
-
-/* Endereço Pedro */
-INSERT INTO eq3.adresses(contact_adress, state_adress, city_adress, street_adress, district_adress, cep_adress, number_adress, complement_adress, fk_user) 
-VALUES('Pedro Malboro', 'PA', 'Santarém', 'Avenida Maicá', 'Santana', '68010390', '11', 'Quadra 9', '2');
-
-/* Endereço João */
-INSERT INTO eq3.adresses(contact_adress, state_adress, city_adress, street_adress, district_adress, cep_adress, number_adress, complement_adress, fk_user) 
-VALUES('João Paulo', 'AL', 'Maceió', 'Rua Ricardo Cesar de Melo', 'Pinheiro', '57055670', '76', 'Quadra 2', '3');
-
-/* ========================================================================================================== */
-/* Caneca Attack on titan */
-INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
-VALUES('Caneca Attack on Titan Tropas', 'card1-image.png', 'Caneca da Tropa de Exploração - Asas da Liberdade de Shingeki no Kyojin com as logos da
-Tropa de Exploração, Polícia Militar e Tropa Estacionária. Branca, 325ml', 44.90, 'Attack_on_Titan 325ml Branca Exploração', 50, 10, 59.73, 18, null);
-	   
-/* Caneca Bulbassaurica */
-INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
-VALUES('Caneca Bulbassauro Pokemon', 'card2-image.jpg', 'Caneca do Bulbassauro - Pokemon. Com cabo verde e muito bonito, recomendo de verdade. 
-Branca, 325ml', 49.90, 'Bulbassauro Pokemon 325ml Branca', 30, 10, 61.96, 18, null);
-	   
-/* Caneca Goku */
-INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
-VALUES('Caneca Dragon Ball Goku', 'card3-image.jpg', 'Caneca do Goku de Dragon Ball Z, ou conhecido como: neto adotivo de Vovô Gohan, filho de 
-Bardock e Gine, o irmão mais novo de Raditz, o marido de Chichi, pai de Gohan e Goten, avô de Pan e mais tarde tataravô de Goku Jr.
-Branca, 325ml', 40.00, 'Goku Dragon_Ball_Z 325ml Laranja', 20, 10, 57.00, 18, null);
-
-/* Caneca Zelda Térmica */
-INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
-VALUES('Caneca Mágica Legend of Zelda Icons', 'card4-image.jpg', 'Caneca preta do Link - Legend of Zelda com os icones da saga que aparecem
-quando a caneca é exposta ao calor. Branca, 325ml', 42.90, 'Legend_of_Zelda 325ml Térmica', 10, 10, 58.69, 18,  null);
-
-/* Caneca Jinx */
-INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
-VALUES('Caneca League of Legends - Jinx', 'card5-image.jpg', 'Caneca League of Legend da Jinx, compre a caneca do seu main pra continuar
-perdendo PDL mas dessa vez muito bem hidratado! Caneca Branca, 325ml', 29.90, 'Jinx League_of_Legends 325ml Branca', 25, 10, 48.56, 18, null);
-
-/* Caneca Genérico cafeina */
-INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
-VALUES('Caneca Genérico Cafenína', 'card6-image.jpg', 'Caneca "medicamento genérico", para ter uma representação da droga lícita mais 
-importante para a produtividade mundial no século XXI.
-Branca, 335ml', 45.00, 'Generico Cafeina 325ml Branca', 20, 10, 59.78, 18, null);
-
-/* Caneca Windows BSOD */
-INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
-VALUES('Caneca Windows Tela Azul', 'card7-image.jpg', 'Caneca Windows com a Blue Screen of Death do Windows 10, as vezes nunca se sabe
-exatamente o que invocou essa tela na sua frente, assim como não sabemos se alguem vai querer comprar uma comum causa de desespero.
-Caneca Branca, 325ml', 29.90, 'Windows BSOD 325ml Térmica', 5, 10, 48.56, 18, null);
-
-/* Caneca NASA */
-INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
-VALUES('Caneca NASA', 'card8-image.jpg', 'Uma caneca da NASA, olha que legal, a industria descobriu que se você vender produtos estampados
-como instituições governamentais americanas em produtos as pessoas compram, e você não precisa nem pagar direitos autorais, incrivel!
-Caneca Branca, 325ml', 29.90, 'NASA foguete 325ml Branca', 25, 10, 48.56, 18, null);
-
-/* Caneca R2D2 */
-INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
-VALUES('Caneca R2D2', 'card9-image.jpg', 'Caneca Star Wars - R2D2 toda estampada, Star Wars é uma franquia muito legal, mas para chamar mais
-a atenção o marketing decidiu tirar a foto com o cabo na caneca no outro lado, deu certo?.
-Caneca Branca, 325ml', 42.90, 'R2D2 Star_Wars 325ml Branca', 10, 10, 58.69, 18, null);
 
 /* Function and trigger to deduct from stock */
-
 CREATE OR REPLACE FUNCTION update_stock()
 RETURNS trigger as $log$
  BEGIN
 
-	-- If new order, deduct from quantity stock
+	-- If new order, check if there is stock for the order and deduct from quantity stock, if not, make data not able to the inserted
 	IF (TG_OP = 'INSERT') THEN
-		UPDATE eq3.products
-		   SET quantity_product = quantity_product - new.quantity_product
-		 WHERE id_product = new.fk_product;
-		RETURN NEW;
+		IF ((SELECT quantity_product FROM eq3.products WHERE id_product = new.fk_product) >= new.quantity_product) THEN
+            UPDATE eq3.products
+            SET quantity_product = quantity_product - new.quantity_product
+            WHERE id_product = new.fk_product;
+            RETURN NEW;
+        ELSE
+            DELETE FROM eq3.order_products WHERE fk_order = new.fk_order;
+            DELETE FROM eq3.orders WHERE id_order = new.fk_order;
+            RETURN NULL;
+        END IF;
+
+        
 	END IF;
 
  END;
@@ -191,6 +125,62 @@ $log$ language plpgsql;
 
 DROP TRIGGER IF EXISTS trigger_update_stock ON eq3.order_products;
 CREATE TRIGGER trigger_update_stock
-	AFTER INSERT ON eq3.order_products
+	BEFORE INSERT ON eq3.order_products
 	FOR EACH ROW
 EXECUTE PROCEDURE update_stock();
+
+/* Dummy data for first time insert */
+
+INSERT INTO eq3.users(name_user, cpf_user, email_user, password_user, deleted_at) 
+VALUES
+/* jorge@gmail.com - jorge */
+('Jorge', '21935947087', 'jorge@gmail.com', '$2y$10$lm52RriLOKv.j159jSfegu9NidmJarl54gQivT0azOeVsaSK/1L9O', null),
+/* pedro@gmail.com - pedro */
+('Pedro', '76106379041', 'pedro@gmail.com', '$2y$10$GF0IuWQmzOSzH8eYtVesx.LBsoAgC0kMRveGatE6W3Qs9dfPAmmHy', null),
+/* joao@gmail.com - joao */
+('João', '57865450087', 'joao@gmail.com', '$2y$10$Lpy.6dI1H.FPEYH2TIgkFeOZnQbDGORKIgrColL1xeiQofZaQg3M.', null) ON CONFLICT DO NOTHING;
+
+/* ============= ENDEREÇOS ============================================================================================= */
+INSERT INTO eq3.adresses(contact_adress, state_adress, city_adress, street_adress, district_adress, cep_adress, number_adress, complement_adress, fk_user) 
+VALUES
+/* Endereço Jorge */
+('Jorge da Silva', 'SP', 'Bauru', 'Rua Pedrinho de Liberato', 'Bela vista', '17040560', '28', 'Quadra 5', '1'),
+/* Endereço Pedro */
+('Pedro Malboro', 'PA', 'Santarém', 'Avenida Maicá', 'Santana', '68010390', '11', 'Quadra 9', '2'),
+/* Endereço João */
+('João Paulo', 'AL', 'Maceió', 'Rua Ricardo Cesar de Melo', 'Pinheiro', '57055670', '76', 'Quadra 2', '3');
+
+/* ============= PRODUTOS ============================================================================================= */
+INSERT INTO eq3.products(code_product, name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
+VALUES
+/* Caneca Attack on titan */
+('011.11.00003-1','Caneca Attack on Titan Tropas', 'card1-image.png', 'Caneca da Tropa de Exploração - Asas da Liberdade de Shingeki no Kyojin com as logos da
+Tropa de Exploração, Polícia Militar e Tropa Estacionária. Branca, 325ml', 44.90, 'Attack_on_Titan 325ml Branca Exploração', 50, 10, 59.73, 18, null),	   
+/* Caneca Bulbassaurica */
+('010.16.00001-1', 'Caneca Bulbassauro Pokemon', 'card2-image.jpg', 'Caneca do Bulbassauro - Pokemon. Com cabo verde e muito bonito, recomendo de verdade. 
+Branca, 325ml', 49.90, 'Bulbassauro Pokemon 325ml Branca', 30, 10, 61.96, 18, null),	   
+/* Caneca Goku */
+('011.12.00006-1', 'Caneca Dragon Ball Goku', 'card3-image.jpg', 'Caneca do Goku de Dragon Ball Z, ou conhecido como: neto adotivo de Vovô Gohan, filho de 
+Bardock e Gine, o irmão mais novo de Raditz, o marido de Chichi, pai de Gohan e Goten, avô de Pan e mais tarde tataravô de Goku Jr.
+Branca, 325ml', 40.00, 'Goku Dragon_Ball_Z 325ml Laranja', 20, 10, 57.00, 18, null),
+/* Caneca Zelda Térmica */
+('010.11.00007-1', 'Caneca Mágica Legend of Zelda Icons', 'card4-image.jpg', 'Caneca preta do Link - Legend of Zelda com os icones da saga que aparecem
+quando a caneca é exposta ao calor. Branca, 325ml', 42.90, 'Legend_of_Zelda 325ml Térmica', 10, 10, 58.69, 18,  null),
+/* Caneca Jinx */
+('010.10.00002-1', 'Caneca League of Legends - Jinx', 'card5-image.jpg', 'Caneca League of Legend da Jinx, compre a caneca do seu main pra continuar
+perdendo PDL mas dessa vez muito bem hidratado! Caneca Branca, 325ml', 29.90, 'Jinx League_of_Legends 325ml Branca', 25, 10, 48.56, 18, null),
+/* Caneca Genérico cafeina */
+('012.10.00004-1', 'Caneca Genérico Cafenína', 'card6-image.jpg', 'Caneca "medicamento genérico", para ter uma representação da droga lícita mais 
+importante para a produtividade mundial no século XXI. Branca, 335ml', 45.00, 'Generico Cafeina 325ml Branca', 20, 10, 59.78, 18, null),
+/* Caneca Windows BSOD */
+('012.14.00008-1', 'Caneca Windows Tela Azul', 'card7-image.jpg', 'Caneca Windows com a Blue Screen of Death do Windows 10, as vezes nunca se sabe
+exatamente o que invocou essa tela na sua frente, assim como não sabemos se alguem vai querer comprar uma comum causa de desespero.
+Caneca Branca, 325ml', 29.90, 'Windows BSOD 325ml Térmica', 5, 10, 48.56, 18, null),
+/* Caneca NASA */
+('012.14.00009-1', 'Caneca NASA', 'card8-image.jpg', 'Uma caneca da NASA, olha que legal, a industria descobriu que se você vender produtos estampados
+como instituições governamentais americanas em produtos as pessoas compram, e você não precisa nem pagar direitos autorais, incrivel!
+Caneca Branca, 325ml', 29.90, 'NASA foguete 325ml Branca', 25, 10, 48.56, 18, null),
+/* Caneca R2D2 */
+('011.10.00005-1', 'Caneca R2D2', 'card9-image.jpg', 'Caneca Star Wars - R2D2 toda estampada, Star Wars é uma franquia muito legal, mas para chamar mais
+a atenção o marketing decidiu tirar a foto com o cabo na caneca no outro lado, deu certo?.
+Caneca Branca, 325ml', 42.90, 'R2D2 Star_Wars 325ml Branca', 10, 10, 58.69, 18, null);

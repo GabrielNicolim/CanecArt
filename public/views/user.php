@@ -25,7 +25,12 @@
     $stmt -> bindValue(':id_session', $_SESSION['idUser'], PDO::PARAM_INT);
     $stmt -> execute();
 
-    $return = $stmt -> fetch(PDO::FETCH_ASSOC);
+    if ($stmt -> rowCount() > 0) {
+        $return = $stmt -> fetch(PDO::FETCH_ASSOC);
+    } else {
+        header("Location: ../../app/logout.php");
+        exit();
+    }
 
 ?>
 

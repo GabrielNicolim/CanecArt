@@ -27,18 +27,25 @@ try {
         //https://www.youtube.com/watch?v=JvGFlAK2fg4
         throw new Exception('invalidemail');
     }
+
+    if (strlen($name_user) > 256) {
+        throw new Exception('invalidname');
+    }
     
     if ($password !== $confirmPassword || strlen($password) > 256) {
         throw new Exception('differentpasswords');
     }
     
-    //
     $cpf = preg_replace('/\D/', '', $cpf);
     if (!validateCPF($cpf)) {
         throw new Exception('invalidCPF');
     }
+
+    if (!validatePassword($password)) {
+        throw new Exception('invalidpassword');
+    }
     
-    if (empty($name_user) || strlen($name_user) > 256 || empty($password) || strlen($password) > 256) {
+    if (empty($name_user) || empty($password) || strlen($password) > 256) {
         throw new Exception('datamissing');
     }
     
@@ -51,11 +58,6 @@ try {
     $return = $stmt -> fetch(PDO::FETCH_ASSOC);
     
     if ($stmt -> rowCount() > 0) {
-        throw new Exception('alreadyregistered');
-    }
-
-} catch (Exception $e) {
-    if ($e->getMessage() == 'alreadyregistered') {
         if ($return['email_user'] == $email) {
             header("Location: ../public/views/register.php?error=emailregistered" );
             exit;
@@ -66,6 +68,7 @@ try {
         }
     }
 
+} catch (Exception $e) {
     header("Location: ../public/views/register.php?error=" . $e->getMessage() );
     exit;
 }

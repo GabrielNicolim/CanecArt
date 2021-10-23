@@ -46,7 +46,19 @@
 
             <?php
                 if (isset($_GET['notice'])) {
-                    echo 'Cadastro de produto feito com sucesso';
+                    if ($_GET['notice'] == 'dbsuccess') {
+                        echo '<div class="notice success">
+                                <p>Banco de dados resetado com sucesso!</p>
+                            </div>';
+                    } else if ($_GET['notice'] == 'success') {
+                        echo '<div class="notice success">
+                                <p>Operação realizada com sucesso!</p>
+                            </div>';
+                    } else if ($_GET['notice'] == 'error') {
+                        echo '<div class="notice error">
+                                <p>Ocorreu um erro ao realizar a operação!</p>
+                            </div>';
+                    }
                 }
             ?>
             <div class="box">
@@ -63,12 +75,11 @@
                 </div>
             </div>
             
-
-            
-
-            
-
             <a class="btn logout" href="../../../app/logout.php">Logout</a>
+            <form action="../../../app/reset_db.php" method="POST">
+                <input type="number" name="reset" value="1" hidden>
+                <button type="submit" class="btn reset">Resetar Banco de dados</button>
+            </form>
         </section>
 
     </div>

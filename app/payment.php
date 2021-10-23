@@ -16,21 +16,25 @@ if (empty($id_adress) || !is_numeric($id_adress) || !isset($_SESSION['cart']) ||
 require('db/connect.php');
 require('functions.php');
 
-$sql = 'SELECT *, (SELECT COUNT(*) FROM eq3.adresses WHERE id_adress = :id_adress AND fk_user = :session_user) AS adress FROM eq3.users WHERE id_user = :session_user';
+$sql = 'SELECT *
+        FROM eq3.users INNER JOIN eq3.adresses on id_adress = :id_adress AND fk_user = :session_user
+        WHERE id_user = :session_user';
 $stmt = $conn -> prepare($sql);
 $stmt -> bindValue(':id_adress', $id_adress, PDO::PARAM_STR);
 $stmt -> bindValue(':session_user', $_SESSION['idUser'], PDO::PARAM_INT);
 $stmt -> execute();
 
 $user_data = $stmt -> fetch(PDO::FETCH_ASSOC);
-
-if ($stmt -> rowCount() > 0 && $user_data['adress'] > 0) {
+//var_dump($user_data); exit;
+if ($stmt -> rowCount() > 0) {
     
     $random_tracker = bin2hex(random_bytes(6));
 
-    $sql = 'INSERT INTO eq3.orders(status_order, fk_user, fk_adress, track_order) 
-            VALUES(\'AGUARDANDO PAGAMENTO\', :fk_user, :fk_adress, :track_order)';
+    $sql = 'INSERT INTO eq3.orders(backup_adress_order, contact_order, status_order, fk_user, fk_adress, track_order) 
+            VALUES(:adress, :contact, \'AGUARDANDO PAGAMENTO\', :fk_user, :fk_adress, :track_order)';
     $stmt = $conn -> prepare($sql);
+    $stmt -> bindValue(':adress', $user_data['name_user'], PDO::PARAM_STR);
+    $stmt -> bindValue(':contact', $user_data['name_user'], PDO::PARAM_STR);
     $stmt -> bindValue(':fk_user', $_SESSION['idUser'], PDO::PARAM_INT);
     $stmt -> bindValue(':fk_adress', $id_adress, PDO::PARAM_STR);
     $stmt -> bindValue(':track_order', $random_tracker, PDO::PARAM_STR);
@@ -39,41 +43,32 @@ if ($stmt -> rowCount() > 0 && $user_data['adress'] > 0) {
 
     foreach($_SESSION['cart'] as $product_id=>$quantity) {
 
-        // Turn on PDO support for multiple queries
-        $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, 1);
-
-        $sql = 'DO $$
-                    DECLARE stock integer;
-                BEGIN
-                    SELECT quantity_product FROM eq3.products WHERE id_product = :fk_product INTO stock;
-                
-                    IF (stock >= :quantity_product) THEN
-                        INSERT INTO eq3.order_products(fk_order, fk_product, quantity_product) 
-                        VALUES(:fk_order, :fk_product, :quantity_product);
-                    END IF;
-                END $$;';
+        // Will activate the update_stock() function that verifies the amount to X in stock
+        // and if there is not enough, it will return false and the order will not be registered
+        $sql = 'INSERT INTO eq3.order_products(fk_order, fk_product, quantity_product) 
+                VALUES(:fk_order, :fk_product, :quantity_product) ON CONFLICT DO NOTHING';
 
         $stmt = $conn -> prepare($sql);
-        $stmt -> bindValue(':quantity_product', $quantity, PDO::PARAM_INT);
         $stmt -> bindValue(':fk_order', $id_order, PDO::PARAM_INT);
         $stmt -> bindValue(':fk_product', $product_id, PDO::PARAM_INT);
+        $stmt -> bindValue(':quantity_product', $quantity, PDO::PARAM_INT);
 
         $stmt -> execute();
 
-        if (!$stmt) {
+        if (!$stmt || $stmt->RowCount() == 0) {
             echo 'ERROR';
             exit;
         }
     }
 
     $query = "SELECT id_order, status_order, track_order, date_order, id_product, name_product, photo_product, description_product,
-                        price_product, type_product, products.deleted, eq3.order_products.quantity_product, id_adress, contact_adress,
-                        state_adress, district_adress 
-                    FROM eq3.orders 
-                        INNER JOIN eq3.order_products ON fk_order = id_order
-                        INNER JOIN eq3.products ON id_product = fk_product
-                        INNER JOIN eq3.adresses ON id_adress = fk_adress
-                    WHERE orders.fk_user = :id_session AND orders.id_order = :id_order";
+                    price_product, type_product, products.deleted, eq3.order_products.quantity_product, id_adress, contact_adress,
+                    state_adress, district_adress 
+                FROM eq3.orders 
+                    INNER JOIN eq3.order_products ON fk_order = id_order
+                    INNER JOIN eq3.products ON id_product = fk_product
+                    INNER JOIN eq3.adresses ON id_adress = fk_adress
+                WHERE orders.fk_user = :id_session AND orders.id_order = :id_order";
 
     $stmt = $conn->prepare($query);
     $stmt -> bindValue(':id_session', $_SESSION['idUser'], PDO::PARAM_INT);

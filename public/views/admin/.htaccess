@@ -1,8 +1,3 @@
 # Apache .file configuration to:
 # Make the files in the app folder not indexable
 Options -Indexes
-
-# Make all files inside APP folder appear as 404 and redirect people to our 404 page
-RewriteEngine On
-RewriteRule ^db/ - [L,R=404,NC]
-ErrorDocument 404 /canecart/404.php

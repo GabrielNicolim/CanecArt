@@ -18,6 +18,11 @@ if (empty($newpassword) || empty($confirmPassword) || empty($selector) || empty(
     exit;
 }
 
+if (validatePassword($newpassword)) {
+    header("Location: ../public/views/new-password.php?notice=weakpassword");
+    exit;
+}
+
 $query = 'SELECT token_pwdrequest, fk_email FROM eq3.pwdReset WHERE selector_pwdrequest = :selector';
 $stmt = $conn -> prepare($query);
 $stmt -> bindValue(':selector', $selector, PDO::PARAM_STR);

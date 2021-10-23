@@ -12,7 +12,8 @@
 
     $style_scripts = ['<script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>',
                     '<link rel="stylesheet" href="../css/style.css">',
-                    '<link rel="stylesheet" href="../css/form.css">'];
+                    '<link rel="stylesheet" href="../css/form.css">',
+                    '<script src="../../js/validatepassword.js"></script>'];
 
     require("../includes/head.php");
 
@@ -65,9 +66,10 @@
                     <input type="hidden" name="selector" value="<?=$selector?>">
                     <input type="hidden" name="token" value="<?=$validator?>">
 
-                    <label for="email">Nova senha:</label>
+                    <label for="password">Nova senha:</label>
                     <input type="password" name="newpassword" id="password" placeholder="Nova senha" maxlength="256" required>
-                    
+                    <span id="password_level"></span>
+
                     <label for="password">Confirmar nova senha:</label>
                     <input type="password" name="confirmpassword" id="password" placeholder="Confirmar senha" maxlength="256" required>
                     <div id="recover">Lembrou sua senha? <a href="login.php">Faça login</a></div>

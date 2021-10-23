@@ -36,9 +36,33 @@ footer .btn.active {
     overflow-wrap: break-word;
 }
 
+.notice {
+    font-size: 0.75em;
+    padding: 0.25em;
+    background-color: var(--light-blue);
+    color: var(--white);
+    border-radius: 50px;
+    text-align: center;
+}
+
 .btn.logout {
     position: absolute;
     bottom: 1em;
+}
+.btn.reset {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    background: var(--desaturated-blue);
+    padding: 10px;
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 20px;
+}
+.btn.reset:hover {
+    background: var(--danger);
+    transition: 150ms;
+    cursor: pointer;
 }
 /* End Home */
 

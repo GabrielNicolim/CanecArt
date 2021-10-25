@@ -34,7 +34,7 @@
                 }
             }
             ?>
-            <form action="../../app/registerLogic.php" method="POST">
+            <form action="../../app/registerLogic.php" method="POST" id="form-register">
                 <div class="top">
                     <h2>Cadastro</h2>
 

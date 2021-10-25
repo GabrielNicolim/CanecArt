@@ -124,3 +124,7 @@ form input[type="submit"] {
     margin-top: 1em;
     display: inline-block;
 }
+
+h1 { 
+    margin: 1em 0;
+}

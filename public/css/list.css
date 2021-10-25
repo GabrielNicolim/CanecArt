@@ -129,3 +129,15 @@
 }
 
 /* End Order */
+
+/* Product Code */
+
+.list-name span  {
+    display: block;
+}
+
+.list-name span + span {
+    opacity: .5;
+}
+
+/* End Product code */

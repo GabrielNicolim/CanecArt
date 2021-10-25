@@ -1,22 +1,38 @@
 // Criado por Sam.
 // Adaptado de https://pt.stackoverflow.com/questions/316987/validar-for%C3%A7a-da-senha-no-front-end
-document.addEventListener("DOMContentLoaded", function(){
 
-    document.forms[0].onsubmit = function(e){
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.forms[0].onsubmit = (e) => {
        return val(e);
     }
  
-    password.oninput = function(e){
+    password.oninput = (e) => {
        val(e);
     }
+
+    let cpfInput = window.document.getElementById('cpf'); 
+
+    cpfInput.addEventListener('input', (e) => {
+        e.target.value = cpfMask(e.target.value);
+    })
+
+    function cpfMask(value) {
+        return value
+        .replace(/\D/g, '')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+        .replace(/(-\d{2})\d+?$/, '$1')
+    }
+
+    function val(e) {
  
-    function val(e){
- 
-       var qtde = 0,
-           v = password.value,
-           cor = "#fff",
-           e = e.type == "submit";
-    
+        let qtde = 0;
+        let v = password.value;
+        
+        e = e.type == "submit"
+        
        // verifica se tem 6 caracteres ou mais
        if(v.match(/.{6,}/))
             qtde++;

@@ -88,12 +88,15 @@ window.addEventListener('load', () => {
             xhr.onload = (e) => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     if (xhr.responseText == 'Sucess') {
-                
                         document.getElementById("loading").src="../icons/check-circle-solid.svg";
+
                         setTimeout(function () {
                             window.location ="user.php?page=orders";
                         }, 700);
                         
+                    } else {
+                        window.document.getElementById('error-out').classList.remove('hidden');
+                        loading.classList.add('hidden');
                     }
                 }
             };

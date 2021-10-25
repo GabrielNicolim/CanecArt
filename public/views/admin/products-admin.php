@@ -87,7 +87,7 @@
             <!--Content of table-->
             <?php
 
-                $query = 'SELECT id_product, name_product, photo_product, price_product, type_product, quantity_product, deleted
+                $query = 'SELECT id_product, name_product, code_product, photo_product, price_product, type_product, quantity_product, deleted
                           FROM eq3.products
                           WHERE (LOWER(name_product) LIKE :nameproduct OR LOWER(description_product) LIKE :nameproduct) ';
 
@@ -147,7 +147,10 @@
                             <img class="image" src="../../images/';
                             if (empty($product['photo_product'])) echo 'missing-image.png'; else echo $product['photo_product'];
                             echo '" alt="Foto do produto">
-                            <div class="list-name">'.$product['name_product'].'</div>
+                            <div class="list-name">
+                                <span>'.$product['name_product'].'</span>
+                                <span>'.$product['code_product'].'</span>
+                            </div>
                             <div class="list-avalible">'.$product['quantity_product'].'</div>
                             <div class="list-type">'.$product['type_product'].'</div>
                             <div class="list-price">'.$product['price_product'].'</div>

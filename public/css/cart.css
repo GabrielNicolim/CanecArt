@@ -121,3 +121,17 @@
 .hidden {
     display: none;
 }
+
+#error-out.hidden {
+    opacity: 0;
+}
+
+#error-out {
+    opacity: .7;
+    background: var(--danger);
+    color: var(--white);
+    text-align: center;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 8px;
+}

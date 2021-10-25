@@ -39,7 +39,7 @@
             include("../includes/header.php");
 
         ?>
-        
+
         <h2>Carrinho</h2>
 
         <section id="car">
@@ -163,6 +163,10 @@
                     </div></a>
                     <a href="products.php"><div class="btn">Continuar Comprando</div></a>
                 </div>
+                
+                <div id="error-out" class="hidden">
+                    Você tem produtos que estão fora do estoque no seu carrinho
+                </div>  
             </div>
         </section>
 

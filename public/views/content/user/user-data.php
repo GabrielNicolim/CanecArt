@@ -8,9 +8,9 @@
 <div class="content">
     <h2>Dados do Usuário</h2>
     
-    <h1>Olá <?php echo $return['name_user'] ?>!</h1>
+    <h1>Olá <?=$return['name_user']?>!</h1>
 
-    <p>Você já realizou <?=$return['count']?> pedido(s), obrigado :D</p>
+    <p>Você já realizou <?=$return['count']?> pedido(s)<?php if($return['count'] > 1)echo ', obrigado :D' ?></p>
 
     <form>
         <label for="email-user">Meu Email</label>

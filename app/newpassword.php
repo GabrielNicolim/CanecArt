@@ -8,18 +8,18 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 require('db/connect.php');
 require('functions.php');
 
-$newpassword = filter_var($_POST['newpassword'], FILTER_SANITIZE_STRING);
-$confirmPassword = filter_var($_POST['confirmpassword'], FILTER_SANITIZE_STRING);
-$selector = filter_var($_POST['selector'], FILTER_SANITIZE_STRING);
-$token = filter_var($_POST['token'], FILTER_SANITIZE_STRING);
+$newpassword = sanitizeString($_POST['newpassword']);
+$confirmPassword = sanitizeString($_POST['confirmpassword']);
+$selector = sanitizeString($_POST['selector']);
+$token = sanitizeString($_POST['token']);
 
-if (empty($newpassword) || empty($confirmPassword) || empty($selector) || empty($token) || $newpassword !== $confirmPassword) {
-    header("Location: ../public/views/new-password.php?notice=invaliddata");
+if (empty($newpassword) || empty($confirmPassword) || empty($selector) || empty($token) || $newpassword != $confirmPassword) {
+    header("Location: ../public/views/new-password.php?selector=$selector&validator=$token&notice=invaliddata");
     exit;
 }
 
-if (validatePassword($newpassword)) {
-    header("Location: ../public/views/new-password.php?notice=weakpassword");
+if (!validatePassword($newpassword)) {
+    header("Location: ../public/views/new-password.php?selector=$selector&validator=$token&notice=weakpassword");
     exit;
 }
 

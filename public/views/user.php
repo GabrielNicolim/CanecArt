@@ -85,6 +85,5 @@
         ?>
     </div>
 
-    <!-- <a href="../../app/logout.php">Logout</a> -->
 </body>
 </html>

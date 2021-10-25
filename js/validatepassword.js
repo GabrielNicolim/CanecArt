@@ -13,17 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let cpfInput = window.document.getElementById('cpf'); 
 
-    cpfInput.addEventListener('input', (e) => {
-        e.target.value = cpfMask(e.target.value);
-    })
-
-    function cpfMask(value) {
-        return value
-        .replace(/\D/g, '')
-        .replace(/(\d{3})(\d)/, '$1.$2')
-        .replace(/(\d{3})(\d)/, '$1.$2')
-        .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-        .replace(/(-\d{2})\d+?$/, '$1')
+    if (cpfInput != null) {
+        cpfInput.addEventListener('input', (e) => {
+            e.target.value = cpfMask(e.target.value);
+        })
+    
+        function cpfMask(value) {
+            return value
+            .replace(/\D/g, '')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+            .replace(/(-\d{2})\d+?$/, '$1')
+        }
     }
 
     function val(e) {

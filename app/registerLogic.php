@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 require('db/connect.php');
 require('functions.php');
 
-$name_user = sanitizeString($_POST['name']);
+$name_user = sanitizeString(ucwords($_POST['name']));
 $cpf = sanitizeString($_POST['cpf']);
 $email = trim(filter_var($_POST['email']),FILTER_SANITIZE_EMAIL);
 $password = sanitizeString($_POST['password']);
@@ -32,7 +32,7 @@ try {
         throw new Exception('invalidname');
     }
     
-    if ($password !== $confirmPassword || strlen($password) > 256) {
+    if ($password !== $confirmPassword) {
         throw new Exception('differentpasswords');
     }
     
@@ -93,9 +93,6 @@ if ($stmt) {
 
     $_SESSION['isAuth'] = true;
     $_SESSION['idUser'] = $return['id_user'];
-
-    echo 'Logged in! ID ='.$_SESSION['idUser'].'<br>';
-    echo 'Logout: <a href="logout.php">Log out</a>';
 
     header("Location: ../public/views/user.php");
     exit;

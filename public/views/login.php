@@ -21,6 +21,9 @@
     <div class="container">
         <div class="content">
             <?php
+                if (isset($_GET['notice'])) {
+                    echo '<div class="success">Senha alterada com sucesso!</div>';
+                }
                 if (isset($_GET['error'])) {
                     switch ($_GET['error']) {
                         case 'invaliddata':

@@ -12,7 +12,7 @@ require('functions.php');
 
 $user_id = sanitizeString($_GET['delete']);
 $status = (bool)sanitizeString($_GET['status']);
-//var_dump($status); exit;
+
 if (empty($user_id) || !is_numeric($user_id) || !is_bool($status)) {
     header("Location: ../public/views/admin/products-admin.php?notice=error");
     exit;

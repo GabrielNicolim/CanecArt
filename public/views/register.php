@@ -34,7 +34,7 @@
                 }
             }
             ?>
-            <form action="../../app/registerLogic.php" method="POST" id="form-register">
+            <form action="../../app/registerLogic.php" method="POST" id="form-register" autocomplete="off">
                 <div class="top">
                     <h2>Cadastro</h2>
 

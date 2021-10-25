@@ -32,10 +32,18 @@
 
         <div class="right">
             <span>Bianca Oliveira de Camargo - 03</span>
-            <span>Felipe Lima Estevanatto - 06</span>
             <span>Carla Julia Franco de Toledo - 04</span>
+            <span>Felipe Lima Estevanatto - 06</span>
             <span>Gabriel Gomes Nicolim - 08</span>
             <span>Samuel Sensolo Goldflus - 32</span>
         </div>
     </div>
 </footer>
+
+<?php
+    if (isset($scripts)) {
+        foreach ($scripts as $script) {
+            echo '<script src="'.$script.'"></script>';
+        }
+    }
+?>

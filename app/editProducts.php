@@ -44,7 +44,7 @@ if ($_POST['operation'] == 'Atualizar dados') {
     
         $rename = 'ProductUpload'.date('Ymdhis').$product.".".$extension;
         $folder = str_replace("\\", '/',substr(__DIR__,0,-3))."public/images/";
-        echo $photo_name.$rename;
+        //echo $photo_name.$rename;
         if (file_exists('../public/images/'.$photo_name)) {
             if(!unlink('../public/images/'.$photo_name)){
                 echo "Something went wrong deleting the media";

@@ -15,8 +15,8 @@ $email = sanitizeString($_POST['email']);
 
 if (!empty($name) && !empty($email)) {
 
-    $sql = 'SELECT COUNT(*) FROM eq3.users WHERE email_user = :email_user AND id_user != :id_user';
-    $stmt = $conn -> prepare($sql);
+    $query = 'SELECT COUNT(*) FROM eq3.users WHERE email_user = :email_user AND id_user != :id_user';
+    $stmt = $conn -> prepare($query);
     $stmt -> execute([$email, $_SESSION['idUser']]);
     $emailcheck = $stmt -> fetch(PDO::FETCH_ASSOC);
 
@@ -25,10 +25,10 @@ if (!empty($name) && !empty($email)) {
         exit;
     }
 
-    $sql = 'UPDATE eq3.users SET name_user = :name_user, email_user = :email_user WHERE id_user = :id_user';
+    $query = 'UPDATE eq3.users SET name_user = :name_user, email_user = :email_user WHERE id_user = :id_user';
 
-    $stmt = $conn -> prepare($sql);
-    $stmt -> bindValue(':name_user', $name, PDO::PARAM_STR);
+    $stmt = $conn -> prepare($query);
+    $stmt -> bindValue(':name_user', ucwords($name), PDO::PARAM_STR);
     $stmt -> bindValue(':email_user', $email, PDO::PARAM_STR);
     $stmt -> bindValue(':id_user', $_SESSION['idUser'], PDO::PARAM_INT);
 

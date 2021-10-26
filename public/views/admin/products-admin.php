@@ -11,8 +11,7 @@
 
     $page_title = 'Produtos - Admin';
 
-    $style_scripts = ['<script src="../../../js/admin.js"></script>',
-                    '<link rel="stylesheet" href="../../css/admin.css">',
+    $style_scripts = ['<link rel="stylesheet" href="../../css/admin.css">',
                     '<link rel="stylesheet" href="../../css/list.css">'];
 
     require("../../includes/head.php");

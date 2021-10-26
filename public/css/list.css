@@ -2,11 +2,14 @@
 /* List */
 .list-info {
     display: flex;
+    
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background: var(--bright-blue);
     padding: 1em 1em 1em 1.85em;
+    /*
+    padding: 1em 1em 1em 5em;/* */
+    background: var(--bright-blue);
     color: var(--white);
     border-radius: 1em 1em 0 0;
     font-weight: 700;
@@ -61,8 +64,13 @@
 .list-type,
 .list-price,
 .list-interaction {
-    width: 300px;
+    width: 250px;
     text-align: center;
+}
+
+.list-type {
+    padding: 0 1em;
+    width: 600px;
 }
 
 .list-email {
@@ -83,7 +91,7 @@
 .no-order {
     border: 2px solid var(--dark-blue);
     border-radius: 1em;
-    font-weight: 700;
+    font-weight: 70;
     font-size: 1.2em;
     width: 80%;
     margin: 8em auto;

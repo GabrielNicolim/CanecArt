@@ -28,7 +28,6 @@ $user_data = $stmt -> fetch(PDO::FETCH_ASSOC);
 
 if ($stmt -> rowCount() > 0) {
     
-    //$random_tracker = bin2hex(random_bytes(6));
     $adress_backup = $user_data['cep_adress'] . ' - ' . $user_data['state_adress'] . ', ' . 
                      $user_data['city_adress'] . ', ' . $user_data['district_adress'] . ', ' . 
                      $user_data['street_adress'] . ', ' . $user_data['number_adress'] . ', ' .
@@ -41,7 +40,7 @@ if ($stmt -> rowCount() > 0) {
     $stmt -> bindValue(':contact', $user_data['contact_adress'], PDO::PARAM_STR);
     $stmt -> bindValue(':fk_user', $_SESSION['idUser'], PDO::PARAM_INT);
     $stmt -> bindValue(':fk_adress', $id_adress, PDO::PARAM_STR);
-    //$stmt -> bindValue(':track_order', $random_tracker, PDO::PARAM_STR);
+
     $stmt -> execute();
     $id_order = $conn -> lastInsertID();
 

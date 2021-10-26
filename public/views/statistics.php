@@ -37,6 +37,9 @@
         
             <div id="piechart" style="width: 100%px; height: 700px;"></div>
 
+            <h1>Produto mais vendido:<br></h1>
+            <h2><?=$data[0]['name_product']?></h2>
+            <img src="../images/<?=$data[0]['photo_product']?>">
         </section>
         <?php
             include("../includes/footer.php");
@@ -49,11 +52,12 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Produtos', '% de vendas'],
-          ['Bulbassauro', 11],
-          ['Attack on titan', 2],
-          ['Windows',  2],
-          ['Genérica', 2],
-          ['Jinxs',    7]
+          <?php 
+                foreach($data as $key => $value) {
+                    echo "['$value[name_product]', $value[sales] ]";
+                    if ($stmt -> rowCount() != $key) echo ',';
+                }  
+            ?>
         ]);
 
         var options = {

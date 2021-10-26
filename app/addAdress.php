@@ -19,8 +19,7 @@ $street = sanitizeString($_POST['street']);
 $district = sanitizeString($_POST['district']);
 $complement = sanitizeString($_POST['complement']);
 
-if (empty($contact_name) || empty($CEP) || empty($city) || empty($state) || empty($number) || empty($street) ||
-    empty($district)) {
+if (empty($contact_name) || empty($CEP) || empty($city) || empty($state) || empty($number) || empty($street) || empty($district)) {
     header("Location: ../public/views/user.php?page=adresses&error=1");
     exit;
 }
@@ -30,13 +29,13 @@ if (empty($complement)) {
 }
 
 $query = 'INSERT INTO eq3.adresses(contact_adress, state_adress, city_adress, street_adress, district_adress, cep_adress, number_adress, complement_adress, fk_user) 
-          VALUES(:contact, :state, :city, :street, :district, :cep, :number, :complement, :fk_user)';
+          VALUES(:contact, :state, :city, :street, :district, :cep, :number, :complement, :fk_user) ON CONFLICT DO NOTHING';
 
 $stmt = $conn -> prepare($query);
 
-$stmt -> bindValue(':contact', $contact_name, PDO::PARAM_STR);
+$stmt -> bindValue(':contact', ucwords($contact_name), PDO::PARAM_STR);
 $stmt -> bindValue(':state', $state, PDO::PARAM_STR);
-$stmt -> bindValue(':city', $city, PDO::PARAM_STR);
+$stmt -> bindValue(':city', ucwords($city), PDO::PARAM_STR);
 $stmt -> bindValue(':street', $street, PDO::PARAM_STR);
 $stmt -> bindValue(':district', $district, PDO::PARAM_STR);
 $stmt -> bindValue(':cep', $CEP, PDO::PARAM_STR);

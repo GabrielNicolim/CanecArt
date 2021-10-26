@@ -83,7 +83,7 @@ window.addEventListener('load', () => {
             
             var xhr = new XMLHttpRequest();
 
-            xhr.open("POST", "../../app/payment.php");
+            xhr.open("POST", "../../app/createOrder.php");
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = (e) => {
                 if (xhr.readyState === 4 && xhr.status === 200) {

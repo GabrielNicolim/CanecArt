@@ -1,0 +1,35 @@
+body {
+    background-color: #e40f0f;
+}
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ccc;
+    margin: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.row {
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.header {
+    background-color: #555;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+
+.cell {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.titleColor {
+    color: #fff;
+    font-weight: bold;
+}

@@ -6,10 +6,16 @@
     $icon_folder = '../images/logos/favicon.png';
 
     $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
-                    '<link rel="stylesheet" href="../css/statistics.css">'];
+                    '<link rel="stylesheet" href="../css/statistics.css">',
+                    '<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>'];
 
     require("../includes/head.php");
     require("../../app/db/env.php");
+    require ('../../app/getEcommerceData.php');
+
+    echo '<pre>';
+    //var_dump($data);
+    echo '</pre>';
 
 ?>
 
@@ -24,25 +30,42 @@
     </div>
 
     <div class="container">
-    
         <?php
-
             include("../includes/header.php");
-
         ?>
-
+            <a href="generatepdf.php">pdfteste</a>
+        
         <section>
-
-            <img src="https://www.encartale.com.br/smart/modulos/produto/imagens/grande/placa-atencao-em-obras_162-17.jpg" alt="Em obras">
+        
+            <div id="piechart" style="width: 100%px; height: 700px;"></div>
 
         </section>
-        
         <?php
-
             include("../includes/footer.php");
-
         ?>
     </div>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Produtos', '% de vendas'],
+          ['Bulbassauro', 11],
+          ['Attack on titan', 2],
+          ['Windows',  2],
+          ['Genérica', 2],
+          ['Jinxs',    7]
+        ]);
+
+        var options = {
+          title: 'Produtos mais vendidos'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 </body>
 </html>

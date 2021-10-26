@@ -41,7 +41,7 @@
                     <a href="home-admin.php" class="btn">Home</a>
                     <a href="products-admin.php" class="btn active">Produtos</a>
                     <a href="peoples-admin.php" class="btn">Pessoas</a>
-                    <a href="#Estatics-admin" class="btn">Estatísticas</a>
+                    <a href="../statistics.php" class="btn">Estatísticas</a>
                 </nav> 
             </div> 
         </header>

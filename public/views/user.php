@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    require("../../app/db/connect.php");
 
     if (!isset($_SESSION['isAuth']) && is_int($_SESSION['idUser']) ) {
         header("Location: login.php");
@@ -8,17 +9,14 @@
     }
 
     $page_title = 'Meu perfil';
-    $icon_folder = '../images/logos/favicon.png';
 
     $style_scripts = ['<script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>',
-                    '<link rel="stylesheet" href="../css/style.css">',
                     '<link rel="stylesheet" href="../css/adresses.css">',
                     '<link rel="stylesheet" href="../css/user.css">',
                     '<link rel="stylesheet" href="../css/list.css">'];
                     
-
     require("../includes/head.php");
-    require("../../app/db/connect.php");
+    
 
     $query = "SELECT *, (SELECT COUNT(*) FROM eq3.orders WHERE fk_user = :id_session) FROM eq3.users WHERE id_user = :id_session";
     $stmt = $conn -> prepare($query);

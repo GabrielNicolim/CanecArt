@@ -12,7 +12,6 @@ require('functions.php');
 
 $product_id = sanitizeString($_GET['delete']);
 
-//var_dump($status); exit;
 if (empty($product_id) || !is_numeric($product_id)) {
     header("Location: ../public/views/admin/products-admin.php?notice=error");
     exit;

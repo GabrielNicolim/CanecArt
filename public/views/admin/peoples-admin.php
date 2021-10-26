@@ -1,6 +1,8 @@
 <?php
 
     session_start();
+    require("../../../app/db/connect.php");
+    require("../../../app/functions.php");
 
     if (!isset($_SESSION['isAuth']) && $_SESSION['idUser'] != -1) {
         header("Location: ../login.php");
@@ -8,15 +10,11 @@
     }
 
     $page_title = 'Pessoas - Admin';
-    $icon_folder = '../../images/logos/favicon.png';
 
-    $style_scripts = ['<link rel="stylesheet" href="../../css/style.css">',
-                    '<link rel="stylesheet" href="../../css/list.css">',
+    $style_scripts = ['<link rel="stylesheet" href="../../css/list.css">',
                     '<link rel="stylesheet" href="../../css/admin.css">'];
 
     require("../../includes/head.php");
-    require("../../../app/db/connect.php");
-    require("../../../app/functions.php");
 
 ?>
     <div class="container">

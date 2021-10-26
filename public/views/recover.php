@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    require_once("../../app/db/env.php");
 
     if (isset($_SESSION['idUser'])) {
         header('Location: products.php');
@@ -8,10 +9,8 @@
     }
 
     $page_title = 'Login';
-    $icon_folder = '../images/logos/favicon.png';
 
     $style_scripts = ['<script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>',
-                    '<link rel="stylesheet" href="../css/style.css">',
                     '<link rel="stylesheet" href="../css/form.css">'];
 
     require("../includes/head.php");

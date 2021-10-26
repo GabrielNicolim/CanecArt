@@ -1,6 +1,8 @@
 <?php
 
     session_start();
+    require("../../app/db/connect.php");
+    require("../../app/functions.php");
 
     if (!isset($_SESSION['idUser'])) {
         header('Location: login.php');
@@ -8,18 +10,14 @@
     }
 
     $page_title = 'Carrinho';
-    $icon_folder = '../images/logos/favicon.png';
 
-    $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
-                    '<link rel="stylesheet" href="../css/cart.css">',
+    $style_scripts = ['<link rel="stylesheet" href="../css/cart.css">',
                     '<link rel="stylesheet" href="../css/adresses.css">',
                     '<link rel="stylesheet" href="../css/list.css">',
                     '<script src="../../js/cart.js"></script>'];
 
     require("../includes/head.php");
-    require("../../app/db/connect.php");
-    require("../../app/functions.php");
-
+    
 ?>
     
     <div class="shop-car">
@@ -107,9 +105,6 @@
                 </section>
     
                 <?php
-                    echo '<h2>Escolher endereço</h2>
-                    <div class="adresses">';
-
                     $query = "SELECT * FROM eq3.adresses WHERE fk_user = :session_id AND deleted = false";
 
                     $stmt = $conn -> prepare($query);
@@ -118,6 +113,9 @@
                     $stmt -> execute();
 
                     $result = $stmt -> fetchALL(PDO::FETCH_ASSOC);
+
+                    echo '<h2>Escolher endereço</h2>
+                    <div class="adresses">';
 
                     if ($stmt -> rowCount() == 0)
                         echo '<div class="adress_box"><h1>Nenhum endereço cadastrado no momento</h1>
@@ -175,9 +173,7 @@
         </div>
         
         <?php
-
             include("../includes/footer.php");
-
         ?>
     </div>
 </body>

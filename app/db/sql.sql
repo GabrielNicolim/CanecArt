@@ -6,7 +6,7 @@
     Samuel Sensolo Goldflus - 32
 */
 
-/* =-=-=-=-= Data Última Atualização 25/10/2021 =-=-=-=-= */
+/* =-=-=-=-= Data Última Atualização 26/10/2021 =-=-=-=-= */
 
 DROP SCHEMA IF EXISTS eq3 CASCADE;
 CREATE SCHEMA IF NOT EXISTS eq3;
@@ -33,7 +33,7 @@ CREATE TABLE eq3.adresses (
     district_adress TEXT NOT NULL,
     cep_adress CHAR(10) NOT NULL,
     number_adress INT NOT NULL,
-    complement_adress TEXT,
+    complement_adress TEXT DEFAULT NULL,
     deleted BOOLEAN DEFAULT FALSE,
 
     fk_user BIGINT NOT NULL,
@@ -143,12 +143,13 @@ VALUES
 /* ============= ENDEREÇOS ============================================================================================= */
 INSERT INTO eq3.adresses(contact_adress, state_adress, city_adress, street_adress, district_adress, cep_adress, number_adress, complement_adress, fk_user) 
 VALUES
-/* Endereço Jorge */
-('Jorge da Silva', 'SP', 'Bauru', 'Rua Pedrinho de Liberato', 'Bela vista', '17040560', '28', 'Quadra 5', '1'),
+/* Endereços Jorge*/
+('Jorge Vieira', 'SP', 'Bauru', 'Rua Carminho da bica', 'Centro', '17050-753', '42', 'Quadra 7', '1'),
+('Jorge da Silva', 'SP', 'Bauru', 'Rua Pedrinho de Liberato', 'Bela vista', '17040-560', '28', 'Quadra 5', '1'),
 /* Endereço Pedro */
-('Pedro Malboro', 'PA', 'Santarém', 'Avenida Maicá', 'Santana', '68010390', '11', 'Quadra 9', '2'),
+('Pedro de Melo', 'PA', 'Santarém', 'Avenida Maicá', 'Santana', '68010-390', '11', 'Quadra 9', '2'),
 /* Endereço João */
-('João Paulo', 'AL', 'Maceió', 'Rua Ricardo Cesar de Melo', 'Pinheiro', '57055670', '76', 'Quadra 2', '3');
+('João Paulo', 'AL', 'Maceió', 'Rua Ricardo Cesar de Melo', 'Pinheiro', '57055-670', '76', 'Quadra 2', '3');
 
 /* ============= PRODUTOS ============================================================================================= */
 INSERT INTO eq3.products(code_product, name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
@@ -189,10 +190,10 @@ Caneca Branca, 325ml', 40.00, 'R2D2 Star_Wars 325ml Branca', 40, 10, 58.69, 18, 
 /*Pedidos base e produtos dos pedidos*/
 INSERT INTO eq3.orders(backup_adress_order, contact_order, date_order, fk_user, fk_adress)
 VALUES 
-('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '25/10/2021',  1, 1),
-('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '25/10/2021',  1, 1),
-('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '23/10/2021',  2, 1),
-('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '26/10/2021',  3, 1);
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '10/25/2021',  1, 1),
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '10/25/2021',  1, 1),
+('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '10/23/2021',  2, 1),
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '10/26/2021',  3, 1);
 
 INSERT INTO eq3.order_products(quantity_product, fk_order, fk_product)
 VALUES 

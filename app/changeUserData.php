@@ -10,8 +10,6 @@ if (!isset($_SESSION['isAuth']) || $_SERVER['REQUEST_METHOD'] != 'POST') {
 require('db/connect.php');
 require('functions.php');
 
-var_dump($_POST);
-
 $name = sanitizeString($_POST['name']);
 $email = sanitizeString($_POST['email']);
 

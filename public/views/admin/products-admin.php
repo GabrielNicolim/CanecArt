@@ -1,6 +1,8 @@
 <?php
 
     session_start();
+    require("../../../app/db/connect.php");
+    require("../../../app/functions.php");
 
     if (!isset($_SESSION['isAuth']) && $_SESSION['idUser'] != -1) {
         header("Location: ../login.php");
@@ -8,16 +10,12 @@
     }
 
     $page_title = 'Produtos - Admin';
-    $icon_folder = '../../images/logos/favicon.png';
 
     $style_scripts = ['<script src="../../../js/admin.js"></script>',
-                    '<link rel="stylesheet" href="../../css/style.css">',
                     '<link rel="stylesheet" href="../../css/admin.css">',
                     '<link rel="stylesheet" href="../../css/list.css">'];
 
     require("../../includes/head.php");
-    require("../../../app/db/connect.php");
-    require("../../../app/functions.php");
 
     $query = 'SELECT DISTINCT type_product FROM eq3.products';
 

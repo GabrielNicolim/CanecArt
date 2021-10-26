@@ -14,12 +14,12 @@ $product_id = intval(sanitizeString($_POST['id_product']));
 
 if ($_POST['operation'] == 'Atualizar dados') {
 
-    $product = filter_var($_POST['name_product'], FILTER_SANITIZE_STRING);
-    $description = filter_var($_POST['description_product'], FILTER_SANITIZE_STRING);
+    $product = sanitizeString($_POST['name_product']);
+    $description = sanitizeString($_POST['description_product']);
     $price = (float)sanitizeString($_POST['price_product']);
     $type = filter_var($_POST['type_product'], FILTER_SANITIZE_STRING);
     $quantity = intval(filter_var($_POST['quantity_product'], FILTER_SANITIZE_NUMBER_INT));
-    $photo_name = filter_var($_POST['photo_name'], FILTER_SANITIZE_STRING) ?? null;
+    $photo_name = sanitizeString($_POST['photo_name']) ?? null;
 
     if (empty($product) || empty($description) || empty($price) || empty($type) || !is_numeric($quantity)
         || $price < 0 || $quantity < 0) {

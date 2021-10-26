@@ -7,8 +7,8 @@
 
     <title><?=$page_title?></title>
 
-    <link rel="shortcut icon" href="<?=$icon_folder?>" type="image/x-icon">
-
+    <link rel="shortcut icon" href="<?=URLROOT?>/public/images/logos/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="<?=URLROOT?>/public/css/style.css">
     <?php
         foreach ($style_scripts as $files) {
             echo $files;

@@ -1,16 +1,14 @@
 <?php
     session_start();
+    require("../../app/db/connect.php");
+    require("../../app/functions.php");
 
     $page_title = 'Produtos';
-    $icon_folder = '../images/logos/favicon.png';
 
-    $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
-                    '<link rel="stylesheet" href="../css/product-page.css">',
+    $style_scripts = ['<link rel="stylesheet" href="../css/product-page.css">',
                     '<script src="../../js/products.js"></script>'];
 
     require("../includes/head.php");
-    require("../../app/functions.php");
-    require("../../app/db/connect.php");
 
     if (!isset($_GET['id'])) {
         include('product-missing.php');

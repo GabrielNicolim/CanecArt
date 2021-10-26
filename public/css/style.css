@@ -9,6 +9,7 @@
     --dark-blue: #1F2F56;
     --white: #FFF;  
     --danger: #DC2626;
+    --sucess: #00C851;
 }   
 
 * {
@@ -127,7 +128,6 @@ section.search form input[type="number"]::placeholder {
     max-width: 1500px;
     min-height: 1000px;
     margin: 0 auto;
-    
 }
 
 /* Header */

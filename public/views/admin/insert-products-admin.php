@@ -1,5 +1,7 @@
 <?php
+
     session_start();
+    require("../../../app/db/env.php");
 
     if (!isset($_SESSION['isAuth']) && $_SESSION['idUser'] != -1) {
         header("Location: ../login.php");
@@ -7,12 +9,10 @@
     }
 
     $page_title = 'Inserir produtos';
-    $icon_folder = '../../images/logos/favicon.png';
 
     $style_scripts = ['<script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>',
                     '<script src="../../../js/admin.js"></script>',         
-                    '<link rel="stylesheet" href="../../css/style.css">',
-                    '<link rel="stylesheet" href="../../css/form.css">'];
+                    '<link href="../../css/form.css">'];
 
     require("../../includes/head.php");
 

@@ -1,17 +1,15 @@
 <?php
     session_start();
-
-    $page_title = 'Produtos';
-    $icon_folder = '../images/logos/favicon.png';
-
-    $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
-                    '<link rel="stylesheet" href="../css/products.css">',
-                    '<script src="../../js/products.js"></script>'];
-
-    require("../includes/head.php");
     require("../../app/db/connect.php");
     require("../../app/functions.php");
 
+    $page_title = 'Produtos';
+
+    $style_scripts = ['<link rel="stylesheet" href="../css/products.css">',
+                    '<script src="../../js/products.js"></script>'];
+
+    require("../includes/head.php");
+    
     // Select all distinct type_products, convertir the string to an array with every space
     // then unnesting this array into a row per word.
     $query = "SELECT DISTINCT UNNEST(string_to_array(type_product,' ')) AS string FROM eq3.products";

@@ -1,16 +1,14 @@
 <?php
 
     session_start();
-
-    $page_title = 'Devs';
-    $icon_folder = '../images/logos/favicon.png';
-
-    $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
-                    '<link rel="stylesheet" href="../css/development.css">'];
-
-    require("../includes/head.php");
     require("../../app/db/env.php");
 
+    $page_title = 'Devs';
+
+    $style_scripts = ['<link rel="stylesheet" href="../css/development.css">'];
+
+    require("../includes/head.php");
+    
 ?>
 
     <div class="shop-car">

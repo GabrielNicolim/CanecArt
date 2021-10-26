@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    require("../../app/db/connect.php");
 
     if (isset($_SESSION['idUser'])) {
         header('Location: products.php');
@@ -8,14 +9,11 @@
     }
 
     $page_title = 'Nova senha';
-    $icon_folder = '../images/logos/favicon.png';
 
     $style_scripts = ['<script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>',
-                    '<link rel="stylesheet" href="../css/style.css">',
                     '<link rel="stylesheet" href="../css/form.css">',
                     '<script src="../../js/validatepassword.js"></script>'];
 
-    require("../../app/db/connect.php");
     require("../includes/head.php");
 
     $selector = filter_var($_GET['selector'],FILTER_SANITIZE_STRING);

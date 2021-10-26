@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    require("../../../app/db/connect.php");
 
     if (!isset($_SESSION['isAuth']) || $_SESSION['idUser'] != -1) {
         header("Location: ../login.php");
@@ -8,14 +9,11 @@
     }
 
     $page_title = 'Home - Admin';
-    $icon_folder = '../../images/logos/favicon.png';
 
-    $style_scripts = ['<link rel="stylesheet" href="../../css/style.css">',
-                    '<link rel="stylesheet" href="../../css/admin.css">'];
+    $style_scripts = ['<link rel="stylesheet" href="../../css/admin.css">'];
 
     require("../../includes/head.php");
-    require("../../../app/db/connect.php");
-
+    
     $query = 'SELECT COUNT(id_user) AS users, (SELECT COUNT(*) FROM eq3.products) AS products, 
             (SELECT COUNT(id_order) FROM eq3.orders) AS sells
             FROM eq3.users';

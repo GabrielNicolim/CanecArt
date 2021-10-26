@@ -1,15 +1,14 @@
 <?php
 
     session_start();
+    require("app/db/env.php");
 
     $page_title = 'CanecArte - Home';
-    $icon_folder = 'public/images/logos/favicon.png';
 
-    $style_scripts = ['<link rel="stylesheet" href="public/css/style.css">',
-                    '<link rel="stylesheet" href="public/css/home.css">'];
+    $style_scripts = ['<link rel="stylesheet" href="public/css/home.css">'];
 
     require("public/includes/head.php");
-    require("app/db/env.php")
+    
 ?>
 
     <div class="shop-car">

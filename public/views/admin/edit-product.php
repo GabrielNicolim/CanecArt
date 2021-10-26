@@ -1,6 +1,8 @@
 <?php
 
     session_start();
+    require("../../../app/db/connect.php");
+    require("../../../app/functions.php");
 
     if (!isset($_SESSION['isAuth']) && $_SESSION['idUser'] != -1) {
         header("Location: ../login.php");
@@ -8,24 +10,18 @@
     }
 
     $page_title = 'Editar produto - Admin';
-    $icon_folder = '../../images/logos/favicon.png';
 
     $style_scripts = ['<script src="https://kit.fontawesome.com/a39639353a.js" crossorigin="anonymous"></script>',
-                    '<link rel="stylesheet" href="../../css/style.css">',
                     '<script src="../../../js/admin.js"></script>',
                     '<link rel="stylesheet" href="../../css/admin.css">',
                     '<link rel="stylesheet" href="../../css/form.css">'];
 
     require("../../includes/head.php");
-    require("../../../app/db/connect.php");
-    require("../../../app/functions.php");
 
     $id_product = sanitizeString($_GET['product']);
 
     $query = "SELECT * FROM eq3.products WHERE id_product = :id_product";
-
     $stmt = $conn -> prepare($query);
-
     $stmt -> bindValue('id_product', $id_product, PDO::PARAM_INT);
 
     $return = $stmt -> execute();
@@ -33,7 +29,6 @@
     if (!$return || $stmt -> rowCount() == 0) {
         header("Location: home-admin.php?error=1");
         exit;
- 
     }
 
     $return = $stmt -> fetch(PDO::FETCH_ASSOC);

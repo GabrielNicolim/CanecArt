@@ -1,17 +1,15 @@
 <?php
 
     session_start();
+    require_once("../../app/db/env.php");
 
     $page_title = 'Estatísticas';
-    $icon_folder = '../images/logos/favicon.png';
 
-    $style_scripts = ['<link rel="stylesheet" href="../css/style.css">',
-                    '<link rel="stylesheet" href="../css/statistics.css">',
+    $style_scripts = ['<link rel="stylesheet" href="../css/statistics.css">',
                     '<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>'];
 
     require("../includes/head.php");
-    require("../../app/db/env.php");
-    require ('../../app/getEcommerceData.php');
+    require('../../app/getEcommerceData.php');
 
     echo '<pre>';
     //var_dump($data);

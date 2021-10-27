@@ -19,17 +19,23 @@ $dompdf->setPaper('A4', 'portrait');
 
 $html = '
 <div class="table">
-    <div class="row header">
-        <div class="cell titleColor">
-            <h1>Relatório de Vendas</h1>
-        </div>
-        <div class="cell titleColor">
-            <h1>Relatório de Vendas</h1>
-        </div>
-        <div class="cell titleColor">
-            <h1>Relatório de Vendas</h1>
-        </div>
-    </div>
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Contact</th>
+            <th>Country</th>
+        </tr>
+        <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+        </tr>
+        <tr>
+            <td>Centro comercial Moctezuma</td>
+            <td>Francisco Chang</td>
+            <td>Mexico</td>
+        </tr>
+    </table>
 </div>
 ';
 
@@ -41,10 +47,27 @@ $documentTemplate = '<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" href="'.$cssfile.'.css" rel="stylesheet" >
     <title>'.$titulo.'</title>
+
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        table {
+            border: 1px solid black; 
+            width: 100vw;
+        }
+
+        table th,
+        table td {
+            border: 1px solid black;
+            padding: 10px;   
+        }
+    </style>
 </head>
 <body>
 
-    <h1>'.$titulo.'</h1><br><br>
+    <h1>'.$titulo.'</h1>
     <div id="wrapper">
         '.$html.'
     </div>

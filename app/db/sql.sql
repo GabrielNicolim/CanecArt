@@ -8,6 +8,8 @@
 
 /* =-=-=-=-= Data Última Atualização 26/10/2021 =-=-=-=-= */
 
+SET datestyle = "ISO, DMY";
+
 DROP SCHEMA IF EXISTS eq3 CASCADE;
 CREATE SCHEMA IF NOT EXISTS eq3;
 
@@ -190,10 +192,10 @@ Caneca Branca, 325ml', 40.00, 'R2D2 Star_Wars 325ml Branca', 40, 10, 58.69, 18, 
 /*Pedidos base e produtos dos pedidos*/
 INSERT INTO eq3.orders(backup_adress_order, contact_order, date_order, fk_user, fk_adress)
 VALUES 
-('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '10/25/2021',  1, 1),
-('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '10/25/2021',  1, 1),
-('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '10/23/2021',  2, 1),
-('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '10/26/2021',  3, 1);
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '25/10/2021',  1, 1),
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '25/10/2021',  1, 1),
+('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '23/10/2021',  2, 1),
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '26/10/2021',  3, 1);
 
 INSERT INTO eq3.order_products(quantity_product, fk_order, fk_product)
 VALUES 

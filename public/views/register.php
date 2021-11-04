@@ -43,20 +43,20 @@
                     </a>
                 </div>
 
-                <label for="name">Nome</label>
+                <label for="name">Nome *</label>
                 <input type="text" name="name" id="name" placeholder="Seu nome" maxlength="256" required>
 
-                <label for="cpf">CPF</label>
+                <label for="cpf">CPF *</label>
                 <input type="text" name="cpf" id="cpf" placeholder="CPF" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" required>
 
-                <label for="email">Email</label>
+                <label for="email">Email *</label>
                 <input type="email" name="email" id="email" placeholder="Email" maxlength="256" required>
 
-                <label for="password">Senha</label>
+                <label for="password">Senha *</label>
                 <input type="password" name="password" id="password" placeholder="Senha" maxlength="256" required>
                 <span id="password_level"></span>
 
-                <label for="confirm-password">Confirmar Senha</label>
+                <label for="confirm-password">Confirmar Senha *</label>
                 <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirmar" maxlength="256" required>
             
                 <input type="submit" value="Cadastrar-se">

@@ -49,7 +49,7 @@ if (!empty($_FILES['photo_product']['name'])) {
 
 }
 
-$profit = ($price-$base_cost-($price*$icms)/100);
+$profit = round(($price-$base_cost)*(1 - ($icms/100)),2);
 
 $query = 'INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, 
           type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 

@@ -12,7 +12,7 @@ function updateprofit(){
     let base = Number(document.getElementById('base_cost_product').value);
     let span = document.getElementById('profit');
     if (value != '') {
-        let profit = Number(value-base-(value*icms/100));
+        let profit = Number(value-base) * (1 - icms/100);
         span.style.color = (profit > 0) ? 'Green' : 'Red';
         span.innerHTML = 'Lucro por unidade: R$ ' + parseFloat(profit).toFixed(2) + ' ou ' + parseFloat(profit/value*100).toFixed(2) +'% do valor final';
     } else {

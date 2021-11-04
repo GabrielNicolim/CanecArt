@@ -8,5 +8,30 @@ footer .btn[data-checked='statistics'] {
 }
 /* End Checked Buttons */
 
-section { text-align: center; padding: 10em 0; }
-section img {width: 40%; border-radius: 1em; }
+#graph { 
+    text-align: center;
+    padding: 1em 0;  
+    margin-bottom: 3em;
+}
+
+#graph * { 
+    overflow: hidden;
+}
+
+section img {
+    width: 40%; 
+    border-radius: 1em; 
+}
+
+#piechart {
+    width: 100%px; 
+    height: 700px;
+}
+
+#title-product {
+    margin: 1em 0;
+}
+
+#title-product + h2 {
+    margin-bottom: 1em;
+}

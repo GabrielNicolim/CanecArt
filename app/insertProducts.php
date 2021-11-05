@@ -26,7 +26,7 @@ if (empty($product) || empty($description) || empty($type) || empty($quantity) |
     exit;
 }
 
-$price = $base_cost + ($base_cost * (1 - $profit_margin / 100) * 0.82);
+$price = ($base_cost + ($base_cost * $profit_margin/100))/0.82;
 
 if (!empty($_FILES['photo_product']['name'])) {
 

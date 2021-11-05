@@ -19,16 +19,6 @@
     require('../../../app/getEcommerceData.php');
 ?>
 
-    <div class="shop-car">  
-        <a href="cart.php">
-            <img src="../../icons/shop-car.svg" alt="cart_icon">
-
-            <span>
-                <?php if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) echo count($_SESSION['cart']) ?>
-            </span>
-        </a>
-    </div>
-
     <div class="container">
         <!--Header-->
         <header id="top">
@@ -38,8 +28,7 @@
                 </a>
         
                 <nav>
-        
-                <a href="home-admin.php" class="btn">Home</a>
+                    <a href="home-admin.php" class="btn">Home</a>
                     <a href="products-admin.php" class="btn">Produtos</a>
                     <a href="peoples-admin.php" class="btn">Pessoas</a>
                     <a href="statistics.php" class="btn active">Estatísticas</a>

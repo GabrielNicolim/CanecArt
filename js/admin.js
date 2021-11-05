@@ -12,8 +12,7 @@ function updateValue(){
     let span = document.getElementById('profit');
 
     if (profit != '') {
-        // (custo + (custo * (1 - margem/100)) * (1 - icms/100)
-        let value = (Number(base) + (Number(base) * (1 - profit/100))) / 0.82
+        let value = (base + (base * profit/100))/0.82;
         span.style.color = (value > base) ? 'Green' : 'Red';
         span.innerHTML = 'Custo final por unidade: R$ ' + parseFloat(value).toFixed(2) + ' (com ICMS de 18%) ';// + parseFloat(profit/value*100).toFixed(2) +'% do valor final';
     } else {

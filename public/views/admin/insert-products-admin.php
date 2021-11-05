@@ -57,7 +57,7 @@
                 <input type="text" name="type_product" placeholder="Ex: Pokemon_GO Pikachu" id="type_product" required>
                 
                 <label for="quantity_product">Código Produto *</label>
-                <input type="text" maxlength="500" placeholder="Ex: 010.16.00001-1" name="code_product" id="code_product">
+                <input type="text" maxlength="14" placeholder="Ex: 010.16.00001-1" name="code_product" id="code_product">
 
                 <label for="quantity_product">Quantidade *</label>
                 <input type="text" value="0" name="quantity_product" id="quantity_product">

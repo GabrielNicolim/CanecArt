@@ -9,7 +9,7 @@ if (!isset($_SESSION['isAuth']) || $_SERVER['REQUEST_METHOD'] != 'POST') {
 
 $id_adress = (int)filter_var($_POST['adress'], FILTER_SANITIZE_NUMBER_INT);
 
-if (empty($id_adress) || !is_numeric($id_adress) || !isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) {
+if (empty($id_adress) || !is_numeric($id_adress) || !isset($_SESSION['cart']) || count($_SESSION['cart']) == 0 || $_SESSION['idUser'] < 0) {
     exit;
 }
 

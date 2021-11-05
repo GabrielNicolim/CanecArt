@@ -6,19 +6,48 @@ var loadFile = (event) => {
     }
 };
 
-function updateprofit(){
-    let value = Number(document.getElementById('price_product').value);
-    let icms = Number(document.getElementById('icms_product').value);
+function updateValue(){
+    let profit = Number(document.getElementById('profit_margin').value);
     let base = Number(document.getElementById('base_cost_product').value);
     let span = document.getElementById('profit');
-    if (value != '') {
-        let profit = Number(value-base) * (1 - icms/100);
-        span.style.color = (profit > 0) ? 'Green' : 'Red';
-        span.innerHTML = 'Lucro por unidade: R$ ' + parseFloat(profit).toFixed(2) + ' ou ' + parseFloat(profit/value*100).toFixed(2) +'% do valor final';
+
+    if (profit != '') {
+        // (custo + (custo * (1 - margem/100)) * (1 - icms/100)
+        let value = (Number(base) + (Number(base) * (1 - profit/100))) / 0.82
+        span.style.color = (value > base) ? 'Green' : 'Red';
+        span.innerHTML = 'Custo final por unidade: R$ ' + parseFloat(value).toFixed(2) + ' (com ICMS de 18%) ';// + parseFloat(profit/value*100).toFixed(2) +'% do valor final';
     } else {
-        span.innerHTML = 'Lucro por unidade: R$ 0,00 ou 0,00% do valor final';
+        span.innerHTML = 'Custo final por unidade: R$ 0,00 ou 0,00% do valor final';
     }
 }
-window.addEventListener('load', () => {
-    updateprofit()
-});
+
+function inputFilter(value) {
+    return /^\d*\.?\d*$/.test(value);
+};
+
+function isValid(e) {
+    if(!inputFilter(e.target.value)) {
+        let data = e.target.value.split(''); 
+        let str = '';
+
+        for(let i = 0; i < data.length - 1; i++) {
+            str += data[i];
+        }
+
+        e.target.value = str; 
+    }
+}
+
+window.addEventListener('load', () => {    
+    document.getElementById('base_cost_product').addEventListener('input', (e) => {
+        isValid(e);
+    })
+
+    document.getElementById('profit_margin').addEventListener('input', (e) => {
+        isValid(e);
+    })
+
+    document.getElementById('quantity_product').addEventListener('input', (e) => {
+        isValid(e);
+    })  
+})

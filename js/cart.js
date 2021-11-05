@@ -31,7 +31,11 @@ window.addEventListener('load', () => {
                 changePrice();
                 listIsEmpty();
                 ids[key].remove();
-                cart_icon.innerHTML = parseInt(cart_icon.innerHTML.match(/\d+/g).join('')) - 1;
+
+                if(cart_icon != null) {
+                    cart_icon.innerHTML = parseInt(cart_icon.innerHTML.match(/\d+/g).join('')) - 1;
+                }
+                
                 if (cart_icon.innerHTML.includes('0')) cart_icon.innerHTML = '';
             }
                     
@@ -41,7 +45,10 @@ window.addEventListener('load', () => {
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = (e) => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    //console.log('a')
+                    changePrice();
+                    listIsEmpty();
+                    cart_icon.innerHTML = parseInt(cart_icon.innerHTML) - 1;
+                    if (cart_icon.innerHTML == '0') cart_icon.innerHTML = '';
                 }
             };
             xhr.send('id_update='+ids[key].id + '&quantity='+quantity[key].value);

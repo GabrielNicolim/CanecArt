@@ -60,13 +60,14 @@
                 <textarea name="description_product" id="description_product" cols="30" rows="5" maxlength="512"><?=$return['description_product']?></textarea>
                 
                 <label for="base_cost_product">Custo base</label>
-                <input type="number" min="0" step="0.01" value="<?=$return['base_cost_product']?>" max="100" value="0" name="base_cost_product" id="base_cost_product" onkeyup="updateprofit()" required>
-
-                <label for="icms_product">ICMS %</label>
-                <input type="number" min="0" step="0.01" value="<?=$return['tax_product']?>" max="100" value="0" name="icms_product" id="icms_product" onkeyup="updateprofit()" required>
+                <input type="text" min="0" step="0.01" value="<?=$return['base_cost_product']?>" max="100" value="0" name="base_cost_product" id="base_cost_product" onkeyup="updateValue()" required>
 
                 <label for="price_product">Preço consumidor</label>
-                <input type="number" name="price_product" value="<?=$return['price_product']?>" min="0" step="0.01" pattern="^\d*(\.\d{0,2})?$" placeholder="Ex: 25,90" max="999999" id="price_product" onkeyup="updateprofit()" required>
+                <input type="text" name="price_product" value="<?=$return['price_product']?>" min="0" step="0.01" pattern="^\d*(\.\d{0,2})?$" placeholder="Ex: 25,90" max="999999" id="price_product" onkeyup="updateValue()" required>
+
+                <label for="price_product">Lucro desejado *</label>
+                // AEOOOOOOOOOOOOOO
+                <input type="text" value="<?= $return ?>"name="price_product" min="0" max="999" id="profit_margin" onkeyup="updateValue()" required>
 
                 <span id="profit">Lucro unidade: R$ 0,00 ou 0,00% do valor final</span>
 
@@ -74,7 +75,7 @@
                 <input type="text" name="type_product" value="<?=$return['type_product']?>" placeholder="Ex: Pokemon_GO Pikachu" id="type_product" required>
                 
                 <label for="quantity_product">Quantidade</label>
-                <input type="number" value="<?=$return['quantity_product']?>" min="0" step="1" max="500" value="0" name="quantity_product" id="quantity_product">
+                <input type="text" value="<?=$return['quantity_product']?>" min="0" step="1" max="500" value="0" name="quantity_product" id="quantity_product">
 
                 <input type="submit" name="operation" value="Atualizar dados">
             </form>

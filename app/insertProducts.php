@@ -10,19 +10,23 @@ if (!isset($_SESSION['isAuth']) || $_SESSION['idUser'] > 0 || $_SERVER['REQUEST_
 require('db/connect.php');
 require('functions.php');
 
-$product = sanitizeString($_POST['name_product']);
+$product = ucfirst(sanitizeString($_POST['name_product']));
 $description = sanitizeString($_POST['description_product']);
 $base_cost = filter_var($_POST['base_cost_product'], FILTER_SANITIZE_STRING);
-$icms_product = filter_var($_POST['icms_product'], FILTER_SANITIZE_STRING);
-$price = sanitizeString($_POST['price_product']);
+$profit_margin = sanitizeString($_POST['profit_margin']);
 $type = strtolower(sanitizeString($_POST['type_product']));
+$code_product = filter_var($_POST['code_product'], FILTER_SANITIZE_STRING);
 $quantity = filter_var($_POST['quantity_product'], FILTER_SANITIZE_NUMBER_INT);
 $photo = null;
 
-if (empty($product) || empty($description) || empty($price) || empty($type) || empty($quantity) || empty($base_cost) || empty($icms_product)) {
+if (empty($product) || empty($description) || empty($type) || empty($quantity) || empty($base_cost) || 
+    empty($code_product) || strlen($code_product) > 14) {
+
     header("Location: ../public/views/admin/insert-products-admin.php?notice=invaliddata");
     exit;
 }
+
+$price = $base_cost + ($base_cost * (1 - $profit_margin / 100) * 0.82);
 
 if (!empty($_FILES['photo_product']['name'])) {
 
@@ -49,23 +53,21 @@ if (!empty($_FILES['photo_product']['name'])) {
 
 }
 
-$profit = round(($price-$base_cost)*(1 - ($icms/100)),2);
-
-$query = 'INSERT INTO eq3.products(name_product, photo_product, description_product, price_product, 
-          type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
-          VALUES(:name_product, :photo_product, :description_product, :price_product, :type_product, 
-          :quantity_product, :base_cost_product, :profit_product, :tax_product, null) RETURNING id_product;';
+$query = 'INSERT INTO eq3.products(code_product, name_product, photo_product, description_product, price_product, 
+          type_product, quantity_product, base_cost_product, profit_margin, deleted_at) 
+          VALUES(:code_product, :name_product, :photo_product, :description_product, :price_product, :type_product, 
+          :quantity_product, :base_cost_product, :profit_margin, null) RETURNING id_product;';
 
 $stmt = $conn -> prepare($query);
 
+$stmt -> bindValue(':code_product', $code_product, PDO::PARAM_STR);
 $stmt -> bindValue(':name_product', $product, PDO::PARAM_STR);
 $stmt -> bindValue(':photo_product', $photo);
 $stmt -> bindValue(':description_product', $description, PDO::PARAM_STR);
 $stmt -> bindValue(':price_product', $price);
 $stmt -> bindValue(':type_product', $type, PDO::PARAM_STR);
 $stmt -> bindValue(':base_cost_product', $base_cost);
-$stmt -> bindValue(':profit_product', $profit);
-$stmt -> bindValue(':tax_product', $icms_product);
+$stmt -> bindValue(':profit_margin', $profit_margin);
 $stmt -> bindValue(':quantity_product', $quantity, PDO::PARAM_INT);
 
 $stmt -> execute();

@@ -13,7 +13,7 @@ SET datestyle = "ISO, DMY";
 DROP SCHEMA IF EXISTS eq3 CASCADE;
 CREATE SCHEMA IF NOT EXISTS eq3;
 
-DROP TABLE IF EXISTS eq3.pwdreset, eq3.order_products, eq3.orders, eq3.products, eq3.adresses, eq3.users CASCADE;
+--DROP TABLE IF EXISTS eq3.pwdreset, eq3.order_products, eq3.orders, eq3.products, eq3.adresses, eq3.users CASCADE;
 
 CREATE TABLE eq3.users (
     id_user SERIAL PRIMARY KEY,
@@ -49,12 +49,12 @@ CREATE TABLE eq3.products (
     name_product VARCHAR(128) NOT NULL,
     photo_product TEXT DEFAULT NULL,
     description_product VARCHAR(512) NOT NULL,
-    price_product DECIMAL(10, 2) NOT NULL,
     type_product VARCHAR(128) NOT NULL, 
     quantity_product INT NOT NULL CHECK (quantity_product >= 0),
+    price_product DECIMAL(10, 2) NOT NULL CHECK (quantity_product >= 0),
     base_cost_product NUMERIC(10,2) DEFAULT 0,
-    profit_product NUMERIC(10,2) DEFAULT 0,
-    tax_product DECIMAL(10,2),
+    profit_margin NUMERIC(10,2) DEFAULT 0,
+    tax_product DECIMAL(10, 2) DEFAULT 18.0,
     deleted BOOLEAN DEFAULT FALSE,
     deleted_at DATE DEFAULT CURRENT_DATE
 );
@@ -154,7 +154,7 @@ VALUES
 ('João Paulo', 'AL', 'Maceió', 'Rua Ricardo Cesar de Melo', 'Pinheiro', '57055-670', '76', 'Quadra 2', '3');
 
 /* ============= PRODUTOS ============================================================================================= */
-INSERT INTO eq3.products(code_product, name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_product, tax_product, deleted_at) 
+INSERT INTO eq3.products(code_product, name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_margin, tax_product, deleted_at) 
 VALUES
 /* Caneca Attack on titan */
 ('011.11.00003-1','Caneca Attack on Titan Tropas', 'card1-image.png', 'Caneca da Tropa de Exploração - Asas da Liberdade de Shingeki no Kyojin com as logos da

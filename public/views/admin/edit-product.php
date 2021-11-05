@@ -65,20 +65,26 @@
                 <label for="price_product">Preço consumidor</label>
                 <input type="text" name="price_product" value="<?=$return['price_product']?>" min="0" step="0.01" pattern="^\d*(\.\d{0,2})?$" placeholder="Ex: 25,90" max="999999" id="price_product" onkeyup="updateValue()" required>
 
-                <label for="price_product">Lucro desejado *</label>
-                // AEOOOOOOOOOOOOOO
-                <input type="text" value="<?= $return ?>"name="price_product" min="0" max="999" id="profit_margin" onkeyup="updateValue()" required>
+                <label for="price_product">Lucro desejado (%) *</label>
+                <input type="text" value="<?=$return['profit_margin']?>" name="profit_margin" min="0" max="999" id="profit_margin" onkeyup="updateValue()" required>
 
                 <span id="profit">Lucro unidade: R$ 0,00 ou 0,00% do valor final</span>
 
                 <label for="type_product">Tipo</label>
                 <input type="text" name="type_product" value="<?=$return['type_product']?>" placeholder="Ex: Pokemon_GO Pikachu" id="type_product" required>
                 
+                <label for="quantity_product">Código Produto *</label>
+                <input type="text" value="<?=$return['code_product']?>" maxlength="500" name="code_product" id="code_product">
+
+
                 <label for="quantity_product">Quantidade</label>
                 <input type="text" value="<?=$return['quantity_product']?>" min="0" step="1" max="500" value="0" name="quantity_product" id="quantity_product">
 
                 <input type="submit" name="operation" value="Atualizar dados">
             </form>
+            <script>
+                updateValue();
+            </script>
         </div>
     </div>
 </body>

@@ -32,9 +32,8 @@ window.addEventListener('load', () => {
                 listIsEmpty();
                 ids[key].remove();
 
-                if(cart_icon != null) {
-                    cart_icon.innerHTML = parseInt(cart_icon.innerHTML.match(/\d+/g).join('')) - 1;
-                }
+                cart_icon.innerHTML = parseInt(cart_icon.innerHTML) - 1;
+                if (cart_icon.innerHTML == '0') cart_icon.innerHTML = '';
                 
                 if (cart_icon.innerHTML.includes('0')) cart_icon.innerHTML = '';
             }
@@ -46,9 +45,6 @@ window.addEventListener('load', () => {
             xhr.onload = (e) => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     changePrice();
-                    listIsEmpty();
-                    cart_icon.innerHTML = parseInt(cart_icon.innerHTML) - 1;
-                    if (cart_icon.innerHTML == '0') cart_icon.innerHTML = '';
                 }
             };
             xhr.send('id_update='+ids[key].id + '&quantity='+quantity[key].value);
@@ -78,7 +74,6 @@ window.addEventListener('load', () => {
     })
     // Sending the cart to payment
     btnSend.addEventListener('click', () => {
-
         let check = window.document.querySelectorAll('.list-item .list-name')[0].innerHTML
 
         if (check.includes('Nenhum produto no carrinho.')) {

@@ -51,11 +51,14 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Produtos', '% de vendas'],
-          <?php 
-                foreach($data as $key => $value) {
-                    echo "['$value[name_product]', $value[sales] ]";
-                    if ($stmt -> rowCount() != $key) echo ',';
-                }  
+            <?php
+                // check if $data array is empty
+                if(!empty($data)) {
+                    foreach($data as $key => $value) {
+                        echo "['$value[name_product]', $value[sales] ]";
+                        if ($stmt -> rowCount() != $key) echo ',';
+                    }
+                } 
             ?>
         ]);
 

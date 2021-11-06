@@ -14,8 +14,8 @@ $stmt = $conn -> prepare($query);
 
 $stmt -> execute();
 
-// // fetch data from the database
-// $data = $stmt -> fetchAll();
+// fetch data from the database
+$data = $stmt -> fetchAll();
 
 // // Select all the orders by the most sold products**
 // $query = "SELECT id_product, name_product, SUM(eq3.order_products.quantity_product) AS sales, photo_product,

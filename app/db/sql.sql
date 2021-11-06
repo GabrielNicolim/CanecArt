@@ -77,6 +77,7 @@ CREATE TABLE eq3.orders (
 CREATE TABLE eq3.order_products (
     id_order_product SERIAL PRIMARY KEY,
     quantity_product INT NOT NULL DEFAULT 1,
+    price_backup INT NOT NULL DEFAULT 0,
 
     fk_order INT NOT NULL,
     FOREIGN KEY (fk_order) REFERENCES eq3.orders (id_order),
@@ -154,39 +155,39 @@ VALUES
 ('João Paulo', 'AL', 'Maceió', 'Rua Ricardo Cesar de Melo', 'Pinheiro', '57055-670', '76', 'Quadra 2', '3');
 
 /* ============= PRODUTOS ============================================================================================= */
-INSERT INTO eq3.products(code_product, name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_margin, tax_product, deleted_at) 
+INSERT INTO eq3.products(code_product, name_product, photo_product, description_product, price_product, type_product, quantity_product, base_cost_product, profit_margin, deleted_at) 
 VALUES
 /* Caneca Attack on titan */
 ('011.11.00003-1','Caneca Attack on Titan Tropas', 'card1-image.png', 'Caneca da Tropa de Exploração - Asas da Liberdade de Shingeki no Kyojin com as logos da
-Tropa de Exploração, Polícia Militar e Tropa Estacionária. Branca, 325ml', 35.70, 'Attack_on_Titan 325ml Branca Exploração', 55, 10, 59.73, 18, null),	   
+Tropa de Exploração, Polícia Militar e Tropa Estacionária. Branca, 325ml', 33.50, 'Attack_on_Titan 325ml Branca Exploração', 55, 19.50, 40, null),	   
 /* Caneca Bulbassaurica */
 ('010.16.00001-1', 'Caneca Bulbassauro Pokemon', 'card2-image.jpg', 'Caneca do Bulbassauro - Pokemon. Com cabo verde e muito bonito, recomendo de verdade. 
-Branca, 325ml', 40.0, 'Bulbassauro Pokemon 325ml Branca', 38, 10, 61.96, 18, null),	   
+Branca, 325ml', 37.50, 'Bulbassauro Pokemon 325ml Branca', 38, 22, 40, null),	   
 /* Caneca Goku */
 ('011.12.00006-1', 'Caneca Dragon Ball Goku', 'card3-image.jpg', 'Caneca do Goku de Dragon Ball Z, ou conhecido como: neto adotivo de Vovô Gohan, filho de 
 Bardock e Gine, o irmão mais novo de Raditz, o marido de Chichi, pai de Gohan e Goten, avô de Pan e mais tarde tataravô de Goku Jr.
-Branca, 325ml', 41.50, 'Goku Dragon_Ball_Z 325ml Laranja', 25, 10, 57.00, 18, null),
+Branca, 325ml', 40.00, 'Goku Dragon_Ball_Z 325ml Laranja', 25, 23.50, 40, null),
 /* Caneca Zelda Térmica */
 ('010.11.00007-1', 'Caneca Mágica Legend of Zelda Icons', 'card4-image.jpg', 'Caneca preta do Link - Legend of Zelda com os icones da saga que aparecem
-quando a caneca é exposta ao calor. Branca, 325ml', 37.70, 'Legend_of_Zelda 325ml Térmica', 20, 10, 58.69, 18,  null),
+quando a caneca é exposta ao calor. Branca, 325ml', 35.00, 'Legend_of_Zelda 325ml Térmica', 20, 28.70, 40, null),
 /* Caneca Jinx */
 ('010.10.00002-1', 'Caneca League of Legends - Jinx', 'card5-image.jpg', 'Caneca League of Legend da Jinx, compre a caneca do seu main pra continuar
-perdendo PDL mas dessa vez muito bem hidratado! Caneca Branca, 325ml', 37.50, 'Jinx League_of_Legends 325ml Branca', 30, 10, 48.56, 18, null),
+perdendo PDL mas dessa vez muito bem hidratado! Caneca Branca, 325ml', 35.00, 'Jinx League_of_Legends 325ml Branca', 30, 20.50, 40, null),
 /* Caneca Genérico cafeina */
 ('012.10.00004-1', 'Caneca Genérico Cafenína', 'card6-image.jpg', 'Caneca "medicamento genérico", para ter uma representação da droga lícita mais 
-importante para a produtividade mundial no século XXI. Branca, 335ml', 45.00, 'Generico Cafeina 325ml Branca', 25, 10, 59.78, 18, null),
+importante para a produtividade mundial no século XXI. Branca, 335ml', 32.50, 'Generico Cafeina 325ml Branca', 25, 26.50, 40, null),
 /* Caneca Windows BSOD */
 ('012.14.00008-1', 'Caneca Windows Tela Azul', 'card7-image.jpg', 'Caneca Windows com a Blue Screen of Death do Windows 10, as vezes nunca se sabe
 exatamente o que invocou essa tela na sua frente, assim como não sabemos se alguem vai querer comprar uma comum causa de desespero.
-Caneca Branca, 325ml', 35.00, 'Windows BSOD 325ml Térmica', 25, 10, 48.56, 18, null),
+Caneca Branca, 325ml', 40.00, 'Windows BSOD 325ml Térmica', 25, 23.50, 40, null),
 /* Caneca NASA */
 ('012.14.00009-1', 'Caneca NASA', 'card8-image.jpg', 'Uma caneca da NASA, olha que legal, a industria descobriu que se você vender produtos estampados
 como instituições governamentais americanas em produtos as pessoas compram, e você não precisa nem pagar direitos autorais, incrivel!
-Caneca Branca, 325ml', 35.70, 'NASA foguete 325ml Branca', 35, 10, 48.56, 18, null),
+Caneca Branca, 325ml', 33.50, 'NASA foguete 325ml Branca', 35, 19.50, 40, null),
 /* Caneca R2D2 */
 ('011.10.00005-1', 'Caneca R2D2', 'card9-image.jpg', 'Caneca Star Wars - R2D2 toda estampada, Star Wars é uma franquia muito legal, mas para chamar mais
 a atenção o marketing decidiu tirar a foto com o cabo na caneca no outro lado, deu certo?.
-Caneca Branca, 325ml', 40.00, 'R2D2 Star_Wars 325ml Branca', 40, 10, 58.69, 18, null);
+Caneca Branca, 325ml', 37.50, 'R2D2 Star_Wars 325ml Branca', 40, 22, 40, null);
 
 /*====================================================================================*/
 /*Pedidos base e produtos dos pedidos*/

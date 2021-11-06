@@ -17,7 +17,8 @@ require('db/connect.php');
 require('functions.php');
 
 $sql = 'SELECT *
-        FROM eq3.users INNER JOIN eq3.adresses on id_adress = :id_adress AND fk_user = :session_user
+        FROM eq3.users 
+        INNER JOIN eq3.adresses on id_adress = :id_adress AND fk_user = :session_user
         WHERE id_user = :session_user';
 $stmt = $conn -> prepare($sql);
 $stmt -> bindValue(':id_adress', $id_adress, PDO::PARAM_STR);
@@ -48,8 +49,9 @@ if ($stmt -> rowCount() > 0) {
 
         // Will activate the update_stock() function that verifies the amount to X in stock
         // and if there is not enough, it will return false and the order will not be registered
-        $sql = 'INSERT INTO eq3.order_products(fk_order, fk_product, quantity_product) 
-                VALUES(:fk_order, :fk_product, :quantity_product) ON CONFLICT DO NOTHING';
+        $sql = 'INSERT INTO eq3.order_products(fk_order, fk_product, quantity_product, price_backup) 
+                VALUES(:fk_order, :fk_product, :quantity_product, 
+                (SELECT price_product FROM eq3.products WHERE id_product = :fk_product) ) ON CONFLICT DO NOTHING';
 
         $stmt = $conn -> prepare($sql);
         $stmt -> bindValue(':fk_order', $id_order, PDO::PARAM_INT);

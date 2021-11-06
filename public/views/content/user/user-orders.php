@@ -19,7 +19,7 @@
                     FROM eq3.orders 
                         INNER JOIN eq3.order_products ON fk_order = id_order
                         INNER JOIN eq3.products ON id_product = fk_product
-                    WHERE orders.fk_user = :id_session ORDER BY date_order";
+                    WHERE orders.fk_user = :id_session ORDER BY id_order DESC";
 
             $stmt = $conn->prepare($query);
             $stmt -> bindValue(':id_session', $_SESSION['idUser'], PDO::PARAM_INT);

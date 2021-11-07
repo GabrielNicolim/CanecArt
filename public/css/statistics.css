@@ -23,8 +23,8 @@ section img {
     border-radius: 1em; 
 }
 
-#piechart {
-    width: 100%px; 
+.google_graphs {
+    width: 100%; 
     height: 700px;
 }
 

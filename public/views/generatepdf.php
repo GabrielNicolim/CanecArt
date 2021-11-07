@@ -1,14 +1,29 @@
 <?php
 // requires the autoload, data and reference the Dompdf namespace
 require ('../../vendor/autoload.php');
+require ('../../app/db/connect.php');
+
 use Dompdf\Dompdf;
+
+// set locale to portuguese
+setlocale(LC_ALL, 'ptb');
+
+// select all first 15 products ordered by sales
+$query = 'SELECT id_product, name_product, SUM(eq3.order_products.quantity_product) AS sales, photo_product,
+            price_product, base_cost_product, profit_margin, type_product
+            FROM eq3.orders 
+            INNER JOIN eq3.order_products ON fk_order = id_order
+            INNER JOIN eq3.products ON id_product = fk_product
+            WHERE products.deleted = FALSE GROUP BY products.id_product ORDER BY sales DESC';
+$stmt = $conn -> prepare($query);
+$result = $stmt->execute();
+$products_data = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
 // instantiate and use the dompdf class
 $dompdf = new Dompdf();
 
 $titulo = 'Relatório de vendas';
-$cssfile = '../css/pdfstyle';
-@include($cssfile);
+$cssfile = 'pdfstyle.css';
 
 //Setup the paper size and orientation
 $options = $dompdf->getOptions();
@@ -21,20 +36,23 @@ $html = '
 <div class="table">
     <table>
         <tr>
-            <th>Company</th>
-            <th>Contact</th>
-            <th>Country</th>
-        </tr>
-        <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-        </tr>
-        <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-        </tr>
+            <th>Produto</th>
+            <th>Lucro por unidade (R$)</th>
+            <th>Preço final</th>
+            <th>Numero de Vendas</th>
+        </tr>';
+        // Loop through the data and build the table profit_margin
+        
+        foreach ($products_data as $row) { 
+            $profit = ($row['price_product']*0.82) - $row['base_cost_product'];
+            $html .= '<tr>
+                <td>'.$row['name_product'].'</td>
+                <td>R$ '.$profit.'</td>
+                <td>R$ '.$row['price_product'].'</td>
+                <td>'.$row['sales'].'</td>
+            </tr>';
+        }
+        $html .= '
     </table>
 </div>
 ';
@@ -45,28 +63,12 @@ $documentTemplate = '<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="text/css" href="'.$cssfile.'.css" rel="stylesheet" >
+    <style>'.file_get_contents(URLROOT.'/public/css/'.$cssfile).'</style>
     <title>'.$titulo.'</title>
-
-    <style>
-        * {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        
-        table {
-            border: 1px solid black; 
-            width: 100vw;
-        }
-
-        table th,
-        table td {
-            border: 1px solid black;
-            padding: 10px;   
-        }
-    </style>
 </head>
 <body>
-
+    <span id="header">Dados de: '.sprintf("%02d", getdate()['hours']).':'.sprintf("%02d", getdate()['minutes']).':'.sprintf("%02d", getdate()['seconds']).' - '
+    .sprintf("%02d", getdate()['mday']).'/'.sprintf("%02d", getdate()['mon']).'/'.sprintf("%02d", getdate()['year']).'</span>
     <h1>'.$titulo.'</h1>
     <div id="wrapper">
         '.$html.'
@@ -74,6 +76,8 @@ $documentTemplate = '<!DOCTYPE html>
 
 </body>
 </html>';
+
+//echo $documentTemplate; exit;
 
 $dompdf->loadHtml($documentTemplate);
 // Render the HTML as PDF

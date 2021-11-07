@@ -169,7 +169,7 @@ Bardock e Gine, o irmão mais novo de Raditz, o marido de Chichi, pai de Gohan e
 Branca, 325ml', 40.00, 'Goku Dragon_Ball_Z 325ml Laranja', 25, 23.50, 40, null),
 /* Caneca Zelda Térmica */
 ('010.11.00007-1', 'Caneca Mágica Legend of Zelda Icons', 'card4-image.jpg', 'Caneca preta do Link - Legend of Zelda com os icones da saga que aparecem
-quando a caneca é exposta ao calor. Branca, 325ml', 35.00, 'Legend_of_Zelda 325ml Térmica', 20, 28.70, 40, null),
+quando a caneca é exposta ao calor. Branca, 325ml', 35.00, 'Legend_of_Zelda 325ml Térmica', 20, 20.50, 40, null),
 /* Caneca Jinx */
 ('010.10.00002-1', 'Caneca League of Legends - Jinx', 'card5-image.jpg', 'Caneca League of Legend da Jinx, compre a caneca do seu main pra continuar
 perdendo PDL mas dessa vez muito bem hidratado! Caneca Branca, 325ml', 35.00, 'Jinx League_of_Legends 325ml Branca', 30, 20.50, 40, null),

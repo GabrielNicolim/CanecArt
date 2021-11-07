@@ -6,7 +6,7 @@
     Samuel Sensolo Goldflus - 32
 */
 
-/* =-=-=-=-= Data Última Atualização 26/10/2021 =-=-=-=-= */
+/* =-=-=-=-= Data Última Atualização 07/11/2021 =-=-=-=-= */
 
 SET datestyle = "ISO, DMY";
 

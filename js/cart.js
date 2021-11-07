@@ -91,14 +91,16 @@ window.addEventListener('load', () => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     if (xhr.responseText == 'Sucess') {
                         document.getElementById("loading").src="../icons/check-circle-solid.svg";
-
                         setTimeout(function () {
                             window.location ="user.php?page=orders";
                         }, 700);
                         
-                    } else {
+                    } else if (xhr.responseText == 'ERROR') {
+                        document.getElementById("loading").src="../icons/exclamation-circle-solid.svg";
                         window.document.getElementById('error-out').classList.remove('hidden');
-                        loading.classList.add('hidden');
+                        setTimeout(function () {
+                            loading.classList.add('hidden');
+                        }, 1200); 
                     }
                 }
             };
@@ -110,7 +112,7 @@ window.addEventListener('load', () => {
         }
 
     })
-
+    // functions to change the price and cart view
     let totalPrice = window.document.querySelector('#total-price');
     let listPrice = window.document.querySelectorAll('.list-price');
     let listEmpty = window.document.querySelector('#empty');

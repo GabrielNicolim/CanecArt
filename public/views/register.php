@@ -23,6 +23,9 @@
                     case 'CPFregistered':
                         echo '<div class="error">CPF já cadastrado. <a href="recover.php">Esqueceu a senha?</a></div>';
                         break;
+                    case 'invalidpassword':
+                        echo '<div class="error">Senhas diferentes ou muito fracas!</div>';
+                        break;
                     case 'datamissing':
                     case 'invalidemail':
                     case 'invalidCPF':

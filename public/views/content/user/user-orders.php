@@ -12,8 +12,6 @@
         <!--Content of table-->
         <?php
 
-            require("../../app/db/connect.php");
-
             $query = "SELECT id_order, status_order, backup_adress_order, contact_order,track_order, date_order, id_product, name_product, 
                         photo_product, description_product, price_product, type_product, products.deleted, eq3.order_products.quantity_product
                     FROM eq3.orders 
@@ -57,11 +55,9 @@
                 foreach ($return as $key=>$product) {
                     // Means it's the first product of an order
                     if ($id_order != $product['id_order']) {
-                        $myDateTime = DateTime::createFromFormat('Y-m-d', $product['date_order']);
-
                         echo '<div class="list-item order-header" id="'.$product['id_order'].'">
-                                <div class="list-id">Pedido: #'.$product['id_order'].'<br>'.$myDateTime->format('d/m/Y').'</div>
-                                <div class="list-name"></div>
+                                <div class="list-id">Pedido: #'.$product['id_order'].'<br>'.translateDate($product['date_order']).'</div>
+                                <div class="list-name">'; if($product['status_order'] == "AGUARDANDO PAGAMENTO") echo '<button id="'.$product['id_order'].'">Pagar agora</button>'; echo '</div>
                                 <div class="list-quantity">Total:<br>'.$order_quantity[$product['id_order']].'</div>
                                 <div class="list-price">Total:<br>R$ '.$order_values[$product['id_order']].'</div>
                                 <div class="list-type">';
@@ -96,4 +92,5 @@
         ?> 
         
     </section>
+    <script src="../../js/orders.js"></script>
 </div>

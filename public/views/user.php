@@ -2,6 +2,7 @@
 
     session_start();
     require("../../app/db/connect.php");
+    require("../../app/functions.php");
 
     if (!isset($_SESSION['isAuth']) && is_int($_SESSION['idUser']) ) {
         header("Location: login.php");

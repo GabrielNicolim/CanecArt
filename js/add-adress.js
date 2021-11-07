@@ -1,3 +1,18 @@
+let cepInput = window.document.getElementById('CEP'); 
+
+if (cepInput != null) {
+    cepInput.addEventListener('input', (e) => {
+        e.target.value = cpfMask(e.target.value);
+    })
+
+    function cpfMask(value) {
+        return value
+        .replace(/\D/g, '')
+        .replace(/(\d{5})(\d)/, '$1-$2')
+        .replace(/(-\d{3})\d+?$/, '$1')
+    }
+}
+
 // Coutersy of: https://viacep.com.br/exemplo/javascript/
 
 function my_callback(conteudo) {

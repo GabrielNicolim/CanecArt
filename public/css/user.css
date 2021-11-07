@@ -39,7 +39,7 @@ footer .btn.primary {
 }
 
 .app .content {
-    width: 100%;
+    width: 80%;
     margin: 2em auto 8em auto;
     color: var(--dark-blue);
     
@@ -127,4 +127,16 @@ form input[type="submit"] {
 
 h1 { 
     margin: 1em 0;
+}
+
+.list-name button {
+    background: var(--bright-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-top: 1em;
 }

@@ -8,6 +8,12 @@ function generateFakePassword() {
     return password_hash(random_bytes(128), PASSWORD_BCRYPT);
 }
 
+// functions to translate m-d-y to d-m-y
+function translateDate($date) {
+    $date = explode('-', $date);
+    return $date[2] . '/' . $date[1] . '/' . $date[0];
+}
+
 function validateCPF($cpf) {
 
     // Verify if it now has a correct lenght and check 

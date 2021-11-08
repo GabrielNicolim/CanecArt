@@ -117,7 +117,7 @@ if ($stmt -> rowCount() > 0) {
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->CharSet = 'UTF-8';
-        $mail->Subject = "CanecArt - O peido #".$id_order." está aguardado pagamento";
+        $mail->Subject = "CanecArt - O pedido #".$id_order." está aguardado seu pagamento";
         $mail->Body    = '<!DOCTYPE html>
         <html lang="pt-br">
             <head>
@@ -270,7 +270,7 @@ if ($stmt -> rowCount() > 0) {
             </div>
             </body>
         </html>";
-        $mail->AltBody = 'Olá $user_data[name_user], nós recebemos sua ordem de compra da sua conta em nosso site, agora só falta fazer o pagamento para os
+        $mail->AltBody = 'Olá '.$user_data['name_user'].', nós recebemos sua ordem de compra da sua conta em nosso site, agora só falta fazer o pagamento para os
         produtos abaixos:<br>
         O HTML do seu provedo de email está desativado então visite o site para ver os produtos da sua ordem!<br>
         O boleto ficará disponível por até 3 dias após o envio desse email para pagamento

@@ -70,8 +70,8 @@ CREATE TABLE eq3.orders (
     fk_user BIGINT NOT NULL,
     FOREIGN KEY (fk_user) REFERENCES eq3.users (id_user),
 
-    fk_adress BIGINT NOT NULL,
-    FOREIGN KEY (fk_adress) REFERENCES eq3.adresses (id_adress)
+    fk_adress BIGINT NOT NULL
+    --FOREIGN KEY (fk_adress) REFERENCES eq3.adresses (id_adress)
 );
 
 CREATE TABLE eq3.order_products (
@@ -119,7 +119,6 @@ RETURNS trigger as $log$
             DELETE FROM eq3.orders WHERE id_order = new.fk_order;
             RETURN NULL;
         END IF;
-
         
 	END IF;
 
@@ -193,14 +192,74 @@ Caneca Branca, 325ml', 37.50, 'R2D2 Star_Wars 325ml Branca', 40, 22, 40, null);
 /*Pedidos base e produtos dos pedidos*/
 INSERT INTO eq3.orders(backup_adress_order, contact_order, date_order, fk_user, fk_adress)
 VALUES 
-('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '25/10/2021',  1, 1),
-('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '25/10/2021',  1, 1),
+-- Order 1 to 10 from client 1
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '01/10/2021',  1, 1),
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '02/10/2021',  1, 1),
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '08/10/2021',  1, 1),
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '09/10/2021',  1, 1),
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '15/10/2021',  1, 1),
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '16/10/2021',  1, 1),
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '22/10/2021',  1, 1),
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '23/10/2021',  1, 1),
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '29/10/2021',  1, 1),
+('17050-753 - SP, Bauru, Centro, Rua Carminho da bica, Numero 42 - Quadra 7', 'Jorge Vieira', '30/10/2021',  1, 1),
+-- Order 12 to 20 from client 2
+('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '01/10/2021',  2, 1),
+('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '02/10/2021',  2, 1),
+('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '08/10/2021',  2, 1),
+('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '09/10/2021',  2, 1),
+('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '15/10/2021',  2, 1),
+('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '16/10/2021',  2, 1),
+('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '22/10/2021',  2, 1),
 ('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '23/10/2021',  2, 1),
-('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '26/10/2021',  3, 1);
+('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '29/10/2021',  2, 1),
+('17030-310 - SP, Bauru, Vila Cardia Monlevade, Rua Dr. José Raniere, Numero 4 - Quadra 12', 'Pedro Golden', '30/10/2021',  2, 1),
+-- Order 21 to 30 from client 3
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '01/10/2021',  3, 1),
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '02/10/2021',  3, 1),
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '08/10/2021',  3, 1),
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '09/10/2021',  3, 1),
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '15/10/2021',  3, 1),
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '16/10/2021',  3, 1),
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '22/10/2021',  3, 1),
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '23/10/2021',  3, 1),
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '29/10/2021',  3, 1),
+('17010-753 - SP, Bauru, Guarajá, Rua Pedro de Melo, numero 09 - Quadra 12', 'Maria da Clara', '30/10/2021',  3, 1);
 
-INSERT INTO eq3.order_products(quantity_product, fk_order, fk_product)
-VALUES 
-(1, 1, 1), (2, 1, 4), (1,1,7), 
-(5, 2, 2), (1 ,2 ,5),
-(1, 3, 4),
-(2, 4, 4), (1, 4, 9);
+INSERT INTO eq3.order_products(fk_order, quantity_product, fk_product)
+VALUES
+-- Order 1 to 10 from client 1
+(1, 3, 2), (1, 3, 9), (1, 4, 4), (1, 1, 4), (1, 1, 5), (1, 2, 8), --order 1
+(2, 2, 2), (2 ,2 ,9), (2 ,2 ,6), (2 ,3 ,1), (2 ,2 ,5), (2 ,2 ,7), (2 ,1 ,8),-- order 2
+(3, 1, 2), (3, 1, 4), (3, 1, 4),-- order 3
+(4, 2, 2), (4, 2, 9), (4, 1, 6), (4, 1, 4), (4, 1, 8), -- order 4
+(5, 1, 2), (5, 2, 9), (5, 1, 4), (5, 1, 8), -- order 5
+(6, 3, 2), (6, 1, 9), (6, 1, 3), -- order 6
+(7, 2, 2), (7, 1, 9), (7, 3, 2), (7, 2, 8), -- order 7
+(8, 1, 2), (8, 1, 9), (8, 1, 4), (8, 1, 8), -- order 8
+(9, 1, 2), (9, 1, 6), (9, 1, 3), (9, 1, 5), -- order 9
+(10, 1, 6), (10, 1, 3), (10, 2, 5), (10, 1, 8), -- order 10
+
+-- Order 11 to 20 from client 2
+(11, 2, 2), (11, 2, 9), (11, 1, 6), (11, 3, 1), (11, 1, 5), (11, 3, 8),-- order 11
+(12, 1, 2), (12, 1, 9), (12, 2, 1), (12, 1, 4), (12, 1, 5), (12, 3, 7), (12, 1, 8),-- order 12
+(13, 3, 2), (13, 1, 9), (14, 3, 3),-- order 13
+(14, 2, 2), (14, 1, 3), (14, 1, 4), (14, 1, 5), (14, 2, 8),-- order 14
+(15, 3, 2), (15, 1, 9), (15, 1, 6), (15, 2, 4), (15, 1, 8),-- order 15
+(16, 1, 2), (16, 2, 9), -- order 16
+(17, 1, 2), (17, 1, 9), (17, 1, 6), (17, 1, 3), (17, 1, 7), (17, 1, 8),-- order 17
+(18, 1, 2), (18, 1, 6), (18, 1, 4), -- order 18
+(19, 2, 9), (19, 2, 6), (19, 1, 3), (19, 1, 5),-- order 19
+(20, 2, 2), (20, 1, 6), (20, 1, 3), (20, 1, 8),-- order 20
+
+-- Order 21 to 30 from client 3
+(21, 5, 2), (21, 2, 9), (21, 1, 6), (21, 2, 1), (21, 1, 4), (21, 1, 5), (21, 2, 8),-- order 21
+(22, 1, 2), (22, 1, 9), (22, 2, 1), (22, 1, 5), (22, 1, 7), (22, 2, 8),-- order 22
+(23, 1, 2), (23, 1, 9), (23, 1, 3), -- order 23
+(24, 2, 2), (24, 1, 4), (24, 1, 8),-- order 24
+(25, 3, 2), (25, 2, 9), (25, 1, 6), (25, 1, 4), (25, 2, 5), (25, 1, 8),-- order 25
+(26, 2, 2), (26, 2, 7), -- order 26
+(27, 2, 2), (27, 1, 9), (27, 1, 3), (27, 1, 4), (27, 1, 7), (27, 1, 8),-- order 27
+(28, 1, 6), (28, 2, 3), (28, 2, 7),-- order 28
+(29, 2, 2), (29, 1, 9), (29, 1, 3), (29, 1, 5),-- order 29
+(30, 1, 2), (30, 1, 9), (30, 1, 6), (30, 2, 3), (30, 1, 5); -- order 30

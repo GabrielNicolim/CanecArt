@@ -10,7 +10,6 @@ footer .btn[data-checked='statistics'] {
 
 #graph { 
     text-align: center;
-    padding: 1em 0;  
     margin-bottom: 3em;
 }
 
@@ -34,4 +33,10 @@ section img {
 
 #title-product + h2 {
     margin-bottom: 1em;
+}
+
+#info-about-user {
+    padding: 1em;
+    font-size: 1.5em;
+    background: var(--white);
 }

@@ -32,6 +32,13 @@
                 </nav> 
             </div> 
         </header>
+
+        <div id="info-about-user">
+            <strong>Resumo: </strong> <br>
+            <?=$info['users']?> usuários cadastrados<br>
+            <?=$info['products']?> produtos cadastrados<br>
+            <?=$info['sells']?> vendas feitas<br>
+        </div>
         
         <section id="graph">
             <div class="google_graphs" id="piechart"></div>

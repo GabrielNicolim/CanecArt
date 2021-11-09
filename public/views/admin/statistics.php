@@ -18,6 +18,10 @@
     require("../../includes/head.php");
     require('../../../app/getEcommerceData.php');
     require('../../../app/functions.php');
+
+    $employe = 2303;
+    $bills = 495;
+
 ?>
 
     <div class="container">
@@ -39,6 +43,7 @@
             <?=$info['users']?> usuários cadastrados<br>
             <?=$info['products']?> produtos cadastrados<br>
             <?=$info['sells']?> vendas feitas<br>
+            <?=$info['solds']?> produtos vendidos<br>
         </div>
         
         <section id="graph">
@@ -46,10 +51,42 @@
             <div class="google_graphs" id="barchart"></div>
             <div class="google_graphs" id="linechart"></div>
 
-            <h1 id="title-product">Produto mais vendido:<br></h1>
-            <h2><?=$products_sold[0]['name_product']?></h2>
-            <a href="../product-page.php?id=<?=$products_sold[0]['id_product']?>"><img src="../../images/<?=$products_sold[0]['photo_product']?>"></a><br>
-            <a href="../generatepdf.php"><h1>Ver PDF de vendas</h1></a>
+            <div class="product_cost_data">
+                <div class="left">
+                    <h1 id="title-product">Produto mais vendido:<br></h1>
+                    <a href="../product-page.php?id=<?=$products_sold[0]['id_product']?>">
+                    <h2><?=$products_sold[0]['name_product']?></h2>
+                    <img src="../../images/<?=$products_sold[0]['photo_product']?>"></a>
+                </div>
+                <div class="right">
+                    <table>
+                        <tr>
+                            <th>Total produtos:</th>
+                            <th>Contas mensais fixas:</th>
+                            <th>Mão de obra:</th>
+                        </tr>
+                        <tr>
+                            <td>R$ <?=sprintf("%.2f",$profitData['spent'])?></td>
+                            <td>R$ <?=sprintf("%.2f",$bills)?></td>
+                            <td>R$ <?=sprintf("%.2f",$employe)?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Custos totais funcionamento:</td>
+                            <td>R$ <?=sprintf("%.2f",$profitData['spent']+$employe+$bills)?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Faturamento/Receita:</td>
+                            <td>R$ <?=sprintf("%.2f",$profitData['bills'])?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Lucro Liquido:</td>
+                            <td>R$ <?=sprintf("%.2f",$profitData['bills']-($profitData['spent']+$employe+$bills))?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <a href="generatepdf.php"><h1>Ver PDF de vendas</h1></a>
         </section>
     </div>
 

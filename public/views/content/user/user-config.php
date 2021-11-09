@@ -6,6 +6,16 @@
 </div>
 
 <div class="content">
+
+    <?php
+        if(isset($_GET['notice'])){
+            if ($_GET['notice'] == 'success')
+            echo '<div class="notice">Configurações atualizadas com sucesso!</div>';
+            else if ($_GET['notice'] == 'error')
+            echo '<div class="notice">Erro ao atualizar as configurações!</div>';
+        }
+    ?>
+
     <h2>Alterar Dados do Usuário</h2>  
 
     <form action="../../app/changeUserData.php" method="post">

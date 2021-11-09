@@ -34,13 +34,20 @@ if ($stmt -> rowCount() > 0) {
     } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'] ?? null;
     }
-    $ipDetails = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+
+    // Localweb desabilitou request file_get_contents 
+    // $ipDetails = json_decode(file_get_contents("http://ip-api.com/json/{$ip}/"));
 
     if ( $ip == '::1') {
-        $ipDetails->ip = 'Localhost';
-        $ipDetails->city = '';
-        $ipDetails->region = '';
-        $ipDetails->country = '';
+        $ip = 'Localhost';
+        $city = '';
+        $region = '';
+        $country = '';
+    } else {
+        $ipDetails->ip = $ip;
+        $ipDetails->city = $city;
+        $ipDetails->region = $region;
+        $ipDetails->country = $country;
     }
 
     $name_user = $return['name_user'];
@@ -56,10 +63,10 @@ if ($stmt -> rowCount() > 0) {
              VALUES(:ip, :city, :region, :country, :selector, :token, :expires, :fk_email)';
     $stmt = $conn -> prepare($query);
 
-    $stmt -> bindValue(':ip', $ipDetails->ip, PDO::PARAM_STR);
-    $stmt -> bindValue(':city', $ipDetails->city, PDO::PARAM_STR);
-    $stmt -> bindValue(':region', $ipDetails->region, PDO::PARAM_STR);
-    $stmt -> bindValue(':country', $ipDetails->country, PDO::PARAM_STR);
+    $stmt -> bindValue(':ip', $ip, PDO::PARAM_STR);
+    $stmt -> bindValue(':city', $city, PDO::PARAM_STR);
+    $stmt -> bindValue(':region', $region, PDO::PARAM_STR);
+    $stmt -> bindValue(':country', $country, PDO::PARAM_STR);
     $stmt -> bindValue(':selector', $selector, PDO::PARAM_STR);
     $stmt -> bindValue(':token', $hashedToken, PDO::PARAM_STR);
     $stmt -> bindValue(':expires', $expires);

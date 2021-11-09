@@ -174,7 +174,7 @@ quando a caneca é exposta ao calor. Branca, 325ml', 35.00, 'Legend_of_Zelda 325
 perdendo PDL mas dessa vez muito bem hidratado! Caneca Branca, 325ml', 35.00, 'Jinx League_of_Legends 325ml Branca', 100, 20.50, 40, null),
 /* Caneca Genérico cafeina */
 ('012.10.00004-1', 'Caneca Genérico Cafenína', 'card6-image.jpg', 'Caneca "medicamento genérico", para ter uma representação da droga lícita mais 
-importante para a produtividade mundial no século XXI. Branca, 335ml', 32.50, 'Generico Cafeina 325ml Branca', 100, 26.50, 40, null),
+importante para a produtividade mundial no século XXI. Branca, 335ml', 32.50, 'Generico Cafeina 325ml Branca', 100, 19.00, 40, null),
 /* Caneca Windows BSOD */
 ('012.14.00008-1', 'Caneca Windows Tela Azul', 'card7-image.jpg', 'Caneca Windows com a Blue Screen of Death do Windows 10, as vezes nunca se sabe
 exatamente o que invocou essa tela na sua frente, assim como não sabemos se alguem vai querer comprar uma comum causa de desespero.
@@ -186,7 +186,7 @@ Caneca Branca, 325ml', 33.50, 'NASA foguete 325ml Branca', 100, 19.50, 40, null)
 /* Caneca R2D2 */
 ('011.10.00005-1', 'Caneca R2D2', 'card9-image.jpg', 'Caneca Star Wars - R2D2 toda estampada, Star Wars é uma franquia muito legal, mas para chamar mais
 a atenção o marketing decidiu tirar a foto com o cabo na caneca no outro lado, deu certo?.
-Caneca Branca, 325ml', 37.50, 'R2D2 Star_Wars 325ml Branca', 100, 22, 40, null);
+Caneca Branca, 325ml', 37.50, 'R2D2 Star_Wars 325ml Branca', 100, 22.00, 40, null);
 
 /*====================================================================================*/
 /*Pedidos base e produtos dos pedidos*/

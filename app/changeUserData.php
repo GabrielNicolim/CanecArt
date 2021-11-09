@@ -35,7 +35,7 @@ if (!empty($name) && !empty($email)) {
     $stmt -> execute();
 
     if ($stmt -> rowCount() > 0) {
-        header("Location: ../public/views/user.php?page=config&notice=sucess");
+        header("Location: ../public/views/user.php?page=config&notice=success");
         exit;
     } else {
         header("Location: ../public/views/user.php?page=config&notice=error");

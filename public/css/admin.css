@@ -26,14 +26,45 @@ footer .btn.active {
     flex-wrap: wrap;
 }
 
-.panel .left {
+.product_cost_data {
+    font-size: 1em;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.panel .left, .product_cost_data .left {
     width: 50%;
     overflow-wrap: break-word;
 }
 
-.panel .right {
+.panel .right, .product_cost_data .left {
     width: 50%;
     overflow-wrap: break-word;
+}
+
+.product_cost_data .left img{
+    width: 90%;
+}
+
+/* align table in the center of div*/
+.product_cost_data .right{   
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.product_cost_data .right table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 4px solid black; 
+    width: 100%;
+    margin: auto;
+}
+
+.product_cost_data .right table th, table td {
+    border: 1px solid black;
+    padding: 10px;   
 }
 
 .notice {

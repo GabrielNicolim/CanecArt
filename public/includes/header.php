@@ -11,7 +11,8 @@
             <?php
                 if (isset($_SESSION['isAuth'])) {
                     if ($_SESSION['idUser'] < 0) {
-                        echo '<a href="'.URLROOT.'/public/views/admin/home-admin.php" data-checked="register" class="btn primary">Perfil</a>';
+                        echo '<a href="'.URLROOT.'/public/views/admin/statistics.php" data-checked="statistics" class="btn">Estatisticas</a>
+                        <a href="'.URLROOT.'/public/views/admin/home-admin.php" data-checked="register" class="btn primary">Perfil</a>';
                     } else {
                         echo '<a href="'.URLROOT.'/public/views/user.php" data-checked="register" class="btn primary">Perfil</a>';
                     }

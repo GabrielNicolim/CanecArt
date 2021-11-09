@@ -50,10 +50,10 @@ $mail_body = "
     <h1>Recuperação de senha</h1>
         <p class='texto'>
         Olá ".ucfirst($name_user).", nós recebemos uma requisição de recuperação de senha da sua conta no CanecArt de ";
-        if ($ipDetails->ip == 'Localhost'){
+        if ($ip == 'Localhost'){
             $mail_body .= "uma máquina local";
         } else {
-            $mail_body .= "uma máquina no ip ".$ipDetails->ip." (Localizado no: ".$ipDetails->country." - ".$ipDetails->region." - ".$ipDetails->city.")";
+            $mail_body .= "uma máquina com o ip ".$ipDetails->ip;
         }
         $mail_body .= ", se você não fez está requisição de recuperação de senha você pode só ignorar esse email.<br><br>
         Este link de autenticação será válido pela próxima 1 hora após esse email ser enviado.

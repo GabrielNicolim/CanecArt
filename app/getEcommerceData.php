@@ -3,7 +3,8 @@
 require('db/connect.php');
 
 $query = "SELECT COUNT(id_user) AS users, (SELECT COUNT(*) FROM eq3.products) AS products, 
-        (SELECT COUNT(id_order) FROM eq3.orders) AS sells
+        (SELECT COUNT(id_order) FROM eq3.orders) AS sells,
+        (SELECT SUM(quantity_product) FROM eq3.order_products) AS solds 
         FROM eq3.users";
 $stmt = $conn -> query($query);
 $stmt -> execute();
@@ -46,3 +47,13 @@ $stmt = $conn -> prepare($query);
 
 $stmt -> execute();
 $chartArea = $stmt -> fetchAll();
+
+// Select pricing and profit numbers**
+$query = "SELECT SUM(O.quantity_product*base_cost_product) AS spent, SUM(O.quantity_product*price_product) AS bills
+        FROM eq3.order_products O
+        INNER JOIN eq3.products ON fk_product = id_product";
+
+$stmt = $conn -> prepare($query);
+
+$stmt -> execute();
+$profitData = $stmt -> fetch();

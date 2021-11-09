@@ -17,6 +17,7 @@
 
     require("../../includes/head.php");
     require('../../../app/getEcommerceData.php');
+    require('../../../app/functions.php');
 ?>
 
     <div class="container">
@@ -36,6 +37,7 @@
         <section id="graph">
             <div class="google_graphs" id="piechart"></div>
             <div class="google_graphs" id="barchart"></div>
+            <div class="google_graphs" id="linechart"></div>
 
             <h1 id="title-product">Produto mais vendido:<br></h1>
             <h2><?=$products_sold[0]['name_product']?></h2>
@@ -52,11 +54,11 @@
         var data = google.visualization.arrayToDataTable([
           ['Produtos', '% de vendas'],
             <?php
-                // check if $data array is empty
+                // check if $products_sold array is empty
                 if(!empty($products_sold)) {
                     foreach($products_sold as $key => $value) {
+                        if ($key != 0 && $key != count($products_sold)) echo ',';
                         echo "['$value[name_product]', $value[sales] ]";
-                        if ($stmt -> rowCount() != $key) echo ',';
                     }
                 } 
             ?>
@@ -68,20 +70,38 @@
         // ======================================================================================
 
         data = google.visualization.arrayToDataTable([
-          ['Lucros', '% de vendas'],
+          ['Lucros', 'R$ por unidade'],
             <?php
                 // check if $data array is empty
                 if(!empty($data)) {
                     foreach($data as $key => $value) {
-                        echo "['$value[name_product]', $value[sales] ]";
-                        if ($stmt -> rowCount() != $key) echo ',';
+                        if ($key != 0 && $key != count($data)) echo ',';
+                        echo "['$value[name_product]', $value[absolute_profit] ]";
                     }
                 } 
             ?>
         ]);
 
         var chart = new google.visualization.ColumnChart(document.getElementById('barchart'));
-        chart.draw(data, {title: 'Produtos mais vendidos'});
+        chart.draw(data, {title: 'Lucro absoluto por produtos'});
+        
+        // ======================================================================================
+
+        data = google.visualization.arrayToDataTable([
+          ['', 'Produtos'],
+            <?php
+                // check if $chartArea array is empty
+                if(!empty($chartArea)) {
+                    foreach($chartArea as $key => $value) {
+                        if ($key != 0 && $key != count($chartArea)) echo ',';
+                        echo '[\''.translateDate($value['date_order'])."', $value[sum] ]";
+                    }
+                } 
+            ?>
+        ]);
+
+        var chart = new google.visualization.AreaChart(document.getElementById('linechart'));
+        chart.draw(data, {title: 'Produtos vendidos por dia no ultimo mês'});
       }
     </script>
 </body>

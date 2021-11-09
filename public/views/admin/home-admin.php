@@ -15,7 +15,8 @@
     require("../../includes/head.php");
     
     $query = 'SELECT COUNT(id_user) AS users, (SELECT COUNT(*) FROM eq3.products) AS products, 
-            (SELECT COUNT(id_order) FROM eq3.orders) AS sells
+            (SELECT COUNT(id_order) FROM eq3.orders) AS sells,
+            (SELECT SUM(quantity_product) FROM eq3.order_products) AS solds 
             FROM eq3.users';
     $stmt = $conn -> query($query);
     $stmt -> execute();
@@ -65,6 +66,7 @@
                     <?=$return['users']?> usuários cadastrados<br>
                     <?=$return['products']?> produtos cadastrados<br>
                     <?=$return['sells']?> vendas feitas<br>
+                    <?=$return['solds']?> produtos vendidos<br>
                 </div>
                 <div class="right">
                     Páginas de usuário:<br>

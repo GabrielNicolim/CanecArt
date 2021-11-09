@@ -161,7 +161,7 @@ VALUES
 Tropa de Exploração, Polícia Militar e Tropa Estacionária. Branca, 325ml', 33.50, 'Attack_on_Titan 325ml Branca Exploração', 100, 19.50, 40, null),	   
 /* Caneca Bulbassaurica */
 ('010.16.00001-1', 'Caneca Bulbassauro Pokemon', 'card2-image.jpg', 'Caneca do Bulbassauro - Pokemon. Com cabo verde e muito bonito, recomendo de verdade. 
-Branca, 325ml', 37.50, 'Bulbassauro Pokemon 325ml Branca', 150, 22, 40, null),	   
+Branca, 325ml', 37.50, 'Bulbassauro Pokemon 325ml Branca', 51, 22, 40, null),	   
 /* Caneca Goku */
 ('011.12.00006-1', 'Caneca Dragon Ball Goku', 'card3-image.jpg', 'Caneca do Goku de Dragon Ball Z, ou conhecido como: neto adotivo de Vovô Gohan, filho de 
 Bardock e Gine, o irmão mais novo de Raditz, o marido de Chichi, pai de Gohan e Goten, avô de Pan e mais tarde tataravô de Goku Jr.
@@ -229,13 +229,13 @@ VALUES
 INSERT INTO eq3.order_products(fk_order, quantity_product, fk_product)
 VALUES
 -- Order 1 to 10 from client 1
-(1, 3, 2), (1, 3, 9), (1, 4, 4), (1, 1, 4), (1, 1, 5), (1, 2, 8), --order 1
+(1, 3, 2), (1, 3, 9), (1, 4, 1), (1, 1, 4), (1, 1, 5), (1, 2, 8), --order 1
 (2, 2, 2), (2 ,2 ,9), (2 ,2 ,6), (2 ,3 ,1), (2 ,2 ,5), (2 ,2 ,7), (2 ,1 ,8),-- order 2
-(3, 1, 2), (3, 1, 4), (3, 1, 4),-- order 3
+(3, 1, 2), (3, 1, 9), (3, 1, 3),-- order 3
 (4, 2, 2), (4, 2, 9), (4, 1, 6), (4, 1, 4), (4, 1, 8), -- order 4
 (5, 1, 2), (5, 2, 9), (5, 1, 4), (5, 1, 8), -- order 5
-(6, 3, 2), (6, 1, 9), (6, 1, 3), -- order 6
-(7, 2, 2), (7, 1, 9), (7, 3, 2), (7, 2, 8), -- order 7
+(6, 3, 2), (6, 1, 9), (6, 1, 6), (6, 1, 3), -- order 6
+(7, 2, 2), (7, 1, 9), (7, 2, 3), (7, 2, 8), -- order 7
 (8, 1, 2), (8, 1, 9), (8, 1, 4), (8, 1, 8), -- order 8
 (9, 1, 2), (9, 1, 6), (9, 1, 3), (9, 1, 5), -- order 9
 (10, 1, 6), (10, 1, 3), (10, 2, 5), (10, 1, 8), -- order 10
@@ -243,7 +243,7 @@ VALUES
 -- Order 11 to 20 from client 2
 (11, 2, 2), (11, 2, 9), (11, 1, 6), (11, 3, 1), (11, 1, 5), (11, 3, 8),-- order 11
 (12, 1, 2), (12, 1, 9), (12, 2, 1), (12, 1, 4), (12, 1, 5), (12, 3, 7), (12, 1, 8),-- order 12
-(13, 3, 2), (13, 1, 9), (14, 3, 3),-- order 13
+(13, 3, 2), (13, 1, 9), (14, 1, 3),-- order 13
 (14, 2, 2), (14, 1, 3), (14, 1, 4), (14, 1, 5), (14, 2, 8),-- order 14
 (15, 3, 2), (15, 1, 9), (15, 1, 6), (15, 2, 4), (15, 1, 8),-- order 15
 (16, 1, 2), (16, 2, 9), -- order 16

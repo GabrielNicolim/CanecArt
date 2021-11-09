@@ -44,7 +44,7 @@ $html = '
         // Loop through the data and build the table profit_margin
         
         foreach ($products_data as $row) { 
-            $profit = ($row['price_product']*0.82) - $row['base_cost_product'];
+            $profit = $row['price_product'] - $row['base_cost_product'];
             $html .= '<tr>
                 <td>'.$row['name_product'].'</td>
                 <td>R$ '.$profit.'</td>

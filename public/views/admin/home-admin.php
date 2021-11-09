@@ -73,6 +73,9 @@
                     <a href="../products.php">- Página de produtos</a><br>
                     <a href="../../../index.php">- Página Home</a><br>
                 </div>
+                <div class="right">
+                    
+                </div>
             </div>
             
             <a class="btn logout" href="../../../app/logout.php">Logout</a>

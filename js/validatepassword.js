@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function val(e) {
- 
         let qtde = 0;
         let v = password.value;
         let tip = "";
@@ -62,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
  
        var validacao = 'Fraca';
        inp.classList.add('invalid');
+       inp.classList.remove('valid');
        switch (qtde)
        {
             case 2:

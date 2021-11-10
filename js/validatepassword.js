@@ -29,34 +29,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function val(e) {
- 
         let qtde = 0;
         let v = password.value;
+        let tip = "";
+        let out = document.getElementById('password_level');
+        let inp = document.getElementById('password');
+        e = e.type == "submit";
         
-        e = e.type == "submit"
-        
-       // verifica se tem 6 caracteres ou mais
-       if(v.match(/.{6,}/))
-            qtde++;
-
+            
        // verifica se tem ao menos uma letra maiúscula
-       if(v.match(/[A-Z]{1,}/))
-            qtde++;
- 
-       // verifica de tem ao menus um número
-       if(v.match(/[0-9]{1,}/))
-            qtde++; 
+       if(v.match(/[A-Z]{1,}/)) {
+        qtde++;
+       } else {
+        tip = "| Ao menos uma letra maiúscula";
+       }
+        
+       // verifica de tem ao menos um número
+       if(v.match(/[0-9]{1,}/)) {
+        qtde++; 
+        
+       } else {
+        tip = "| Ao menos um número";
+       }
+            
+       // verifica se tem 6 caracteres ou mais
+       if(v.match(/.{6,}/)) {
+        qtde++;
+       } else {
+        tip = "| Ao menos seis caracteres";
+       }
  
        var validacao = 'Fraca';
+       inp.classList.add('invalid');
+       inp.classList.remove('valid');
        switch (qtde)
        {
             case 2:
                 validacao = 'M\u00e9dia'; break;
             case 3:
-                validacao = 'Forte'; break;
+                validacao = 'Forte'; 
+                inp.classList.remove('invalid');
+                inp.classList.add('valid');
+                tip = ""; 
+                break;
        }
 
-       document.getElementById('password_level').innerHTML = "<strong>For\u00e7a:&nbsp;</strong>" + validacao;
+       out.innerHTML = "<strong>For\u00e7a:&nbsp;</strong>" + validacao + " " + tip;
     }
 });
 

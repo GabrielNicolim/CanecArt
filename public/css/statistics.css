@@ -20,6 +20,7 @@ footer .btn[data-checked='statistics'] {
 section img {
     width: 40%; 
     border-radius: 1em; 
+    padding: 1em 0;
 }
 
 .google_graphs {

@@ -125,3 +125,16 @@ body {
 #recover {
     margin-top: 5px;
 }
+
+#password_level {
+    margin-top: .5em;
+    display: block;
+}
+
+.invalid {
+    border: 2px solid var(--danger) !important;
+}
+
+.valid {
+    border: 2px solid var(--sucess) !important;
+}

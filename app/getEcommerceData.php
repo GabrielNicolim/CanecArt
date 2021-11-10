@@ -23,8 +23,8 @@ $stmt = $conn -> prepare($query);
 $stmt -> execute();
 $products_sold = $stmt -> fetchAll();
 
-// Select all the orders by the most sold products**
-$query = "SELECT (price_product - base_cost_product) AS absolute_profit,id_product, name_product, photo_product,
+// Get absolute profit from the sells and the info of the products**
+$query = "SELECT (price_product*0.72 - base_cost_product) AS absolute_profit,id_product, name_product, photo_product,
             price_product, base_cost_product, profit_margin, type_product
             FROM eq3.orders 
             INNER JOIN eq3.order_products ON fk_order = id_order

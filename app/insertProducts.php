@@ -19,8 +19,9 @@ $code_product = filter_var($_POST['code_product'], FILTER_SANITIZE_STRING);
 $quantity = filter_var($_POST['quantity_product'], FILTER_SANITIZE_NUMBER_INT);
 $photo = null;
 
-if (empty($product) || empty($description) || empty($type) || empty($quantity) || empty($base_cost) || 
-    empty($code_product) || strlen($code_product) > 14) {
+if (empty($product) || strlen($product) > 128 || empty($description) || strlen($description) > 512 || empty($type) || strlen($type) > 128 ||
+    strlen($quantity) > 9 || empty($quantity) || empty($base_cost) || strlen($base_cost) > 9 || empty($profit_margin) || strlen($profit_margin) > 9 ||
+    strlen($code_product) > 14 || strlen($code_product) < 6) {
 
     header("Location: ../public/views/admin/insert-products-admin.php?notice=invaliddata");
     exit;

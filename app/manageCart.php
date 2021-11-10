@@ -2,8 +2,7 @@
 
 session_start();
 
-if (!isset($_SESSION['isAuth']) || $_SERVER['REQUEST_METHOD'] != 'POST') {
-    header("Location: ../public/views/products.php");
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     exit;
 }
 
@@ -19,15 +18,18 @@ if (isset($_POST['id']) && isset($_POST['add'])) {
     exit;
 }
 
+// Update number of product
 if (isset($_POST['id_update']) && isset($_POST['quantity'])) {
 
     $product_id = intval($_POST['id_update']);
     $quantity = intval($_POST['quantity']);
 
-    
-
-    if (isset($_SESSION['cart'][$product_id]) && $quantity != $_SESSION['cart'][$product_id]) {
-        $_SESSION['cart'][$product_id] = $quantity;
+    if (isset($_SESSION['cart'][$product_id]) && $quantity != $_SESSION['cart'][$product_id] && $quantity > 0) {
+        if ($quantity >= 100) {
+            $_SESSION['cart'][$product_id] = 100;
+        } else {
+            $_SESSION['cart'][$product_id] = $quantity;
+        }
     } else {
         $_SESSION['cart'][$product_id] = 1;
     }
@@ -38,10 +40,12 @@ if (isset($_POST['id_update']) && isset($_POST['quantity'])) {
 
 }
 
+// Clean cart 
 if (isset($_POST['remove'])) {
     unset($_SESSION['cart'][intval($_POST['remove'])]);
 }
 
+// Add product with its quantity and id
 if (isset($_GET['add_product'])) {
     $id_product = intval(sanitizeString($_GET['add_product']));
     if (!empty($id_product)) {

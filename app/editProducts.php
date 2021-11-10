@@ -24,8 +24,9 @@ if ($_POST['operation'] == 'Atualizar dados') {
 
     $photo_name = sanitizeString($_POST['photo_name']) ?? null;
 
-    if (empty($product) || empty($description) || empty($code_product) || empty($type) || !is_numeric($quantity)
-        || $base_cost < 0 || $quantity < 0) {
+    if (empty($product) || strlen($product) > 128 || empty($description) || strlen($description) > 512 || strlen($code_product) > 14 || 
+        strlen($code_product) < 6 || empty($type) || strlen($type) > 128 || !is_numeric($quantity) || $base_cost < 0 || strlen($base_cost) > 12 ||
+        $quantity < 0 || strlen($quantity) > 12) {
         header("Location: ../public/views/admin/edit-product.php?product=".$product_id."&notice=invaliddata");
         exit;
     }

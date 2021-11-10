@@ -5,8 +5,7 @@
 
     $page_title = 'Produtos';
 
-    $style_scripts = ['<link rel="stylesheet" href="../css/product-page.css">',
-                    '<script src="../../js/products.js"></script>'];
+    $style_scripts = ['<link rel="stylesheet" href="../css/product-page.css">'];
 
     require("../includes/head.php");
 
@@ -128,5 +127,6 @@
 
         ?>
     </div>
+    <script src="../../js/products.js"></script>
 </body>
 </html>

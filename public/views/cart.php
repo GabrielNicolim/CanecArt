@@ -90,7 +90,7 @@
                                     <div class="list-avalible">'.$text.'</div>
                                     <div class="list-price">'.$product['price_product'].'</div>
                                     <div class="list-interaction">
-                                        <input type="number" class="input-quantity" min="0" name="update'.$product['id_product'].'" value="'.$quantity.'">
+                                        <input type="number" class="input-quantity" min="0" max="100" name="update'.$product['id_product'].'" value="'.$quantity.'">
                                         <img src="../icons/trash-fill.svg" id='.$product['id_product'].'" alt="Excluir produto">
                                     </div>
                                 </div>

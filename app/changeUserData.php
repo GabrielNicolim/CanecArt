@@ -13,7 +13,7 @@ require('functions.php');
 $name = sanitizeString($_POST['name']);
 $email = sanitizeString($_POST['email']);
 
-if (!empty($name) && !empty($email)) {
+if (!empty($name) && !empty($email) && strlen($name) <= 256 && strlen($email) <= 255) {
 
     $query = 'SELECT COUNT(*) FROM eq3.users WHERE email_user = :email_user AND id_user != :id_user';
     $stmt = $conn -> prepare($query);

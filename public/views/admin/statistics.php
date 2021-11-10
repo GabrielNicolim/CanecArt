@@ -127,7 +127,7 @@
         ]);
 
         var chart = new google.visualization.ColumnChart(document.getElementById('barchart'));
-        chart.draw(data, {title: 'Lucro absoluto por produtos'});
+        chart.draw(data, {title: 'Lucro absoluto por produtos (Após custos e impostos)'});
         
         // ======================================================================================
 

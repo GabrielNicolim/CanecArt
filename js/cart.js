@@ -81,6 +81,7 @@ window.addEventListener('load', () => {
         } else if (adresses[0].id != '' && window.document.getElementsByClassName('choosen') != null) {
             
             let loading = window.document.getElementById('opacity');
+            document.getElementById("loading").src="../images/loading-buffering.gif";
             loading.classList.remove('hidden');
             
             var xhr = new XMLHttpRequest();

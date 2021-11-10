@@ -20,7 +20,7 @@ $district = sanitizeString($_POST['district']);
 $complement = sanitizeString($_POST['complement']);
 
 if (empty($contact_name) || strlen($contact_name) > 255 || empty($CEP) || strlen($CEP) > 10 || empty($city) || strlen($city) > 255 ||
-    empty($state) || strlen($state) > 255|| empty($number) || strlen($number) > 32 || empty($street) || empty($district)) {
+    empty($state) || strlen($state) > 255|| empty($number) || strlen($number) > 128 || empty($street) || empty($district)) {
     
     header("Location: ../public/views/user.php?page=adresses&error=1");
     exit;

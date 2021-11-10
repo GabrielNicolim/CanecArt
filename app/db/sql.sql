@@ -34,7 +34,7 @@ CREATE TABLE eq3.adresses (
     street_adress TEXT NOT NULL,
     district_adress TEXT NOT NULL,
     cep_adress CHAR(10) NOT NULL,
-    number_adress INT NOT NULL,
+    number_adress VARCHAR(128) NOT NULL,
     complement_adress TEXT DEFAULT NULL,
     deleted BOOLEAN DEFAULT FALSE,
 

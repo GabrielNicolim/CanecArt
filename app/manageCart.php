@@ -24,7 +24,7 @@ if (isset($_POST['id_update']) && isset($_POST['quantity'])) {
     $product_id = intval($_POST['id_update']);
     $quantity = intval($_POST['quantity']);
 
-    if (isset($_SESSION['cart'][$product_id]) && $quantity != $_SESSION['cart'][$product_id] && $quantity > 0) {
+    if (isset($_SESSION['cart'][$product_id]) && $quantity != $_SESSION['cart'][$product_id] && $quantity >= 0) {
         if ($quantity >= 100) {
             $_SESSION['cart'][$product_id] = 100;
         } else {

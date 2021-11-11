@@ -9,7 +9,6 @@
         <div class="left">
             <a href="<?=URLROOT?>/" data-checked="home" class="btn">Home</a>
             <a href="<?=URLROOT?>/public/views/products.php" data-checked="products" class="btn">Produtos</a>
-            <a href="<?=URLROOT?>/public/views/statistics.php" data-checked="statistics" class="btn">Estatísticas</a>
             <a href="<?=URLROOT?>/public/views/development.php" data-checked="development" class="btn">Desenvolvimento</a>
             <?php
                 if (isset($_SESSION['isAuth'])) {

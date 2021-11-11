@@ -49,8 +49,8 @@
 
                 <div class="value">
                     <span>Compras:</span>
-                    <input type="range" id="rangeInput" name="rangeInput" value="0" min="0" max="512" oninput="document.getElementById('textInput').value=this.value;">
-                    <input type="numeric" step="1" id="textInput" value="0" min="0" max="512" oninput="document.getElementById('rangeInput').value=this.value;" onkeydown="return event.key != 'Enter';">
+                    <input type="range" id="rangeInput" name="rangeInput" value="0" min="0" max="128" oninput="document.getElementById('textInput').value=this.value;">
+                    <input type="numeric" step="1" id="textInput" value="0" min="0" max="128" oninput="document.getElementById('rangeInput').value=this.value;" onkeydown="return event.key != 'Enter';">
                 </div>
 
                 <input type="submit" value="Buscar">

@@ -157,7 +157,7 @@
 
                 <div class="buttons">
                     <a  id="payment_button"><div class="btn primary">
-                        Ir para o pagamento
+                        Finalizar pedido
                     </div></a>
                     <a href="products.php"><div class="btn">Continuar Comprando</div></a>
                 </div>

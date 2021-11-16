@@ -75,12 +75,27 @@
                             <td>R$ <?=sprintf("%.2f",$profitData['spent']+$employe+$bills)?></td>
                         </tr>
                         <tr>
+                            <td colspan="2">Impostos:</td>
+                            <td>R$ <?=sprintf("%.2f",$profitData['bills']*0.18)?></td>
+                        </tr>
+                        <tr>
                             <td colspan="2">Faturamento/Receita:</td>
                             <td>R$ <?=sprintf("%.2f",$profitData['bills'])?></td>
                         </tr>
                         <tr>
-                            <td colspan="2">Lucro Liquido:</td>
-                            <td>R$ <?=sprintf("%.2f",$profitData['bills']-($profitData['spent']+$employe+$bills))?></td>
+                            <td colspan="2">
+                            <?php 
+                                $final = (($profitData['bills'] - ($profitData['spent']+$employe+$bills)) - $profitData['bills']*0.18); 
+                                
+                                if($final > 0) 
+                                    echo "Lucro";
+                                else {
+                                    echo "Prejuizo";
+                                    $final *= -1; 
+                                }    
+                            ?> 
+                            Liquido:</td>
+                            <td>R$ <?=sprintf("%.2f",$final)?></td>
                         </tr>
                     </table>
                 </div>

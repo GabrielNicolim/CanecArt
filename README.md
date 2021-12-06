@@ -1,34 +1,34 @@
 # CanecArt
 
-## Observações
+## Comments
 
-### Pastas 
+### Folders
 
-As pastas devem ser bem divididas, segundo o nível de segurança e importância, facilitando a organização da aplicação. 
+Folders should be well divided, according to the level of security and importance, facilitating the organization of the application.
 
 - *App:*
-arquivos que correspondem à lógica da aplicação e manipulação do banco de dados
+files that correspond to application logic and database manipulation
 
 - *Js:*
-Arquivos JavaScript para manipulação da `DOM` e execução de requisições assincronas para a aplicação.
+JavaScript files for manipulating the `DOM` and executing asynchronous requests to the application.
 
 - *Public:*
-Arquivos de imagem, icones, CSS e estilização em geral.
+Image files, icons, CSS and general styling.
 
 - *Views:*
-Telas da aplicação em geral. Está pasta deve conter todas as páginas da aplicação exceto o `index.php`. Está pasta deve conter outras subpastas mais especializadas para determinado nível de acesso de usuário (Exemplo: `Admin`, que encapsula as páginas que o admin deve ter acesso). 
+General application screens. This folder must contain all pages of the application except `index.php`. This folder should contain other more specialized subfolders for a certain user access level (Example: `Admin`, which encapsulates the pages that the admin should have access to).
 
-### Organização
+### Organization
 
-Utilizem o Git e GitHub para a organização. É importante que reuniões sejam realizadas e cada pessoa se organize segundo o projeto. A tabela do projeto pode ser manipula e utilizada para que cada pessoa possa assumir tarefas e realizar anotações dos problemas encontrados. 
+Use Git and GitHub for organization. It is important that meetings are held and each person is organized according to the project. The project table can be manipulated and used so that each person can take on tasks and take notes on problems encountered.
 
-## Aplicativos
+## Applications
 
-Link de acesso no [Servidor](http://www.projetosctibauru.com.br/w72AEquipe3/ecommerce/)
+Access link on the [Server](http://www.projetosctibauru.com.br/w72AEquipe3/ecommerce/)
 
-Esses links devem ser utilizados para realizar a instalação dos aplicativos utilizados para o desenvolvimento do projeto em conjunto.
+These links must be used to install the applications used for the joint development of the project.
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [GitHub Desktop](https://desktop.github.com/)
-- [Xampp](https://www.apachefriends.org/download.html) *Necessário ligar as extensões do Postgre e PostgrePDO*
+- [Xampp](https://www.apachefriends.org/download.html) *Need to link Postgre and PostgrePDO extensions*
 - [PgAdmin4](https://www.pgadmin.org/download/)
